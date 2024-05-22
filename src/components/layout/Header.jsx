@@ -2,7 +2,7 @@
 const Header = () => {
     return (
         <>
-            <nav className="bg-[#865DFF] px-10 text-white flex justify-between items-center">
+            <nav className="bg-[#150050] px-10 text-white flex justify-between items-center">
                 <div>
                     <img className="w-12" src="../../../images/logo.png" alt="" />
                 </div>
