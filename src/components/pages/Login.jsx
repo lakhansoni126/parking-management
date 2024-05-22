@@ -11,12 +11,12 @@ const Login = () => {
 
                 </nav>
 
-                <div className="flex justify-around mt-[20vh]" >
+                <div className="flex flex-row-reverse justify-around mt-[20vh]" >
                     <div className="text-white py-20">
-                        <h1 className="font-bold text-[24px]">Parking Management </h1>
+                        <h1 className="font-bold py-2 text-[24px]">Parking Management </h1>
                         <h1 className="text-[18px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, laboriosam?</h1>
                         <h1 className="text-[18px]">Lorem ipsum dolor sit amet consectetur adipisicing.</h1>
-                        <button className="bg-[#865DFF] text-[20px] px-4 p-1 rounded-[20px] my-5" >Login</button>
+                        <button className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] my-5" >Login</button>
 
                     </div>
                     <div>
