@@ -4,7 +4,7 @@ function Profile() {
 
     return (
         <>
-            <section className='h-screen bg-[#191825] flex flex-col justify-center items-center'>
+            <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
                 <div>
                     <img className='invert w-40 rounded-full' src="../../../public/images/user.png" alt="" />
                 </div>
