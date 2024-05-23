@@ -3,6 +3,8 @@ import React from 'react';
 function Profile() {
     return (
         <>
+        <img src="" alt="" />
+        
             <label >Name<input type="text" /></label> <input type="text" />
 
             <label >Mobile number<input type="number" /></label>
