@@ -25,7 +25,7 @@ function Profile() {
                             <label className=''>
                                 Mobile number
                                 <div>
-                                    <input className='bg- border-b-2 border-[#3F0071] bg-transparent my-5 mx-5' type="number" placeholder="Enter your mobile number" />
+                                    <input className='noscroll bg- border-b-2 border-[#3F0071] bg-transparent my-5 mx-5' type="number" placeholder="Enter your mobile number" />
                                 </div>
                             </label>
                         </div>
@@ -41,7 +41,7 @@ function Profile() {
                             <label className='mx-5'>
                                 Vehicle
                                 <div>
-                                    <select className='bg-transparent w-[250px] border-[#3F0071] border-b-[2px] p-1 my-4' name="Vehicle">
+                                    <select className='bg-transparent  border-[#3F0071] border-b-[2px] p-1 my-4' name="Vehicle">
                                         <option className='bg-transparent text-black' value="" disabled selected>Select your vehicle</option>
                                         <option className='bg-transparent text-black' value="Car">Car</option>
                                         <option className='bg-transparent text-black' value="Bike">Bike</option>
