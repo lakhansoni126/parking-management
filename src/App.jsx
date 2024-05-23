@@ -5,6 +5,7 @@ import Login from './components/pages/Login';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Dashboard from './components/pages/Dashboard';
+import Profile from './components/pages/Profile'
 
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
 
 
         </Routes>
