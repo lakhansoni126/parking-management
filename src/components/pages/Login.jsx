@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider, db } from '../../firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { auth, googleProvider, } from '../../firebase';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -12,16 +11,7 @@ const Login = () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const user = result.user;
-
-            const userRef = doc(db, 'users', user.uid);
-            await setDoc(userRef, {
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName,
-                photoURL: user.photoURL,
-            });
-
-            navigate('/');
+            navigate('/profile', { state: { user } });
         } catch (error) {
             setError(error.message);
         }
