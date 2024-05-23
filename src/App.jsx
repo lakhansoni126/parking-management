@@ -6,6 +6,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Dashboard from './components/pages/Dashboard';
 import Profile from './components/pages/Profile'
+import ChooseRole from './components/pages/ChooseRole';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route element={<ThemeLayout />}>
             <Route path='/' element={<Dashboard />} />
           </Route>
+          <Route path="/chooserole" element={<ChooseRole />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
