@@ -20,14 +20,13 @@ function App() {
 
           <Route element={<ThemeLayout />}>
             <Route path='/' element={<Dashboard />} />
+            <Route path="/chooserole" element={<ChooseRole />} />
           </Route>
-          <Route path="/chooserole" element={<ChooseRole />} />
+          <Route path="/profile" element={<Profile />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
 
 
         </Routes>

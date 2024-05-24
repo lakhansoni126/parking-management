@@ -8,15 +8,14 @@ function Profile() {
     const navigate = useNavigate();
     const user = location.state.user;
 
+
     const [formData, setFormData] = useState({
         name: '',
-        mn: '',
+        contactInfo: '',
         email: user.email,
-        ppf: user.photoURL,
-        office: '',
-        modal: '',
-        vn: '',
-        vt: ""
+        officeNum: '',
+        vehicleNum: '',
+        vehicleType: ""
     });
 
     const handleChange = (e) => {
@@ -41,9 +40,6 @@ function Profile() {
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
                 <div>
-                    <img className='invert w-32 rounded-full' src={user.photoURL} alt="" />
-                </div>
-                <div>
                     <div className='flex flex-col pl-[40px] text-white'>
                         <label>
                             Name
@@ -64,7 +60,7 @@ function Profile() {
                                 <div>
                                     <input
                                         onChange={handleChange}
-                                        value={formData.mn}
+                                        value={formData.contactInfo}
                                         name="mn"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent my-5 mr-5 mb-3'
                                         type="number"
@@ -86,28 +82,14 @@ function Profile() {
                                 />
                             </div>
                         </label>
-                        <div>
-                            <label>
-                                Model
-                                <div>
-                                    <input
-                                        onChange={handleChange}
-                                        value={formData.modal}
-                                        name="modal"
-                                        className='w-[400px] border-b-2 border-[#3F0071] bg-transparent my-5 mr-5 mb-3'
-                                        type="text"
-                                        placeholder="Enter vehicle model"
-                                    />
-                                </div>
-                            </label>
-                        </div>
+
                         <div>
                             <label>
                                 Vehicle number
                                 <div>
                                     <input
                                         onChange={handleChange}
-                                        value={formData.vn}
+                                        value={formData.vehicleNum}
                                         name="vn"
                                         className='w-[400px] border-b-2 border-[#3F0071] bg-transparent my-5 mr-5 mb-3'
                                         type="text"
@@ -122,7 +104,7 @@ function Profile() {
                                 <div>
                                     <select
                                         onChange={handleChange}
-                                        value={formData.vt}
+                                        value={formData.vehicleType}
                                         name="vt"
                                         className='bg-transparent border-[#3F0071] border-b-[2px] p-1 my-4'
                                     >
