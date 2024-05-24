@@ -7,16 +7,20 @@ function Profile() {
     const location = useLocation();
     const navigate = useNavigate();
     const user = location.state.user;
+    const uid = location.state.uid
 
-
+    console.log(location)
     const [formData, setFormData] = useState({
         name: '',
+        uid: uid,
         contactInfo: '',
         email: user.email,
         officeNum: '',
         vehicleNum: '',
         vehicleType: ""
     });
+
+    let role = "guard";
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,7 +33,7 @@ function Profile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await set(ref(db, 'users/' + user.uid), formData);
+            await set(ref(db, `${role}/` + uid), formData);
             navigate('/');
         } catch (error) {
             console.error('Error saving data to Firebase Realtime Database', error);

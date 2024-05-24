@@ -10,9 +10,9 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user.reloadUserInfo
+            const user = result.user
             console.log(user)
-            navigate('/profile', { state: { user: user } });
+            navigate('/profile', { state: { user: user.reloadUserInfo, uid: user.uid } });
         } catch (error) {
             setError(error.message);
         }
