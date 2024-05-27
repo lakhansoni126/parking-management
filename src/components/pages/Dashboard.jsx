@@ -2,31 +2,26 @@
 const Dashboard = () => {
     return (
         <>
-        <h2>deshbord</h2>
-            {/* <section className="h-screen text-white bg-[#191825]">
-                    <div className="px-20 py-5">
-                        <h1 className="font-bold text-[20px]">Book Your Parking Space</h1>
-                        <p className="text-[15px]">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, eaque.</p>
-                    </div>
-                <div className="flex flex-col justify-center items-center">
+            <section className="h-screen bg-[#610094]">
+                <div className="flex text-white">
+                    <div className="h-screen w-[20vw] pt-5 border-r-2 border-r-[#150050]  text-[18px] font-bold">
 
-                    <div className="">
-                        <img className="w-[700px] rounded-[39px]" src="../../../public/images/parking.jpg" alt="" />
-                        <h2 className="py-2 text-center">Parking Representation</h2>
-                    </div>
-                    <div className="text-black">
-                 
-                        <input type="text" placeholder="Owner Name" />
-                      
-                        <input type="text" placeholder="Company Name" />
-                       
-                        <input type="text" placeholder="Vehicle Model" />
+                        <div><button className="w-full border-[#150050] border-b-2 pb-5 align-text-center">Profile</button></div>
+                        <div><button className="w-full border-[#150050] py-5 border-b-2 align-text-center">Complain</button></div>
 
-                        <input type="text" placeholder="Parking Slot" />
-                        
+                    </div>
+
+                    <div className="w-[80vw] flex flex-col items-center   ">
+                        <h1 className="font-bold text-[20px] mt-[120px]"> User Information</h1>
+                        <div className="flex gap-4 text-[20px] mt-10"><h2 className="font-bold">Name</h2><h4>abc</h4></div>
+                        <div className="flex gap-4 text-[20px] mt-10"><h4 className="font-bold">email</h4><h4>abc</h4></div>
+                        <div className="flex gap-4 text-[20px] mt-10"><h4 className="font-bold">office Number</h4><h4>abc</h4></div>
+                        <div className="flex gap-4 text-[20px] mt-10"><h4 className="font-bold">vehicle Number</h4><h4>abc</h4></div>
+                        <div className="flex gap-4 text-[20px] mt-10"><h4 className="font-bold">vehicle Type</h4><h4>abc</h4></div>
+
                     </div>
                 </div>
-            </section> */}
+            </section>
         </>
     )
 }
