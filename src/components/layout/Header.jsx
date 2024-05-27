@@ -10,7 +10,7 @@ const Header = () => {
                     <ul className="flex">
                         <li><a className="px-7 py-[23px] hover:bg-[#3F0071] " href=""> Home</a></li>
                         <li><a className="px-7 py-[23px] hover:bg-[#3F0071] " href=""> AboutUS</a></li>
-                        <li><a className="px-7 py-[10px] rounded-sm bg-orange-600 hover:bg-[#3F0071] " href=""> Logout</a></li>
+                        <li><a className="px-7 py-[10px] rounded-sm bg-orange-600 hover:bg-[#ff6a00] " href=""> Logout</a></li>
                         <li></li>
                     </ul>
                 </div>
