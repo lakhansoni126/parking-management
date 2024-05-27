@@ -1,29 +1,7 @@
-import { useState } from 'react';
+import PropTypes from "prop-types";
 
-
-function UserProfile(user, uid, role, handleSubmit) {
-    const [formData, setFormData] = useState({
-
-        name: '',
-        uid: uid,
-        contactInfo: '',
-        email: user.email,
-        officeNum: '',
-        vehicleNum: '',
-        vehicleType: "",
-        role: role
-    });
-
-
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
+function UserProfile({ user, values, onChange, onSubmit }) {
+    const { name, contactInfo, officeNum, vehicleNum, vehicleType, } = values || {}
 
 
     return (
@@ -35,12 +13,12 @@ function UserProfile(user, uid, role, handleSubmit) {
                             Name*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.name}
+                                    onChange={onChange}
+                                    value={name}
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder={user.displayName}
-                                    name="name" // Added name attribute
+                                    name="name"
                                 />
                             </div>
                         </label>
@@ -49,12 +27,12 @@ function UserProfile(user, uid, role, handleSubmit) {
                                 Mobile number (optional)
                                 <div>
                                     <input
-                                        onChange={handleChange}
-                                        value={formData.contactInfo}
+                                        onChange={onChange}
+                                        value={contactInfo}
                                         className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                        type="number" // Changed from type="number"
+                                        type="number"
                                         placeholder="Mobile number"
-                                        name="contactInfo" // Added name attribute
+                                        name="contactInfo"
                                     />
                                 </div>
                             </label>
@@ -63,9 +41,9 @@ function UserProfile(user, uid, role, handleSubmit) {
                             Office/Flat*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.office}
-                                    name="office"
+                                    onChange={onChange}
+                                    value={officeNum}
+                                    name="officeNum"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
@@ -78,12 +56,12 @@ function UserProfile(user, uid, role, handleSubmit) {
                                 Vehicle number*
                                 <div>
                                     <input
-                                        onChange={handleChange}
-                                        value={formData.vehicleNum}
+                                        onChange={onChange}
+                                        value={vehicleNum}
                                         className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="text"
                                         placeholder="Enter vehicle number"
-                                        name="vehicleNum" // Added name attribute
+                                        name="vehicleNum"
                                     />
                                 </div>
                             </label>
@@ -93,10 +71,10 @@ function UserProfile(user, uid, role, handleSubmit) {
                                 Vehicle*
                                 <div>
                                     <select
-                                        onChange={handleChange}
-                                        value={formData.vehicleType}
+                                        onChange={onChange}
+                                        value={vehicleType}
                                         className='bg-transparent border-[#3F0071] border-b-[2px] p-1 mb-7'
-                                        name="vehicleType" // Added name attribute
+                                        name="vehicleType"
                                     >
                                         <option value="" disabled>Select your vehicle</option>
                                         <option value="Car">Car</option>
@@ -105,7 +83,7 @@ function UserProfile(user, uid, role, handleSubmit) {
                                 </div>
                             </label>
                         </div>
-                        <button onClick={handleSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                        <button onClick={onSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
                             Submit
                         </button>
                     </div>
@@ -114,5 +92,12 @@ function UserProfile(user, uid, role, handleSubmit) {
         </>
     );
 }
+
+UserProfile.propTypes = {
+    user: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    values: PropTypes.object.isRequired,
+};
 
 export default UserProfile;

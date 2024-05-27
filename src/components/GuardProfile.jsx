@@ -1,21 +1,8 @@
-import { useState } from 'react'
+import PropTypes from "prop-types";
 
-function GuardProfile(user, uid, handleSubmit) {
-    const [formData, setFormData] = useState({
-        name: '',
-        contactInfo: '',
-        employeeId: '',
-        floor: '',
-        uid: uid
-    });
+function GuardProfile({ user, onSubmit, onChange, values }) {
+    const { name, contactInfo, employeeId, floor, } = values || {};
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
     return (
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
@@ -25,8 +12,8 @@ function GuardProfile(user, uid, handleSubmit) {
                             Name*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.name}
+                                    onChange={onChange}
+                                    value={name}
                                     name="name"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
@@ -39,8 +26,8 @@ function GuardProfile(user, uid, handleSubmit) {
                                 Mobile number*
                                 <div>
                                     <input
-                                        onChange={handleChange}
-                                        value={formData.contactInfo}
+                                        onChange={onChange}
+                                        value={contactInfo}
                                         name="contactInfo"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="number"
@@ -54,8 +41,8 @@ function GuardProfile(user, uid, handleSubmit) {
                             Employee ID*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.employeeId}
+                                    onChange={onChange}
+                                    value={employeeId}
                                     name="employeeId"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
@@ -67,8 +54,8 @@ function GuardProfile(user, uid, handleSubmit) {
                             Floor*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.floor}
+                                    onChange={onChange}
+                                    value={floor}
                                     name="floor"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
@@ -77,15 +64,21 @@ function GuardProfile(user, uid, handleSubmit) {
                             </div>
                         </label>
 
-
-                        <button onClick={handleSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                        <button onClick={onSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
                             Submit
                         </button>
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }
 
-export default GuardProfile
+GuardProfile.propTypes = {
+    user: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    values: PropTypes.object.isRequired,
+};
+
+export default GuardProfile;

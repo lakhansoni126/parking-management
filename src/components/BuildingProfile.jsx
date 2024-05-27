@@ -1,25 +1,9 @@
-import { useState } from 'react'
+import PropTypes from 'prop-types';
 
-function BuildingProfile(uid, user, handleSubmit) {
+function BuildingProfile({ onSubmit, onChange, values }) {
 
-    const [formData, setFormData] = useState({
-        buildingName: '',
-        contactInfo: '',
-        altContactInfo: '',
-        address: '',
-        city: '',
-        state: '',
-        uid: uid,
-        email: user.email
-    });
+    const { buildingName, contactInfo, altContactInfo, address, city, state } = values || {};
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
     return (
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
@@ -30,9 +14,9 @@ function BuildingProfile(uid, user, handleSubmit) {
                             Building Name*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.name}
-                                    name="name"
+                                    onChange={onchange}
+                                    value={buildingName}
+                                    name="buildingName"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Building Name"
@@ -44,8 +28,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                                 Mobile number*
                                 <div>
                                     <input
-                                        onChange={handleChange}
-                                        value={formData.contactInfo}
+                                        onChange={onChange}
+                                        value={contactInfo}
                                         name="contactInfo"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="number"
@@ -59,8 +43,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                                 Alternate number*
                                 <div>
                                     <input
-                                        onChange={handleChange}
-                                        value={formData.altContactInfo}
+                                        onChange={onChange}
+                                        value={altContactInfo}
                                         name="altContactInfo"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="number"
@@ -74,8 +58,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                             Full Address*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.address}
+                                    onChange={onChange}
+                                    value={address}
                                     name="address"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
@@ -87,12 +71,12 @@ function BuildingProfile(uid, user, handleSubmit) {
                             City*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.city}
+                                    onChange={onChange}
+                                    value={city}
                                     name="city"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
-                                    placeholder="Enter your office/flat number"
+                                    placeholder="City"
                                 />
                             </div>
                         </label>
@@ -100,25 +84,31 @@ function BuildingProfile(uid, user, handleSubmit) {
                             State*
                             <div>
                                 <input
-                                    onChange={handleChange}
-                                    value={formData.state}
+                                    onChange={onChange}
+                                    value={state}
                                     name="state"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
-                                    placeholder="Enter your office/flat number"
+                                    placeholder="State"
                                 />
                             </div>
                         </label>
 
-
-                        <button onClick={handleSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                        <button onClick={onSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
                             Submit
                         </button>
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }
 
-export default BuildingProfile
+BuildingProfile.propTypes = {
+    user: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    values: PropTypes.object.isRequired,
+};
+
+export default BuildingProfile;

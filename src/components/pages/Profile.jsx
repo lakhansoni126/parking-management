@@ -15,15 +15,58 @@ function Profile() {
 
     const [role, setRole] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(true);
+    const [formData, setFormData] = useState({
+        buildingName: '',
+        contactInfo: '',
+        altContactInfo: '',
+        address: '',
+        city: '',
+        state: '',
+        uid: uid,
+        email: user.email,
+        name: '',
+        employeeId: '',
+        floor: '',
+        officeNum: '',
+        vehicleNum: '',
+        vehicleType: "",
+        role: role
+    });
 
     const handleSelectRole = (selectedRole) => {
         setRole(selectedRole);
         setIsModalOpen(false);
     };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
-    const handleSubmit = async (formData) => {
+    const handleSubmit = async () => {
         try {
-            await set(ref(db, `${role}/` + uid), formData);
+            const validFormData = Object.keys(formData).reduce((acc, key) => {
+                const value = formData[key];
+                if (
+                    value !== undefined &&
+                    value !== null &&
+                    value !== '' &&
+                    !key.includes('.') &&
+                    !key.includes('#') &&
+                    !key.includes('$') &&
+                    !key.includes('/') &&
+                    !key.includes('[') &&
+                    !key.includes(']')
+                ) {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {});
+
+            await set(ref(db, `${role}/` + uid), validFormData);
+            localStorage.setItem('user', JSON.stringify(validFormData));
             navigate('/');
         } catch (error) {
             console.error('Error saving data to Firebase Realtime Database', error);
@@ -33,11 +76,32 @@ function Profile() {
     const renderForm = () => {
         switch (role) {
             case 'users':
-                return (<UserProfile onSubmit={handleSubmit} />)
+                return (
+                    <UserProfile
+                        user={user}
+                        values={formData}
+                        onChange={handleChange}
+                        onSubmit={handleSubmit}
+
+                    />)
             case 'guards':
-                return <GuardProfile onSubmit={handleSubmit} />;
+                return (
+                    <GuardProfile
+                        user={user}
+                        values={formData}
+                        onChange={handleChange}
+                        onSubmit={handleSubmit}
+
+                    />);
             case 'buildings':
-                return (<BuildingProfile onSubmit={handleSubmit} />)
+                return (
+                    <BuildingProfile
+                        user={user}
+                        values={formData}
+                        onChange={handleChange}
+                        onSubmit={handleSubmit}
+
+                    />)
             default:
                 return <h1>yo</h1>;
         }
