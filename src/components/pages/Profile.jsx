@@ -34,9 +34,9 @@ function Profile() {
         switch (role) {
             case 'users':
                 return (<UserProfile onSubmit={handleSubmit} />)
-            case 'gu':
+            case 'guards':
                 return <GuardProfile onSubmit={handleSubmit} />;
-            case 'Guest':
+            case 'buildings':
                 return (<BuildingProfile onSubmit={handleSubmit} />)
             default:
                 return <h1>yo</h1>;

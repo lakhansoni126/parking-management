@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-function UserProfile() {
+function UserProfile(user, uid, role, handleSubmit) {
     const [formData, setFormData] = useState({
 
         name: '',

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function GuardProfile() {
+function GuardProfile(user, uid, handleSubmit) {
     const [formData, setFormData] = useState({
         name: '',
         contactInfo: '',
@@ -78,7 +78,7 @@ function GuardProfile() {
                         </label>
 
 
-                        <button className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                        <button onClick={handleSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
                             Submit
                         </button>
                     </div>

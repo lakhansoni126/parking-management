@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function BuildingProfile() {
+function BuildingProfile(uid, user, handleSubmit) {
 
     const [formData, setFormData] = useState({
         buildingName: '',
@@ -9,7 +9,7 @@ function BuildingProfile() {
         address: '',
         city: '',
         state: '',
-        uid: udi,
+        uid: uid,
         email: user.email
     });
 
@@ -111,7 +111,7 @@ function BuildingProfile() {
                         </label>
 
 
-                        <button className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                        <button onClick={handleSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
                             Submit
                         </button>
                     </div>
