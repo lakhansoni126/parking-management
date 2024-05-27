@@ -52,7 +52,7 @@ function UserProfile(user, uid, role, handleSubmit) {
                                         onChange={handleChange}
                                         value={formData.contactInfo}
                                         className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                        type="text" // Changed from type="number"
+                                        type="number" // Changed from type="number"
                                         placeholder="Mobile number"
                                         name="contactInfo" // Added name attribute
                                     />

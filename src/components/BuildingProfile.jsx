@@ -35,7 +35,7 @@ function BuildingProfile(uid, user, handleSubmit) {
                                     name="name"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
-                                    placeholder={user.displayName}
+                                    placeholder="Building Name"
                                 />
                             </div>
                         </label>
@@ -46,7 +46,7 @@ function BuildingProfile(uid, user, handleSubmit) {
                                     <input
                                         onChange={handleChange}
                                         value={formData.contactInfo}
-                                        name="mn"
+                                        name="contactInfo"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="number"
                                         placeholder="mobile number"
@@ -60,8 +60,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                                 <div>
                                     <input
                                         onChange={handleChange}
-                                        value={formData.contactInfo}
-                                        name="mn"
+                                        value={formData.altContactInfo}
+                                        name="altContactInfo"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="number"
                                         placeholder="mobile number"
@@ -75,8 +75,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                             <div>
                                 <input
                                     onChange={handleChange}
-                                    value={formData.office}
-                                    name="office"
+                                    value={formData.address}
+                                    name="address"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
@@ -88,8 +88,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                             <div>
                                 <input
                                     onChange={handleChange}
-                                    value={formData.office}
-                                    name="office"
+                                    value={formData.city}
+                                    name="city"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
@@ -101,8 +101,8 @@ function BuildingProfile(uid, user, handleSubmit) {
                             <div>
                                 <input
                                     onChange={handleChange}
-                                    value={formData.office}
-                                    name="office"
+                                    value={formData.state}
+                                    name="state"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"

@@ -41,7 +41,7 @@ function GuardProfile(user, uid, handleSubmit) {
                                     <input
                                         onChange={handleChange}
                                         value={formData.contactInfo}
-                                        name="mn"
+                                        name="contactInfo"
                                         className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                         type="number"
                                         placeholder="mobile number"
@@ -55,8 +55,8 @@ function GuardProfile(user, uid, handleSubmit) {
                             <div>
                                 <input
                                     onChange={handleChange}
-                                    value={formData.office}
-                                    name="office"
+                                    value={formData.employeeId}
+                                    name="employeeId"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
@@ -68,8 +68,8 @@ function GuardProfile(user, uid, handleSubmit) {
                             <div>
                                 <input
                                     onChange={handleChange}
-                                    value={formData.office}
-                                    name="office"
+                                    value={formData.floor}
+                                    name="floor"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
