@@ -19,12 +19,12 @@ function App() {
 
           <Route element={<AuthenticatedLayout />}>
             <Route path='/' element={<Dashboard />} />
+
+            <Route path="/guardeshboard" element={<GuardDeshboard />} />
           </Route>
           <Route path="/profile" element={<Profile />} />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/guardeshboard" element={<GuardDeshboard />} />
+          <Route path="/signup" element={<Login />} />
 
 
         </Routes>
