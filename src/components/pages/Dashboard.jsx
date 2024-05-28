@@ -62,11 +62,7 @@ const Dashboard = () => {
 
                     {activeSection === 'complain' && (
                         <div id="Complain" className="w-[80vw]">
-<<<<<<< HEAD
                             <h1 className="font-bold text-[20px] pl-10 mt-[40px]">Complaints</h1>
-=======
-                            <h1 className="font-bold text-[20px] pl-10 mt-[40px]">complain</h1>
->>>>>>> b1c418d (make it sharp)
                             <ul className="mt-10">
                                 <li className="py-5 pl-10 border-[#150050] border-t-2">Parking is not allowed here</li>
                                 <li className="py-5 pl-10 border-[#150050] border-t-2">Your vehicle is too cheap</li>
