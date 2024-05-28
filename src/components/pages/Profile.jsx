@@ -24,17 +24,22 @@ function Profile() {
         state: '',
         uid: uid,
         email: user.email,
+        role: '',
         name: '',
         employeeId: '',
         floor: '',
         officeNum: '',
         vehicleNum: '',
         vehicleType: "",
-        role: role
     });
+
 
     const handleSelectRole = (selectedRole) => {
         setRole(selectedRole);
+        setFormData((prevData) => ({
+            ...prevData,
+            role: selectedRole,
+        }));
         setIsModalOpen(false);
     };
     const handleChange = (e) => {

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider, } from '../../firebase';
+import { ref, get } from 'firebase/database';
+import { auth, googleProvider, db } from '../../firebase';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -10,10 +11,30 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user
-            console.log(user)
-            navigate('/profile', { state: { user: user.reloadUserInfo, uid: user.uid } });
+            const user = result.user;
+
+            const checkUserInCollection = async (collection) => {
+                const userRef = ref(db, `${collection}/${user.uid}`);
+                const userSnapshot = await get(userRef);
+                return userSnapshot.exists() ? userSnapshot.val() : null;
+            };
+
+            const [userInUsers, userInGuards, userInBuildings] = await Promise.all([
+                checkUserInCollection('users'),
+                checkUserInCollection('guards'),
+                checkUserInCollection('buildings')
+            ]);
+
+            const existingUser = userInUsers || userInGuards || userInBuildings;
+
+            if (existingUser) {
+                localStorage.setItem('user', JSON.stringify(existingUser));
+                navigate('/');
+            } else {
+                navigate('/profile', { state: { user: user.reloadUserInfo, uid: user.uid } });
+            }
         } catch (error) {
+            console.error('Error during Google Sign-In', error);
             setError(error.message);
         }
     };
