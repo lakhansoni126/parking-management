@@ -14,7 +14,7 @@ function BuildingProfile({ onSubmit, onChange, values }) {
                             Building Name*
                             <div>
                                 <input
-                                    onChange={onchange}
+                                    onChange={onChange}
                                     value={buildingName}
                                     name="buildingName"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
