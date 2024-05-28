@@ -5,6 +5,7 @@ import Login from './components/pages/Login';
 import AuthenticatedLayout from './components/AuthenticatedLayout';
 import Dashboard from './components/pages/Dashboard';
 import Profile from './components/pages/Profile'
+import GuardDeshboard from './components/pages/GuardDeshboard';
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/guardeshboard" element={<GuardDeshboard />} />
+
 
         </Routes>
 
