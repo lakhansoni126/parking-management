@@ -12,7 +12,7 @@ const AuthenticatedLayout = () => {
             <Footer />
         </>
     ) : (
-        <Navigate to="signup" />
+        <Navigate to="login" />
     );
 }
 

@@ -3,7 +3,7 @@ const Header = () => {
     const navigate = useNavigate()
     const logout = () => {
         localStorage.removeItem("user");
-        navigate('/signup')
+        navigate('/login')
     }
     return (
         <>
