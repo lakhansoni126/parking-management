@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ref, get, query, orderByChild, equalTo } from "firebase/database";
-import { db } from '../../firebase.js';
+import { db } from '../firebase.js';
 
 function GuardDashboard() {
   const [userData, setUserData] = useState(null);

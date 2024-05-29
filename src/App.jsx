@@ -4,7 +4,7 @@ import Login from './components/pages/Login';
 import AuthenticatedLayout from './components/AuthenticatedLayout';
 import Dashboard from './components/pages/Dashboard';
 import Profile from './components/pages/Profile'
-import GuardDeshboard from './components/pages/GuardDeshboard';
+import GuardDeshboard from './components/GuardDeshboard';
 
 
 function App() {
