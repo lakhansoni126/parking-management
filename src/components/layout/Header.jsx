@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 const Header = () => {
-    const navigate = useNavigate()
     const logout = () => {
         localStorage.removeItem("user");
-        navigate('/login')
     }
     return (
         <>

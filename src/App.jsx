@@ -4,7 +4,7 @@ import Login from './components/pages/Login';
 import AuthenticatedLayout from './components/AuthenticatedLayout';
 import Dashboard from './components/pages/Dashboard';
 import Profile from './components/pages/Profile'
-import GuardDeshboard from './components/GuardDeshboard';
+import PublicRoute from './components/auth/PublicRoute';
 
 
 function App() {
@@ -16,14 +16,15 @@ function App() {
 
         <Routes>
 
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
           <Route element={<AuthenticatedLayout />}>
             <Route path='/' element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
 
-            <Route path="/guardeshboard" element={<GuardDeshboard />} />
           </Route>
-          <Route path="/profile" element={<Profile />} />
 
-          <Route path="/login" element={<Login />} />
 
 
         </Routes>
