@@ -11,7 +11,7 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route element={<PublicRoute />}>
+                    <Route >
                         <Route path="/" element={<Login />} />
                         <Route path="/profile" element={<Profile />} />
                     </Route>
