@@ -29,7 +29,7 @@ const Login = () => {
 
             if (existingUser) {
                 localStorage.setItem('user', JSON.stringify(existingUser));
-                navigate('/');
+                navigate('/dashboard');
             } else {
                 navigate('/profile', { state: { user: user.reloadUserInfo, uid: user.uid } });
             }
