@@ -1,9 +1,24 @@
 import PropTypes from "prop-types";
-
+import { useState, useEffect } from "react";
 function UserProfile({ user, values, onChange, onSubmit }) {
     const { name, contactInfo, officeNum, vehicleNum, vehicleType, } = values || {}
+    const [displayName, setDisplayName] = useState(name || user.displayName);
 
+    useEffect(() => {
+        if (!name) {
+            setDisplayName(user.displayName);
+        }
+    }, [name, user.displayName]);
 
+    const handleVehicleNumChange = (event) => {
+        const upperCaseValue = event.target.value.toUpperCase();
+        onChange({
+            target: {
+                name: event.target.name,
+                value: upperCaseValue,
+            },
+        });
+    };
     return (
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
@@ -14,11 +29,11 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                             <div>
                                 <input
                                     onChange={onChange}
-                                    value={name}
+                                    value={displayName}
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                    type="text"
+                                    type='text'
                                     placeholder={user.displayName}
-                                    name="name"
+                                    name='name'
                                 />
                             </div>
                         </label>
@@ -44,6 +59,7 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                     onChange={onChange}
                                     value={officeNum}
                                     name="officeNum"
+                                    required
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
@@ -56,12 +72,12 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                 Vehicle number*
                                 <div>
                                     <input
-                                        onChange={onChange}
+                                        onChange={handleVehicleNumChange}
                                         value={vehicleNum}
                                         className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                        type="text"
-                                        placeholder="Enter vehicle number"
-                                        name="vehicleNum"
+                                        type='text'
+                                        placeholder='Enter vehicle number'
+                                        name='vehicleNum'
                                     />
                                 </div>
                             </label>

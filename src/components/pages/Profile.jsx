@@ -72,7 +72,7 @@ function Profile() {
 
             await set(ref(db, `${role}/` + uid), validFormData);
             localStorage.setItem('user', JSON.stringify(validFormData));
-            navigate('/');
+            navigate('/dashboard');
         } catch (error) {
             console.error('Error saving data to Firebase Realtime Database', error);
         }
