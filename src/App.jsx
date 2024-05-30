@@ -18,10 +18,10 @@ function App() {
 
           <Route element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route element={<AuthenticatedLayout />}>
             <Route path='/' element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
 
           </Route>
 
