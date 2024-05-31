@@ -1,14 +1,27 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { getDatabase, ref, onValue } from "firebase/database";
 function UserProfile({ user, values, onChange, onSubmit }) {
-    const { name, contactInfo, officeNum, vehicleNum, vehicleType, } = values || {}
+    const { name, building, contactInfo, officeNum, vehicleNum, vehicleType, } = values || {}
     const [displayName, setDisplayName] = useState(name || user.displayName);
+    const [buildingNames, setBuildingNames] = useState([]);
 
     useEffect(() => {
-        if (!name) {
-            setDisplayName(user.displayName);
+        if (name !== undefined) {
+            setDisplayName(name);
         }
-    }, [name, user.displayName]);
+    }, [name]);
+
+    useEffect(() => {
+        const db = getDatabase();
+        const buildingsRef = ref(db, 'buildings');
+        onValue(buildingsRef, (snapshot) => {
+            const data = snapshot.val();
+            // Assuming 'buildings' is an object where each key is an ID and each value is an object with a 'buildingName' property
+            const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
+            setBuildingNames(buildingNamesList);
+        });
+    }, []);
 
     const handleVehicleNumChange = (event) => {
         const upperCaseValue = event.target.value.toUpperCase();
@@ -19,6 +32,8 @@ function UserProfile({ user, values, onChange, onSubmit }) {
             },
         });
     };
+
+
     return (
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
@@ -52,6 +67,27 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                 </div>
                             </label>
                         </div>
+                        <div>
+                            <label>
+                                Building*
+                                <div>
+                                    <select
+                                        onChange={onChange}
+                                        value={building}
+                                        name="building"
+                                        required
+                                        className='w-[400px] border-b-2 border-[#3F0071] bg-[#252437] mb-7 mr-5'
+                                    >
+                                        <option value="" disabled>Select your building</option>
+                                        {buildingNames.map((buildingName, index) => (
+                                            <option key={index} value={buildingName}>
+                                                {buildingName}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
                         <label>
                             Office/Flat*
                             <div>
@@ -66,7 +102,6 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                 />
                             </div>
                         </label>
-
                         <div>
                             <label>
                                 Vehicle number*

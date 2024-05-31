@@ -36,6 +36,7 @@ function Profile() {
         officeNum: '',
         vehicleNum: '',
         vehicleType: "",
+        building: ""
     });
 
 
