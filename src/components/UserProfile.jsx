@@ -1,27 +1,35 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
+
 function UserProfile({ user, values, onChange, onSubmit }) {
-    const { name, building, contactInfo, officeNum, vehicleNum, vehicleType, } = values || {}
+    const { name, building, contactInfo, officeNum, vehicleNum, vehicleType } = values || {};
     const [displayName, setDisplayName] = useState(name || user.displayName);
     const [buildingNames, setBuildingNames] = useState([]);
 
-    useEffect(() => {
-        if (name !== undefined) {
-            setDisplayName(name);
-        }
-    }, [name]);
 
     useEffect(() => {
         const db = getDatabase();
         const buildingsRef = ref(db, 'buildings');
         onValue(buildingsRef, (snapshot) => {
             const data = snapshot.val();
-            // Assuming 'buildings' is an object where each key is an ID and each value is an object with a 'buildingName' property
             const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
             setBuildingNames(buildingNamesList);
         });
     }, []);
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        if (name === "name") {
+            setDisplayName(value);
+        }
+        onChange({
+            target: {
+                name,
+                value,
+            },
+        });
+    };
 
     const handleVehicleNumChange = (event) => {
         const upperCaseValue = event.target.value.toUpperCase();
@@ -33,7 +41,6 @@ function UserProfile({ user, values, onChange, onSubmit }) {
         });
     };
 
-
     return (
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
@@ -43,9 +50,9 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                             Name*
                             <div>
                                 <input
-                                    onChange={onChange}
+                                    onChange={handleInputChange}
                                     value={displayName}
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                     type='text'
                                     placeholder={user.displayName}
                                     name='name'
@@ -57,9 +64,9 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                 Mobile number (optional)
                                 <div>
                                     <input
-                                        onChange={onChange}
+                                        onChange={handleInputChange}
                                         value={contactInfo}
-                                        className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                        className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         type="number"
                                         placeholder="Mobile number"
                                         name="contactInfo"
@@ -72,7 +79,7 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                 Building*
                                 <div>
                                     <select
-                                        onChange={onChange}
+                                        onChange={handleInputChange}
                                         value={building}
                                         name="building"
                                         required
@@ -92,11 +99,11 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                             Office/Flat*
                             <div>
                                 <input
-                                    onChange={onChange}
+                                    onChange={handleInputChange}
                                     value={officeNum}
                                     name="officeNum"
                                     required
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                     type="text"
                                     placeholder="Enter your office/flat number"
                                 />
@@ -109,7 +116,7 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                     <input
                                         onChange={handleVehicleNumChange}
                                         value={vehicleNum}
-                                        className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                        className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         type='text'
                                         placeholder='Enter vehicle number'
                                         name='vehicleNum'
@@ -122,9 +129,9 @@ function UserProfile({ user, values, onChange, onSubmit }) {
                                 Vehicle*
                                 <div>
                                     <select
-                                        onChange={onChange}
+                                        onChange={handleInputChange}
                                         value={vehicleType}
-                                        className='bg-transparent border-[#3F0071] border-b-[2px] p-1 mb-7'
+                                        className='bg-[#252437] border-[#3F0071] border-b-[2px] p-1 mb-7'
                                         name="vehicleType"
                                     >
                                         <option value="" disabled>Select your vehicle</option>
