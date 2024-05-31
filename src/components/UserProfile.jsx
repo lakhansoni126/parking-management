@@ -17,19 +17,30 @@ function UserProfile({ user, values, onChange, onSubmit }) {
             setBuildingNames(buildingNamesList);
         });
     }, []);
-
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        if (name === "name") {
+        const { name: fieldName, value } = event.target;
+        if (fieldName === "name") {
             setDisplayName(value);
         }
         onChange({
             target: {
-                name,
+                name: fieldName, // Use fieldName instead of name
                 value,
             },
         });
     };
+    // const handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     if (name === "name") {
+    //         setDisplayName(value);
+    //     }
+    //     onChange({
+    //         target: {
+    //             name,
+    //             value,
+    //         },
+    //     });
+    // };
 
     const handleVehicleNumChange = (event) => {
         const upperCaseValue = event.target.value.toUpperCase();
