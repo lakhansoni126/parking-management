@@ -6,6 +6,11 @@ import BuildingProfile from '../BuildingProfile';
 import UserProfile from '../UserProfile';
 import GuardProfile from '../GuardProfile';
 import ChooseRole from '../ChooseRole';
+import {
+    userValidationSchema,
+    guardValidationSchema,
+    buildingValidationSchema,
+} from '../utils/ValidationSchemas';
 
 function Profile() {
     const location = useLocation();
@@ -83,6 +88,7 @@ function Profile() {
             case 'users':
                 return (
                     <UserProfile
+                        vaildatiion={userValidationSchema}
                         user={user}
                         values={formData}
                         onChange={handleChange}
@@ -92,6 +98,7 @@ function Profile() {
             case 'guards':
                 return (
                     <GuardProfile
+                        vaildatiion={guardValidationSchema}
                         user={user}
                         values={formData}
                         onChange={handleChange}
@@ -101,6 +108,7 @@ function Profile() {
             case 'buildings':
                 return (
                     <BuildingProfile
+                        vaildatiion={buildingValidationSchema}
                         user={user}
                         values={formData}
                         onChange={handleChange}
