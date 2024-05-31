@@ -23,7 +23,7 @@ function Profile() {
         city: '',
         state: '',
         uid: uid,
-        email: user.email,
+        email: user?.email,
         role: '',
         name: '',
         employeeId: '',
