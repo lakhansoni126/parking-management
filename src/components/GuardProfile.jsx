@@ -1,8 +1,22 @@
 import PropTypes from "prop-types";
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useState, useEffect } from "react";
+
 
 function GuardProfile({ user, onSubmit, onChange, values }) {
-    const { name, contactInfo, employeeId, floor, } = values || {};
+    const { building, name, contactInfo, employeeId, floor, } = values || {};
+    const [buildingNames, setBuildingNames] = useState([]);
 
+
+    useEffect(() => {
+        const db = getDatabase();
+        const buildingsRef = ref(db, 'buildings');
+        onValue(buildingsRef, (snapshot) => {
+            const data = snapshot.val();
+            const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
+            setBuildingNames(buildingNamesList);
+        });
+    }, []);
     return (
         <>
             <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
@@ -17,7 +31,7 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                     name="name"
                                     className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
                                     type="text"
-                                    placeholder={user.displayName}
+                                    placeholder={"Enter Your Name"}
                                 />
                             </div>
                         </label>
@@ -36,7 +50,27 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                 </div>
                             </label>
                         </div>
-
+                        <div>
+                            <label>
+                                Building*
+                                <div>
+                                    <select
+                                        onChange={onChange}
+                                        value={building}
+                                        name="building"
+                                        required
+                                        className='w-[400px] border-b-2 border-[#3F0071] bg-[#252437] mb-7 mr-5'
+                                    >
+                                        <option value="" disabled>Select your building</option>
+                                        {buildingNames.map((buildingName, index) => (
+                                            <option key={index} value={buildingName}>
+                                                {buildingName}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
                         <label>
                             Employee ID*
                             <div>
