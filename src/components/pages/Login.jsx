@@ -51,8 +51,8 @@ const Login = () => {
 
     return (
         <>
-            <section className="bg-[#191825] h-screen flex flex-row-reverse justify-around items-center">
-                <div className="text-white py-20">
+            <section className="bg-[#222831] h-screen flex flex-row-reverse justify-around items-center">
+                <div className="text-[#EEEEEE] py-20">
                     <h1 className="font-bold py-2 text-[24px]">
                         Parking Management
                     </h1>
@@ -66,7 +66,7 @@ const Login = () => {
                     {error && <p>Error: {error}</p>}
                     <button
                         onClick={handleGoogleSignIn}
-                        className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] my-5"
+                        className="bg-[#FF5722] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#393E46] my-5"
                     >
                         Login
                     </button>

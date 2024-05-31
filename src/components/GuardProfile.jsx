@@ -19,7 +19,7 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
     }, []);
     return (
         <>
-            <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
+            <section className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                 <div>
                     <div className='flex flex-col pl-[40px] text-white'>
                         <label>
@@ -29,7 +29,7 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                     onChange={onChange}
                                     value={name}
                                     name="name"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                    className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder={"Enter Your Name"}
                                 />
@@ -43,7 +43,7 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                         onChange={onChange}
                                         value={contactInfo}
                                         name="contactInfo"
-                                        className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                        className='w-[400px] noscroll border-b-2 border-[#393E46] bg-transparent mb-7 mr-5 '
                                         type="number"
                                         placeholder="mobile number"
                                     />
@@ -59,7 +59,7 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                         value={building}
                                         name="building"
                                         required
-                                        className='w-[400px] border-b-2 border-[#3F0071] bg-[#252437] mb-7 mr-5'
+                                        className='w-[400px] border-b-2 border-[#393E46] bg-[#222831] mb-7 mr-5'
                                     >
                                         <option value="" disabled>Select your building</option>
                                         {buildingNames.map((buildingName, index) => (
@@ -78,7 +78,7 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                     onChange={onChange}
                                     value={employeeId}
                                     name="employeeId"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                    className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
                                 />
@@ -91,14 +91,14 @@ function GuardProfile({ user, onSubmit, onChange, values }) {
                                     onChange={onChange}
                                     value={floor}
                                     name="floor"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
+                                    className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5 '
                                     type="text"
                                     placeholder="Enter your office/flat number"
                                 />
                             </div>
                         </label>
 
-                        <button onClick={onSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                        <button onClick={onSubmit} className="bg-[#FF5722] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#393E46] mb-7">
                             Submit
                         </button>
                     </div>

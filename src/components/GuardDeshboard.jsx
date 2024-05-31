@@ -40,28 +40,28 @@ function GuardDashboard() {
   };
 
   return (
-    <section className="h-screen min-h-[600px] bg-[#610094]">
-      <div className="flex text-white">
-        <div className="h-screen min-h-[600px] pt-10 border-r-2 border-r-[#150050] text-[18px] font-bold">
+    <section className="h-screen min-h-[600px] bg-[#222831]">
+      <div className="flex text-[#EEEEEE]">
+        <div className="h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
           <div id="User-info" className="w-[20vw] flex flex-col">
             <h1 className="font-bold text-[20px] text-center">Guard Information</h1>
-            <div className="flex gap-4 justify-between p-2 text-[15px]">
+            <div className=" p-4 text-[15px]">
               <h2 className="font-bold">Name:</h2>
               <h4>{userData ? userData.name : "N/A"}</h4>
             </div>
-            <div className="flex gap-4 justify-between p-2 text-[15px]">
+            <div className=" p-4 text-[15px]">
               <h4 className="font-bold">Email:</h4>
               <h4>{userData ? userData.email : "N/A"}</h4>
             </div>
-            <div className="flex gap-4 justify-between p-2 text-[15px]">
+            <div className=" p-4 text-[15px]">
               <h4 className="font-bold">Office Number:</h4>
               <h4>{userData ? userData.officeNum : "N/A"}</h4>
             </div>
-            <div className="flex gap-4 justify-between p-2 text-[15px]">
+            <div className=" p-4 text-[15px]">
               <h4 className="font-bold">Vehicle Number:</h4>
               <h4>{userData ? userData.vehicleNum : "N/A"}</h4>
             </div>
-            <div className="flex gap-4 justify-between p-2 text-[15px]">
+            <div className=" p-4 text-[15px]">
               <h4 className="font-bold">Vehicle Type:</h4>
               <h4>{userData ? userData.vehicleType : "N/A"}</h4>
             </div>
@@ -71,13 +71,13 @@ function GuardDashboard() {
           <h1 className="font-bold text-[15px] pl-10 mt-[40px]">Complaints</h1>
           <div className="flex flex-row gap-2 justify-center">
             <input
-              className="bg-[#ffffff45] p-2 w-[40vw] rounded-sm"
+              className="bg-[#393E46] p-2 w-[40vw] rounded-sm"
               placeholder="Search by vehicle number..."
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <button className="bg-orange-500 px-7 rounded-sm py-2" onClick={handleSearch}>
+            <button className="bg-[#FF5722] hover:bg-[#393E46] px-7 rounded-sm py-2" onClick={handleSearch}>
               Search
             </button>
           </div>
@@ -87,23 +87,23 @@ function GuardDashboard() {
               {error && <div>Error: {error.message}</div>}
               {searchResult && typeof searchResult === 'object' && (
                 <>
-                  <div className="flex justify-between mt-5 border-b-2 border-[#150050] font-bold">
+                  <div className="flex justify-between mt-5 font-bold">
                     <h2>Name:</h2>
                     <h2>{searchResult.name}</h2>
                   </div>
-                  <div className="flex justify-between mt-5 border-b-2 border-[#150050] font-bold">
+                  <div className="flex justify-between mt-5 font-bold">
                     <h2>Vehicle:</h2>
                     <h2>{searchResult.vehicleNum}</h2>
                   </div>
-                  <div className="flex justify-between mt-5 border-b-2 border-[#150050] font-bold">
+                  <div className="flex justify-between mt-5 font-bold">
                     <h2>Office/apartment Floor:</h2>
                     <h2>{searchResult.officeFloor}</h2>
                   </div>
-                  <div className="flex justify-between mt-5 border-b-2 border-[#150050] font-bold">
+                  <div className="flex justify-between mt-5 font-bold">
                     <h2>Office/apartment Number:</h2>
                     <h2>{searchResult.officeNum}</h2>
                   </div>
-                  <div className="flex justify-between mt-5 border-b-2 border-[#150050] font-bold">
+                  <div className="flex justify-between mt-5 font-bold">
                     <h2>Personal Mobile number:</h2>
                     <h2>{searchResult.contactInfo}</h2>
                   </div>

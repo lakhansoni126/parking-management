@@ -12,12 +12,12 @@ const UserDashborad = () => {
     }, []);
     return (
         <>
-            <section className="h-screen bg-[#610094]">
-                <div className="flex text-white">
-                    <div className="h-screen w-[20vw] pt-5 border-r-2 border-r-[#150050] text-[18px] font-bold">
+            <section className="h-screen bg-[#222831]">
+                <div className="flex text-[#EEEEEE]">
+                    <div className="h-screen w-[20vw] pt-5 border-r-2 border-r-[#393E46] text-[18px] font-bold">
                         <div>
                             <button
-                                className="w-full border-[#150050] border-b-2 pb-5 align-text-center"
+                                className="w-full hover:bg-[#393E46] rounded-md p-5 align-text-center"
                                 onClick={() => setActiveSection('profile')}
                             >
                                 Profile
@@ -25,7 +25,7 @@ const UserDashborad = () => {
                         </div>
                         <div>
                             <button
-                                className="w-full border-[#150050] py-5 border-b-2 align-text-center"
+                                className="w-full  hover:bg-[#393E46]  p-5 rounded-md align-text-center"
                                 onClick={() => setActiveSection('complain')}
                             >
                                 Complain
@@ -63,10 +63,10 @@ const UserDashborad = () => {
                         <div id="Complain" className="w-[80vw]">
                             <h1 className="font-bold text-[20px] pl-10 mt-[40px]">Complaints</h1>
                             <ul className="mt-10">
-                                <li className="py-5 pl-10 border-[#150050] border-t-2">Parking is not allowed here</li>
-                                <li className="py-5 pl-10 border-[#150050] border-t-2">Your vehicle is too cheap</li>
-                                <li className="py-5 pl-10 border-[#150050] border-t-2">Swift and Baleno owners are not allowed</li>
-                                <li className="py-5 pl-10 border-[#150050] border-t-2">Can you sell your Polo for 100 rupees?</li>
+                                <li className="py-5 pl-10 hover:bg-[#393E46]">Parking is not allowed here</li>
+                                <li className="py-5 pl-10 hover:bg-[#393E46]">Your vehicle is too cheap</li>
+                                <li className="py-5 pl-10 hover:bg-[#393E46]">Swift and Baleno owners are not allowed</li>
+                                <li className="py-5 pl-10 hover:bg-[#393E46]">Can you sell your Polo for 100 rupees?</li>
                             </ul>
                         </div>
                     )}
