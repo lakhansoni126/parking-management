@@ -13,9 +13,9 @@ const UserDashborad = () => {
     return (
         <>
             <section className="h-screen bg-[#222831]">
-                <div className="flex text-[#EEEEEE]">
-                    <div className="h-screen w-[20vw] pt-5 border-r-2 border-r-[#393E46] text-[18px] font-bold">
-                        <div>
+                <div id='button' className="flex  text-[#EEEEEE]">
+                    <div id='navigator' className="h-screen w-[20vw] pt-5 border-r-2 border-r-[#393E46] text-[18px] font-bold">
+                        <div className="h-fit">
                             <button
                                 className="w-full hover:bg-[#393E46] rounded-md p-5 align-text-center"
                                 onClick={() => setActiveSection('profile')}
@@ -23,7 +23,7 @@ const UserDashborad = () => {
                                 Profile
                             </button>
                         </div>
-                        <div>
+                        <div className="h-fit">
                             <button
                                 className="w-full  hover:bg-[#393E46]  p-5 rounded-md align-text-center"
                                 onClick={() => setActiveSection('complain')}
