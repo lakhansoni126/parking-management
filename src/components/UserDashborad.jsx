@@ -36,26 +36,30 @@ const UserDashborad = () => {
                     {activeSection === 'profile' && userData && (
                         <div id="User-info" className="w-[80vw] flex flex-col items-center">
                             <h1 className="font-bold text-[20px] mt-[120px]">User Information</h1>
-                            <div className="flex gap-4 text-[20px] mt-10">
-                                <h2 className="font-bold">Name</h2>
+                            <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
+                                <h2 className="font-bold">Name :</h2>
                                 <h4>{userData.name || 'N/A'}</h4>
                             </div>
-                            <div className="flex gap-4 text-[20px] mt-10">
-                                <h4 className="font-bold">Email</h4>
+                            <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
+                                <h4 className="font-bold">Email :</h4>
                                 <h4>{userData.email || 'N/A'}</h4>
                             </div>
-                            <div className="flex gap-4 text-[20px] mt-10">
-                                <h4 className="font-bold">Office Number</h4>
+                            <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
+                                <h4 className="font-bold">Office Number :</h4>
                                 <h4>{userData.officeNum || 'N/A'}</h4>
                             </div>
-                            <div className="flex gap-4 text-[20px] mt-10">
-                                <h4 className="font-bold">Vehicle Number</h4>
+                            <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
+                                <h4 className="font-bold">Vehicle Number :</h4>
                                 <h4>{userData.vehicleNum || 'N/A'}</h4>
                             </div>
-                            <div className="flex gap-4 text-[20px] mt-10">
-                                <h4 className="font-bold">Vehicle Type</h4>
+                            <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
+                                <h4 className="font-bold">Vehicle Type :</h4>
                                 <h4>{userData.vehicleType || 'N/A'}</h4>
                             </div>
+                            <div>
+                                <button className="bg-[#FF5722] hover:bg-[#393E46] px-7 rounded-sm py-2">
+                                    Edit
+                                </button> </div>
                         </div>
                     )}
 
