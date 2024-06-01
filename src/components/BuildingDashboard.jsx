@@ -32,7 +32,7 @@ function BuildingDashboard() {
                         </thead>
                         <tbody>
                             {guards.map((guard, index) => (
-                                <tr key={index} className="border-b bg-[#EEEEEE] text-[#222831] border-gray-700 hover:bg-gray-600 transition-colors">
+                                <tr key={index} className="border-b bg-[#EEEEEE] text-[#222831] border-gray-700 hover:bg-gray-300 transition-colors">
                                     <td className="py-3 px-4">{guard.name}</td>
                                     <td className="py-3 px-4">{guard.email}</td>
                                     <td className="py-3 px-4">{guard.contactInfo}</td>
