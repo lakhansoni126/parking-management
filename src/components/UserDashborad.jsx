@@ -56,10 +56,7 @@ const UserDashborad = () => {
                                 <h4 className="font-bold">Vehicle Type :</h4>
                                 <h4>{userData.vehicleType || 'N/A'}</h4>
                             </div>
-                            <div>
-                                <button className="bg-[#FF5722] hover:bg-[#393E46] px-7 rounded-sm py-2">
-                                    Edit
-                                </button> </div>
+                            {/* <div><button className="bg-[#FF5722] hover:bg-[#393E46] px-7 rounded-sm py-2">Edit</button> </div> */}
                         </div>
                     )}
 
