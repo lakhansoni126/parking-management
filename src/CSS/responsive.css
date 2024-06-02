@@ -19,6 +19,7 @@
         display: block;
         padding-left: 10px;
         width: 100vw;
+        font-size: 15px;
     }
     #User{
         overflow: hidden;
