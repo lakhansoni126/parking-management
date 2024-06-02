@@ -2,6 +2,13 @@
     body{
         overflow-x: hidden;
     }
+    nav{
+        padding-right:10px !important ;
+    }
+    nav li a{
+        padding-left: 13px  !important;
+        padding-right: 13px  !important;
+    }
     #login {
         padding-top: 10px;
       flex-direction: column-reverse;
