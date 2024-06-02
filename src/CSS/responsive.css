@@ -1,4 +1,7 @@
 @media screen and (max-width: 600px) {
+    body{
+        overflow-x: hidden;
+    }
     #login {
         padding-top: 10px;
       flex-direction: column-reverse;
