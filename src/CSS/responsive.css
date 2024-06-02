@@ -20,6 +20,9 @@
         padding-left: 10px;
         width: 100vw;
     }
+    #User{
+        overflow: hidden;
+    }
     #User-info h1{
             margin-top:50px ;
     }
@@ -27,8 +30,15 @@
         display: flex;
         height: 88px;
         width: 100vw;
+        padding-left:10px ;
+        padding-bottom: 90px;
+        border-bottom: 2px solid #393E46;
     }
     #button{
         display: block;
+    }
+    #email{
+        width: 70vw;
+        overflow: auto;
     }
   }

@@ -6,7 +6,7 @@ const Header = () => {
         <>
             <nav className="bg-[#393E46] h-16 px-10 text-[#EEEEEE] flex justify-between items-center">
                 <div>
-                    <img className="w-16" src="/images/favicon.png" alt="" />
+                    <img className=" absolute top-0 left-0 w-[70px]" src="/images/favicon.png" alt="" />
                 </div>
                 <div className="" >
                     <ul className="flex">

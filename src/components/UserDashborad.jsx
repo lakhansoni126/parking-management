@@ -12,7 +12,7 @@ const UserDashborad = () => {
     }, []);
     return (
         <>
-            <section className="h-screen bg-[#222831]">
+            <section id='User' className="h-screen  bg-[#222831]">
                 <div id='button' className="flex  text-[#EEEEEE]">
                     <div id='navigator' className="h-screen w-[20vw] pt-5 border-r-2 border-r-[#393E46] text-[18px] font-bold">
                         <div className="h-fit">
