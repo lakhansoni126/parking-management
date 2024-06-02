@@ -1,114 +1,110 @@
 import PropTypes from 'prop-types';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { buildingValidationSchema } from './utils/ValidationSchemas'; // Adjust the path as necessary
 
-function BuildingProfile({ onSubmit, onChange, values }) {
-
-    const { buildingName, contactInfo, altContactInfo, address, city, state } = values || {};
-
+function BuildingProfile({ initialValues, onSubmit }) {
     return (
-        <>
-            <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
-                <h2 className='text-white text-[20px] mb-20'>Building Information</h2>
-                <div>
-                    <div className='flex flex-col pl-[40px] text-white'>
-                        <label>
-                            Building Name*
-                            <div>
-                                <input
-                                    onChange={onChange}
-                                    value={buildingName}
-                                    name="buildingName"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                    type="text"
-                                    placeholder="Building Name"
-                                />
-                            </div>
-                        </label>
+        <Formik
+            initialValues={initialValues}
+            validationSchema={buildingValidationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+                onSubmit(values);
+                setSubmitting(false);
+            }}
+        >
+            {() => (
+                <Form>
+                    <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
+                        <h2 className='text-white text-[20px] mb-20'>Building Information</h2>
                         <div>
-                            <label>
-                                Mobile number*
-                                <div>
-                                    <input
-                                        onChange={onChange}
-                                        value={contactInfo}
-                                        name="contactInfo"
-                                        className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                        type="number"
-                                        placeholder="mobile number"
-                                    />
-                                </div>
-                            </label>
+                            <div className='flex flex-col pl-[40px] text-white'>
+                                <label>
+                                    Building Name*
+                                    <div>
+                                        <Field
+                                            name="buildingName"
+                                            type="text"
+                                            placeholder="Building Name"
+                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="buildingName" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <label>
+                                    Mobile number*
+                                    <div>
+                                        <Field
+                                            name="contactInfo"
+                                            type="number"
+                                            placeholder="Mobile number"
+                                            className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="contactInfo" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <label>
+                                    Alternate number*
+                                    <div>
+                                        <Field
+                                            name="altContactInfo"
+                                            type="number"
+                                            placeholder="Alternate number"
+                                            className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="altContactInfo" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <label>
+                                    Full Address*
+                                    <div>
+                                        <Field
+                                            name="address"
+                                            type="text"
+                                            placeholder="Enter your address"
+                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="address" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <label>
+                                    City*
+                                    <div>
+                                        <Field
+                                            name="city"
+                                            type="text"
+                                            placeholder="City"
+                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="city" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <label>
+                                    State*
+                                    <div>
+                                        <Field
+                                            name="state"
+                                            type="text"
+                                            placeholder="State"
+                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="state" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <button type="submit" className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
-                        <div>
-                            <label>
-                                Alternate number*
-                                <div>
-                                    <input
-                                        onChange={onChange}
-                                        value={altContactInfo}
-                                        name="altContactInfo"
-                                        className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                        type="number"
-                                        placeholder="mobile number"
-                                    />
-                                </div>
-                            </label>
-                        </div>
-
-                        <label>
-                            Full Address*
-                            <div>
-                                <input
-                                    onChange={onChange}
-                                    value={address}
-                                    name="address"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                    type="text"
-                                    placeholder="Enter your office/flat number"
-                                />
-                            </div>
-                        </label>
-                        <label>
-                            City*
-                            <div>
-                                <input
-                                    onChange={onChange}
-                                    value={city}
-                                    name="city"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                    type="text"
-                                    placeholder="City"
-                                />
-                            </div>
-                        </label>
-                        <label>
-                            State*
-                            <div>
-                                <input
-                                    onChange={onChange}
-                                    value={state}
-                                    name="state"
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5 '
-                                    type="text"
-                                    placeholder="State"
-                                />
-                            </div>
-                        </label>
-
-                        <button onClick={onSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-            </section>
-        </>
+                    </section>
+                </Form>
+            )}
+        </Formik>
     );
 }
 
 BuildingProfile.propTypes = {
-    user: PropTypes.object.isRequired,
+    initialValues: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    values: PropTypes.object.isRequired,
 };
 
 export default BuildingProfile;

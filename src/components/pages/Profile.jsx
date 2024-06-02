@@ -39,7 +39,6 @@ function Profile() {
         building: ""
     });
 
-
     const handleSelectRole = (selectedRole) => {
         setRole(selectedRole);
         setFormData((prevData) => ({
@@ -48,18 +47,11 @@ function Profile() {
         }));
         setIsModalOpen(false);
     };
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (values) => {
         try {
-            const validFormData = Object.keys(formData).reduce((acc, key) => {
-                const value = formData[key];
+            const validFormData = Object.keys(values).reduce((acc, key) => {
+                const value = values[key];
                 if (
                     value !== undefined &&
                     value !== null &&
@@ -89,33 +81,27 @@ function Profile() {
             case 'users':
                 return (
                     <UserProfile
-                        vaildatiion={userValidationSchema}
-                        user={user}
-                        values={formData}
-                        onChange={handleChange}
+                        validationSchema={userValidationSchema}
+                        initialValues={formData}
                         onSubmit={handleSubmit}
-
-                    />)
+                    />
+                );
             case 'guards':
                 return (
                     <GuardProfile
-                        vaildatiion={guardValidationSchema}
-                        user={user}
-                        values={formData}
-                        onChange={handleChange}
+                        validationSchema={guardValidationSchema}
+                        initialValues={formData}
                         onSubmit={handleSubmit}
-
-                    />);
+                    />
+                );
             case 'buildings':
                 return (
                     <BuildingProfile
-                        vaildatiion={buildingValidationSchema}
-                        user={user}
-                        values={formData}
-                        onChange={handleChange}
+                        validationSchema={buildingValidationSchema}
+                        initialValues={formData}
                         onSubmit={handleSubmit}
-
-                    />)
+                    />
+                );
             default:
                 return <h1>yo</h1>;
         }

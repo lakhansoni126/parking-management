@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue } from "firebase/database";
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { getDatabase, ref, onValue } from 'firebase/database';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { userValidationSchema } from './utils/ValidationSchemas'; // Adjust the path as necessary
 
-function UserProfile({ user, values, onChange, onSubmit }) {
-    const { name, building, contactInfo, officeNum, vehicleNum, vehicleType } = values || {};
-    const [displayName, setDisplayName] = useState(name || user.displayName);
+function UserProfile({ initialValues, onSubmit }) {
     const [buildingNames, setBuildingNames] = useState([]);
 
     useEffect(() => {
@@ -16,150 +16,134 @@ function UserProfile({ user, values, onChange, onSubmit }) {
             const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
             setBuildingNames(buildingNamesList);
         });
+    }, []);
 
-        if (name !== undefined) {
-            setDisplayName(name);
-        }
-    }, [name]);
-
-    const handleInputChange = (event) => {
-        const { name: fieldName, value } = event.target;
-
-        if (fieldName === "name") {
-            setDisplayName(value);
-        }
-
-        onChange({
-            target: {
-                name: fieldName,
-                value,
-            },
-        });
-    };
-
-    const handleVehicleNumChange = (event) => {
+    const handleVehicleNumChange = (event, setFieldValue) => {
         const upperCaseValue = event.target.value.toUpperCase();
-        onChange({
-            target: {
-                name: event.target.name,
-                value: upperCaseValue,
-            },
-        });
+        setFieldValue('vehicleNum', upperCaseValue);
     };
 
     return (
-        <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
-            <div>
-                <div className='flex flex-col pl-[40px] text-white'>
-                    <label>
-                        Name*
+        <Formik
+            initialValues={initialValues}
+            validationSchema={userValidationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+                onSubmit(values);
+                setSubmitting(false);
+            }}
+        >
+            {({ setFieldValue }) => (
+                <Form>
+                    <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
                         <div>
-                            <input
-                                onChange={handleInputChange}
-                                value={name}
-                                className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
-                                type='text'
-                                placeholder={"Enter Your Name"}
-                                name='name'
-                            />
+                            <div className='flex flex-col pl-[40px] text-white'>
+                                <label>
+                                    Name*
+                                    <div>
+                                        <Field
+                                            name="name"
+                                            type="text"
+                                            placeholder="Enter Your Name"
+                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="name" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <div>
+                                    <label>
+                                        Mobile number (optional)
+                                        <div>
+                                            <Field
+                                                name="contactInfo"
+                                                type="text"
+                                                placeholder="Mobile number"
+                                                className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            />
+                                            <ErrorMessage name="contactInfo" component="div" className="error" />
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        Building*
+                                        <div>
+                                            <Field
+                                                as="select"
+                                                name="building"
+                                                required
+                                                className='w-[400px] border-b-2 border-[#3F0071] bg-[#252437] mb-7 mr-5'
+                                            >
+                                                <option value="" disabled>Select your building</option>
+                                                {buildingNames.map((buildingName, index) => (
+                                                    <option key={index} value={buildingName}>
+                                                        {buildingName}
+                                                    </option>
+                                                ))}
+                                            </Field>
+                                            <ErrorMessage name="building" component="div" className="error" />
+                                        </div>
+                                    </label>
+                                </div>
+                                <label>
+                                    Office/Flat*
+                                    <div>
+                                        <Field
+                                            name="officeNum"
+                                            type="text"
+                                            placeholder="Enter your office/flat number"
+                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                        />
+                                        <ErrorMessage name="officeNum" component="div" className="error" />
+                                    </div>
+                                </label>
+                                <div>
+                                    <label>
+                                        Vehicle number*
+                                        <div>
+                                            <Field
+                                                name="vehicleNum"
+                                                type="text"
+                                                placeholder="Enter vehicle number"
+                                                className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                                onChange={(e) => handleVehicleNumChange(e, setFieldValue)}
+                                            />
+                                            <ErrorMessage name="vehicleNum" component="div" className="error" />
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        Vehicle*
+                                        <div>
+                                            <Field
+                                                as="select"
+                                                name="vehicleType"
+                                                className='bg-[#252437] border-[#3F0071] border-b-[2px] p-1 mb-7'
+                                            >
+                                                <option value="" disabled>Select your vehicle</option>
+                                                <option value="Car">Car</option>
+                                                <option value="Bike">Bike</option>
+                                            </Field>
+                                            <ErrorMessage name="vehicleType" component="div" className="error" />
+                                        </div>
+                                    </label>
+                                </div>
+                                <button type="submit" className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
-                    </label>
-                    <div>
-                        <label>
-                            Mobile number (optional)
-                            <div>
-                                <input
-                                    onChange={handleInputChange}
-                                    value={contactInfo}
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
-                                    type="number"
-                                    placeholder="Mobile number"
-                                    name="contactInfo"
-                                />
-                            </div>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Building*
-                            <div>
-                                <select
-                                    onChange={handleInputChange}
-                                    value={building}
-                                    name="building"
-                                    required
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-[#252437] mb-7 mr-5'
-                                >
-                                    <option value="" disabled>Select your building</option>
-                                    {buildingNames.map((buildingName, index) => (
-                                        <option key={index} value={buildingName}>
-                                            {buildingName}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </label>
-                    </div>
-                    <label>
-                        Office/Flat*
-                        <div>
-                            <input
-                                onChange={handleInputChange}
-                                value={officeNum}
-                                name="officeNum"
-                                required
-                                className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
-                                type="text"
-                                placeholder="Enter your office/flat number"
-                            />
-                        </div>
-                    </label>
-                    <div>
-                        <label>
-                            Vehicle number*
-                            <div>
-                                <input
-                                    onChange={handleVehicleNumChange}
-                                    value={vehicleNum}
-                                    className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
-                                    type='text'
-                                    placeholder='Enter vehicle number'
-                                    name='vehicleNum'
-                                />
-                            </div>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Vehicle*
-                            <div>
-                                <select
-                                    onChange={handleInputChange}
-                                    value={vehicleType}
-                                    className='bg-[#252437] border-[#3F0071] border-b-[2px] p-1 mb-7'
-                                    name="vehicleType"
-                                >
-                                    <option value="" disabled>Select your vehicle</option>
-                                    <option value="Car">Car</option>
-                                    <option value="Bike">Bike</option>
-                                </select>
-                            </div>
-                        </label>
-                    </div>
-                    <button onClick={onSubmit} className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
-                        Submit
-                    </button>
-                </div>
-            </div>
-        </section>
+                    </section>
+                </Form>
+            )}
+        </Formik>
     );
 }
 
 UserProfile.propTypes = {
     user: PropTypes.object.isRequired,
+    initialValues: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    values: PropTypes.object.isRequired,
 };
 
 export default UserProfile;
