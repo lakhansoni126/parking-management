@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 export const userValidationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
-    contactInfo: Yup.string().matches(/^\d+$/, 'Contact info must be a number').nullable(),
+    contactInfo: Yup.string().length(10, 'Contact info must be exactly 10 digits').matches(/^\d+$/, 'Contact info must be a number').nullable(),
     officeNum: Yup.string().required('Office/Flat number is required'),
     vehicleNum: Yup.string().required('Vehicle number is required'),
     vehicleType: Yup.string().required('Vehicle type is required'),
@@ -13,12 +13,12 @@ export const guardValidationSchema = Yup.object({
     building: Yup.string().required('Building  is required'),
     floor: Yup.string().required('Floor is required'),
     employeeId: Yup.string().required('Employee ID is required'),
-    contactInfo: Yup.string().matches(/^\d+$/, 'Contact info must be a number').nullable(),
+    contactInfo: Yup.string().matches(/^\d+$/, 'Contact info must be a number').length(10, 'Contact info must be exactly 10 digits').nullable(),
 });
 //buildingName, contactInfo, altContactInfo, address, city, state
 export const buildingValidationSchema = Yup.object({
     buildingName: Yup.string().required('Building name is required'),
-    contactInfo: Yup.string().matches(/^\d+$/, 'Contact info must be a number').required('Contact info is required'),
+    contactInfo: Yup.string().matches(/^\d+$/, 'Contact info must be a number').length(10, 'Contact info must be exactly 10 digits').required('Contact info is required'),
     altContactInfo: Yup.string().matches(/^\d+$/, 'Alternate contact info must be a number').nullable(),
     address: Yup.string().required('Address is required'),
     city: Yup.string().required('City is required'),
