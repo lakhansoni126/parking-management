@@ -12,13 +12,13 @@ function GuardProfile({ initialValues, onSubmit }) {
             const db = getDatabase();
             const buildingsRef = ref(db, 'buildings');
 
-            const unsubscribe = onValue(buildingsRef, (snapshot) => {
+            const buildings = onValue(buildingsRef, (snapshot) => {
                 const data = snapshot.val();
                 const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
                 setBuildingNames(buildingNamesList);
             });
 
-            return () => unsubscribe();
+            return () => buildings();
         };
 
         fetchBuildings();
@@ -40,6 +40,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                             <div className='flex flex-col pl-[40px] text-white'>
                                 <label>
                                     Name*
+                                    <ErrorMessage name="name" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="name"
@@ -47,12 +48,12 @@ function GuardProfile({ initialValues, onSubmit }) {
                                             placeholder="Enter Your Name"
                                             className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="name" component="div" className="error" />
                                     </div>
                                 </label>
                                 <div>
                                     <label>
                                         Mobile number*
+                                        <ErrorMessage name="contactInfo" component="div" className="error" />
                                         <div>
                                             <Field
                                                 name="contactInfo"
@@ -60,13 +61,13 @@ function GuardProfile({ initialValues, onSubmit }) {
                                                 placeholder="Mobile number"
                                                 className='w-[400px] noscroll border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
                                             />
-                                            <ErrorMessage name="contactInfo" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         Building*
+                                        <ErrorMessage name="building" component="div" className="error" />
                                         <div>
                                             <Field
                                                 as="select"
@@ -81,12 +82,12 @@ function GuardProfile({ initialValues, onSubmit }) {
                                                     </option>
                                                 ))}
                                             </Field>
-                                            <ErrorMessage name="building" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <label>
                                     Employee ID*
+                                    <ErrorMessage name="employeeId" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="employeeId"
@@ -94,11 +95,11 @@ function GuardProfile({ initialValues, onSubmit }) {
                                             placeholder="Enter your employee ID"
                                             className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="employeeId" component="div" className="error" />
                                     </div>
                                 </label>
                                 <label>
                                     Floor*
+                                    <ErrorMessage name="floor" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="floor"
@@ -106,7 +107,6 @@ function GuardProfile({ initialValues, onSubmit }) {
                                             placeholder="Enter your floor number"
                                             className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="floor" component="div" className="error" />
                                     </div>
                                 </label>
                                 <button type="submit" className="bg-[#FF5722] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#393E46] mb-7">

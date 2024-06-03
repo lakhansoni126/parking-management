@@ -20,6 +20,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                             <div className='flex flex-col pl-[40px] text-white'>
                                 <label>
                                     Building Name*
+                                    <ErrorMessage name="buildingName" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="buildingName"
@@ -27,11 +28,11 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             placeholder="Building Name"
                                             className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="buildingName" component="div" className="error" />
                                     </div>
                                 </label>
                                 <label>
                                     Mobile number*
+                                    <ErrorMessage name="contactInfo" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="contactInfo"
@@ -39,11 +40,11 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             placeholder="Mobile number"
                                             className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="contactInfo" component="div" className="error" />
                                     </div>
                                 </label>
                                 <label>
                                     Alternate number*
+                                    <ErrorMessage name="altContactInfo" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="altContactInfo"
@@ -51,11 +52,11 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             placeholder="Alternate number"
                                             className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="altContactInfo" component="div" className="error" />
                                     </div>
                                 </label>
                                 <label>
                                     Full Address*
+                                    <ErrorMessage name="address" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="address"
@@ -63,11 +64,11 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             placeholder="Enter your address"
                                             className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="address" component="div" className="error" />
                                     </div>
                                 </label>
                                 <label>
                                     City*
+                                    <ErrorMessage name="city" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="city"
@@ -75,11 +76,11 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             placeholder="City"
                                             className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="city" component="div" className="error" />
                                     </div>
                                 </label>
                                 <label>
                                     State*
+                                    <ErrorMessage name="state" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="state"
@@ -87,7 +88,6 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             placeholder="State"
                                             className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="state" component="div" className="error" />
                                     </div>
                                 </label>
                                 <button type="submit" className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">

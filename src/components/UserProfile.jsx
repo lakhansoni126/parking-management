@@ -40,18 +40,19 @@ function UserProfile({ initialValues, onSubmit }) {
                                 <label>
                                     Name*
                                     <div>
+                                        <ErrorMessage name="name" component="div" className="error" />
                                         <Field
                                             name="name"
                                             type="text"
                                             placeholder="Enter Your Name"
                                             className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="name" component="div" className="error" />
                                     </div>
                                 </label>
                                 <div>
                                     <label>
                                         Mobile number (optional)
+                                        <ErrorMessage name="contactInfo" component="div" className="error" />
                                         <div>
                                             <Field
                                                 name="contactInfo"
@@ -59,13 +60,13 @@ function UserProfile({ initialValues, onSubmit }) {
                                                 placeholder="Mobile number"
                                                 className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                             />
-                                            <ErrorMessage name="contactInfo" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         Building*
+                                        <ErrorMessage name="building" component="div" className="error" />
                                         <div>
                                             <Field
                                                 as="select"
@@ -80,12 +81,12 @@ function UserProfile({ initialValues, onSubmit }) {
                                                     </option>
                                                 ))}
                                             </Field>
-                                            <ErrorMessage name="building" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <label>
                                     Office/Flat*
+                                    <ErrorMessage name="officeNum" component="div" className="error" />
                                     <div>
                                         <Field
                                             name="officeNum"
@@ -93,12 +94,12 @@ function UserProfile({ initialValues, onSubmit }) {
                                             placeholder="Enter your office/flat number"
                                             className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                         />
-                                        <ErrorMessage name="officeNum" component="div" className="error" />
                                     </div>
                                 </label>
                                 <div>
                                     <label>
                                         Vehicle number*
+                                        <ErrorMessage name="vehicleNum" component="div" className="error" />
                                         <div>
                                             <Field
                                                 name="vehicleNum"
@@ -107,13 +108,13 @@ function UserProfile({ initialValues, onSubmit }) {
                                                 className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
                                                 onChange={(e) => handleVehicleNumChange(e, setFieldValue)}
                                             />
-                                            <ErrorMessage name="vehicleNum" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         Vehicle*
+                                        <ErrorMessage name="vehicleType" component="div" className="error" />
                                         <div>
                                             <Field
                                                 as="select"
@@ -124,7 +125,6 @@ function UserProfile({ initialValues, onSubmit }) {
                                                 <option value="Car">Car</option>
                                                 <option value="Bike">Bike</option>
                                             </Field>
-                                            <ErrorMessage name="vehicleType" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
