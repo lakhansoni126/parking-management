@@ -1,5 +1,4 @@
-import React from 'react'
-
+import PropTypes from 'prop-types';
 const ChooseRole = ({ open, onSelectRole }) => {
   return (
     <>
@@ -15,19 +14,17 @@ const ChooseRole = ({ open, onSelectRole }) => {
               <button className="bg-[#393E46] hover:bg-[#FF5722] text-white py-2 px-4 rounded-lg mb-2 w-full" onClick={() => onSelectRole('users')}>User</button>
               <button className="bg-[#393E46] hover:bg-[#FF5722] text-white py-2 px-4 rounded-lg mb-2 w-full" onClick={() => onSelectRole('guards')}>Guard</button>
               <button className="bg-[#393E46] hover:bg-[#FF5722] text-white py-2 px-4 rounded-lg mb-2 w-full" onClick={() => onSelectRole('buildings')}>Building</button>
+              <button className="bg-[#393E46] hover:bg-[#FF5722] text-white py-2 px-4 rounded-lg mb-2 w-full" onClick={() => onSelectRole('office')}>Office</button>
             </div>
           </div>
         </div>
       </div>
-      {/* <section className='bg-[#191825]${open ? '' : 'hidden'}'>
-        <div className='text-white h-screen flex gap-10 justify-center items-center'>
-            <div className='flex justify-center items-center border-2 w-64 h-20'  onClick={() => onSelectRole('users')><a className='' href=""> Login as a User 🚀</a></div>
-            <div className='flex justify-center items-center border-2 w-64 h-20' onClick={() => onSelectRole('guards')}><a className='' href=""> Login as a Guard 🚀</a></div>
-            <div className='flex justify-center items-center border-2 w-64 h-20' onClick={() => onSelectRole('buildings')}><a className='' href=""> Login as a Building 🚀</a></div>
-        </div>
-    </section> */}
+
     </>
   )
 }
-
+ChooseRole.propTypes = {
+  open: PropTypes.object.isRequired,
+  onSelectRole: PropTypes.func.isRequired,
+};
 export default ChooseRole

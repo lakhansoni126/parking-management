@@ -10,10 +10,14 @@ export const userValidationSchema = Yup.object({
 //building, name, contactInfo, employeeId, floor,
 export const guardValidationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
-    building: Yup.string().required('Building  is required'),
-    floor: Yup.string().required('Floor is required'),
+    building: Yup.string().required('Building is required'),
+    floor: Yup.string(),
+    auth: Yup.boolean().required('Auth is required').default(false),
     employeeId: Yup.string().required('Employee ID is required'),
-    contactInfo: Yup.string().matches(/^\d+$/, 'Contact info must be a number').length(10, 'Contact info must be exactly 10 digits').nullable(),
+    contactInfo: Yup.string()
+        .matches(/^\d+$/, 'Contact info must be a number')
+        .length(10, 'Contact info must be exactly 10 digits')
+        .nullable(),
 });
 //buildingName, contactInfo, altContactInfo, address, city, state
 export const buildingValidationSchema = Yup.object({
@@ -23,4 +27,12 @@ export const buildingValidationSchema = Yup.object({
     address: Yup.string().required('Address is required'),
     city: Yup.string().required('City is required'),
     state: Yup.string().required('State is required'),
+});
+
+export const officeValidationSchema = Yup.object({
+    officeName: Yup.string().required('Office name is required'),
+    officeNumber: Yup.string().required('Office number is required'),
+    contactNumber: Yup.string().required('Contact number is required'),
+    altContactNumber: Yup.string(),
+    building: Yup.string().required('Building is required'),
 });

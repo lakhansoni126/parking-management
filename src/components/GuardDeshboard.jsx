@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { ref, get, query, orderByChild, equalTo } from "firebase/database";
+import { ref, get, } from "firebase/database";
 import { db } from '../firebase.js';
 
 function GuardDashboard() {
+
   const [userData, setUserData] = useState(null);
   const [searchInput, setSearchInput] = useState('');
   const [searchResult, setSearchResult] = useState(null);
@@ -20,17 +21,36 @@ function GuardDashboard() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSearchResult(null);
+
 
     try {
-      const dbRef = ref(db, 'users');
-      const q = query(dbRef, orderByChild('vehicleNum'), equalTo(searchInput));
-      const snapshot = await get(q);
-      if (snapshot.exists()) {
-        const user = snapshot.val();
-        setSearchResult(Object.values(user)[0]);
+      const guardRef = ref(db, `guards/${userData.uid}`);
+      const guardSnapshot = await get(guardRef);
+
+      if (guardSnapshot.exists() && guardSnapshot.val().auth) {
+        const searchValue = searchInput.toLowerCase();
+        const dbRef = ref(db, 'users');
+
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+          const users = snapshot.val();
+          const searchResults = Object.values(users).filter(user => {
+            const vehicleNum = user.vehicleNum ? user.vehicleNum.toLowerCase() : '';
+            return vehicleNum.endsWith(searchValue) || vehicleNum === searchValue;
+          });
+
+          if (searchResults.length > 0) {
+            console.log(searchResults)
+            setSearchResult(Object.values(searchResults)[0]);
+            console.log("use", searchResult)
+          } else {
+            setSearchResult("No data found");
+          }
+        } else {
+          setSearchResult("No data found");
+        }
       } else {
-        setSearchResult("No data found");
+        setSearchResult("You do not have the required permissions to perform this search.");
       }
     } catch (err) {
       setError(err);

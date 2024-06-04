@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { guardValidationSchema } from './utils/ValidationSchemas'; // Adjust the path as necessary
+import { guardValidationSchema } from './utils/ValidationSchemas';
 
 function GuardProfile({ initialValues, onSubmit }) {
     const [buildingNames, setBuildingNames] = useState([]);
@@ -97,18 +97,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                         />
                                     </div>
                                 </label>
-                                <label>
-                                    Floor*
-                                    <ErrorMessage name="floor" component="div" className="error" />
-                                    <div>
-                                        <Field
-                                            name="floor"
-                                            type="text"
-                                            placeholder="Enter your floor number"
-                                            className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
-                                        />
-                                    </div>
-                                </label>
+
                                 <button type="submit" className="bg-[#FF5722] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#393E46] mb-7">
                                     Submit
                                 </button>
@@ -122,7 +111,6 @@ function GuardProfile({ initialValues, onSubmit }) {
 }
 
 GuardProfile.propTypes = {
-    user: PropTypes.object.isRequired,
     initialValues: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
 };

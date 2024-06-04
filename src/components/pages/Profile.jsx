@@ -10,7 +10,9 @@ import {
     userValidationSchema,
     guardValidationSchema,
     buildingValidationSchema,
+    officeValidationSchema
 } from '../utils/ValidationSchemas';
+import OfficeProfile from '../OfficeProfile.jsx';
 
 function Profile() {
     const location = useLocation();
@@ -36,7 +38,8 @@ function Profile() {
         officeNum: '',
         vehicleNum: '',
         vehicleType: "",
-        building: ""
+        building: "",
+        auth: ""
     });
 
     const handleSelectRole = (selectedRole) => {
@@ -44,6 +47,7 @@ function Profile() {
         setFormData((prevData) => ({
             ...prevData,
             role: selectedRole,
+            ...(selectedRole === 'guards' && { auth: false }) // Add auth field only for guards
         }));
         setIsModalOpen(false);
     };
@@ -98,6 +102,14 @@ function Profile() {
                 return (
                     <BuildingProfile
                         validationSchema={buildingValidationSchema}
+                        initialValues={formData}
+                        onSubmit={handleSubmit}
+                    />
+                );
+            case 'office':
+                return (
+                    <OfficeProfile
+                        validationSchema={officeValidationSchema}
                         initialValues={formData}
                         onSubmit={handleSubmit}
                     />
