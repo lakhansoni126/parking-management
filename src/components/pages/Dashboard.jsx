@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import UserDashborad from "../UserDashborad";
 import GuardDashboard from "../GuardDeshboard";
 import BuildingDashboard from "../BuildingDashboard";
+import OfficeDashboard from "../OfficeDashboard";
 
 const Dashboard = () => {
 
@@ -19,6 +20,7 @@ const Dashboard = () => {
             {userRole === "users" && <UserDashborad />}
             {userRole === "guards" && <GuardDashboard />}
             {userRole === "buildings" && <BuildingDashboard />}
+            {userRole === "office" && <OfficeDashboard />}
         </>
     );
 };
