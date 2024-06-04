@@ -1,55 +1,79 @@
 @media screen and (max-width: 600px) {
-    body{
+    body {
         overflow-x: hidden;
     }
-    nav{
-        padding-right:10px !important ;
+
+    nav {
+        padding-right: 10px !important;
     }
-    nav li a{
-        padding-left: 13px  !important;
-        padding-right: 13px  !important;
+
+    nav li a {
+        padding-left: 13px !important;
+        padding-right: 13px !important;
     }
+
     #login {
         padding-top: 10px;
-      flex-direction: column-reverse;
-      min-height: fit-content;
-      padding: 20px;
-      gap: 0;
+        flex-direction: column-reverse;
+        min-height: fit-content;
+        padding: 20px;
+        gap: 0;
     }
-    #loginPageDetail{
+
+    #loginPageDetail {
         padding: 0;
     }
-    #login img{
+
+    #login img {
         padding: 25px;
     }
-    #User-info{
+
+    #User-info {
         width: 100vw;
     }
-    #User-info div{
+
+    #User-info div {
         display: block;
         padding-left: 10px;
         width: 100vw;
         font-size: 15px;
     }
-    #User{
+
+    #User {
         overflow: hidden;
     }
-    #User-info h1{
-            margin-top:50px ;
+
+    #User-info h1 {
+        margin-top: 50px;
     }
-    #navigator{
+
+    #navigator {
         display: flex;
         height: 88px;
         width: 100vw;
-        padding-left:10px ;
+        padding-left: 10px;
         padding-bottom: 90px;
         border-bottom: 2px solid #393E46;
     }
-    #button{
+
+    #button {
         display: block;
     }
-    #email{
+
+    #email {
         width: 70vw;
         overflow: auto;
     }
-  }
+
+    #UserProfile input {
+        width: 300px;
+    }
+
+    #UserProfile select {
+        width: 180px;
+    }
+}
+
+#UserProfile select {
+    background-color: #373A40;
+}
