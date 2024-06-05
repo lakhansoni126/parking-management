@@ -32,8 +32,8 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                     <section id='OfficeProfile' className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
                             <div className='w-300e w-300 flex flex-col text-[#EEEEEE]'>
-                            <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Office Information</h2>
-                
+                                <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Office Information</h2>
+
                                 <label>
                                     Office Name*
                                     <div>
@@ -84,26 +84,26 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 </label>
 
                                 <label>
-                                <div>
+                                    <div>
 
-                                    Building*
-                                </div>
+                                        Building*
+                                    </div>
                                     <ErrorMessage name="building" component="div" className="error" />
                                     <Field
                                         as="select"
                                         name="building"
-                                      
+
                                         className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#222831] mb-7 mr-5'
                                     >
-                                    <div>
+                                        <div>
 
-                                        <option value="" disabled>Select your building</option>
-                                        {buildingNames.map((buildingName, index) => (
-                                            <option key={index} value={buildingName}>
-                                                {buildingName}
-                                            </option>
-                                        ))}
-                                    </div>
+                                            <option value="" disabled>Select your building</option>
+                                            {buildingNames.map((buildingName, index) => (
+                                                <option key={index} value={buildingName}>
+                                                    {buildingName}
+                                                </option>
+                                            ))}
+                                        </div>
                                     </Field>
                                 </label>
 
