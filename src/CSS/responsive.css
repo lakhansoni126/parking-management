@@ -116,9 +116,7 @@
     .w-80vh{
         width:  80vw !important;
     }
-    .w-80vh div{
-        /* flex-direction: column; */
-    }
+  
 }
 
 #UserProfile select {
