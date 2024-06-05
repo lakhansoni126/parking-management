@@ -84,27 +84,23 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 </label>
 
                                 <label>
-                                    <div>
-
-                                        Building*
-                                    </div>
+                                    Building*
                                     <ErrorMessage name="building" component="div" className="error" />
-                                    <Field
-                                        as="select"
-                                        name="building"
+                                    <div>
+                                        <Field
+                                            as="select"
+                                            name="building"
 
-                                        className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#222831] mb-7 mr-5'
-                                    >
-                                        <div>
-
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
+                                        >
                                             <option value="" disabled>Select your building</option>
                                             {buildingNames.map((buildingName, index) => (
                                                 <option key={index} value={buildingName}>
                                                     {buildingName}
                                                 </option>
                                             ))}
-                                        </div>
-                                    </Field>
+                                        </Field>
+                                    </div>
                                 </label>
 
                                 <button type="submit" className="bg-[#DC5F00] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#686D76] mb-7">
