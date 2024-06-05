@@ -72,8 +72,19 @@
     #UserProfile select {
         width: 180px;
     }
-    #guardProfile{
-        width: 80%;
+
+    #guardProfile {
+        width: 100vw;
+    }
+
+    #guardProfileForm {
+        width: 300px;
+    }
+    #guardProfileForm input{
+        width: 300px;
+    }
+    #guardProfileForm select{
+        width: 300px;
     }
 }
 

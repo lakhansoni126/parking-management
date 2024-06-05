@@ -35,9 +35,9 @@ function GuardProfile({ initialValues, onSubmit }) {
         >
             {() => (
                 <Form>
-                    <section id='guardProfile' className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
+                    <section id='guardProfile' className='min-h-screen bg-[#373A40] flex flex-col justify-center items-center'>
                         <div>
-                            <div className='flex flex-col  text-white'>
+                            <div id='guardProfileForm' className='flex flex-col  text-white'>
                                 <label>
                                     Name*
                                     <ErrorMessage name="name" component="div" className="error" />
@@ -46,7 +46,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                             name="name"
                                             type="text"
                                             placeholder="Enter Your Name"
-                                            className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
@@ -59,7 +59,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                                 name="contactInfo"
                                                 type="text"
                                                 placeholder="Mobile number"
-                                                className='w-[400px] noscroll border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
+                                                className='w-[400px] noscroll border-b-2 border-[#DC5F00] p-1 bg-transparent mb-7 mr-5'
                                             />
                                         </div>
                                     </label>
@@ -73,7 +73,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                                 as="select"
                                                 name="building"
                                                 required
-                                                className='w-[400px] border-b-2 border-[#393E46] bg-[#222831] mb-7 mr-5'
+                                                className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-[#373A40] mb-7 mr-5'
                                             >
                                                 <option value="" disabled>Select your building</option>
                                                 {buildingNames.map((buildingName, index) => (
@@ -93,7 +93,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                             name="employeeId"
                                             type="text"
                                             placeholder="Enter your employee ID"
-                                            className='w-[400px] border-b-2 border-[#393E46] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
