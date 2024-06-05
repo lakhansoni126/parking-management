@@ -35,9 +35,9 @@ function GuardProfile({ initialValues, onSubmit }) {
         >
             {() => (
                 <Form>
-                    <section className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
+                    <section id='guardProfile' className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
-                            <div className='flex flex-col pl-[40px] text-white'>
+                            <div className='flex flex-col  text-white'>
                                 <label>
                                     Name*
                                     <ErrorMessage name="name" component="div" className="error" />
