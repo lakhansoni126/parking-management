@@ -61,7 +61,7 @@ function GuardDashboard() {
 
   return (
     <section className="h-screen min-h-[600px] bg-[#222831]">
-      <div className="flex text-[#EEEEEE]">
+      <div id="guardDeshboard" className="flex text-[#EEEEEE]">
         <div className="h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
           <div id="User-info" className="w-[20vw] flex flex-col">
             <h1 className="font-bold text-[20px] text-center">Guard Information</h1>

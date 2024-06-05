@@ -98,6 +98,21 @@
     .w-300e{
         width: 300px;
     }
+    #guardDeshboard{
+        flex-direction: column-reverse;
+    }
+    #Complain{
+        width: 100%;
+    }
+    #Complain h1{
+        text-align: center ;
+        margin-bottom: 10px;
+        padding: 0;
+        font-size: 16px;
+    }
+    #Complain input{
+        width: 230px;
+    }
 }
 
 #UserProfile select {
