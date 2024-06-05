@@ -32,6 +32,8 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                     <section id='OfficeProfile' className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
                             <div className='w-300e w-300 flex flex-col text-[#EEEEEE]'>
+                            <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Office Information</h2>
+                
                                 <label>
                                     Office Name*
                                     <div>
