@@ -34,9 +34,11 @@ function UserProfile({ initialValues, onSubmit }) {
         >
             {({ setFieldValue }) => (
                 <Form>
-                    <section id='UserProfile' className='min-h-screen bg-[#373A40] flex flex-col justify-center items-center'>
+                    <section id='UserProfile' className=' min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
+                     
                             <div className='flex flex-col text-[#EEEEEE]'>
+                        <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>User Information</h2>
                                 <label>
                                     Name*
                                     <div>

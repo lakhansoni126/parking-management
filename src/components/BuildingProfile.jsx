@@ -14,10 +14,10 @@ function BuildingProfile({ initialValues, onSubmit }) {
         >
             {() => (
                 <Form>
-                    <section className='min-h-screen bg-[#191825] flex flex-col justify-center items-center'>
-                        <h2 className='text-white text-[20px] mb-20'>Building Information</h2>
+                    <section className='w-300 min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
+                    <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Building Information</h2>
                         <div>
-                            <div className='flex flex-col pl-[40px] text-white'>
+                            <div className='flex flex-col text-white'>
                                 <label>
                                     Building Name*
                                     <ErrorMessage name="buildingName" component="div" className="error" />
@@ -26,7 +26,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             name="buildingName"
                                             type="text"
                                             placeholder="Building Name"
-                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
@@ -38,7 +38,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             name="contactInfo"
                                             type="number"
                                             placeholder="Mobile number"
-                                            className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] noscroll border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
@@ -50,7 +50,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             name="altContactInfo"
                                             type="number"
                                             placeholder="Alternate number"
-                                            className='w-[400px] noscroll border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] noscroll border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
@@ -62,7 +62,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             name="address"
                                             type="text"
                                             placeholder="Enter your address"
-                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
@@ -74,7 +74,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             name="city"
                                             type="text"
                                             placeholder="City"
-                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
@@ -86,11 +86,11 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                             name="state"
                                             type="text"
                                             placeholder="State"
-                                            className='w-[400px] border-b-2 border-[#3F0071] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                         />
                                     </div>
                                 </label>
-                                <button type="submit" className="bg-[#865DFF] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#6836fe] mb-7">
+                                <button type="submit" className="bg-[#DC5F00] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#686D76] mb-7">
                                     Submit
                                 </button>
                             </div>

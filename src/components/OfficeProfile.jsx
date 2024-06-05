@@ -29,9 +29,9 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
         >
             {() => (
                 <Form>
-                    <section id='OfficeProfile' className='min-h-screen bg-[#373A40] flex flex-col justify-center items-center'>
+                    <section id='OfficeProfile' className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
-                            <div className='flex flex-col text-[#EEEEEE]'>
+                            <div className='w-300e w-300 flex flex-col text-[#EEEEEE]'>
                                 <label>
                                     Office Name*
                                     <div>
@@ -82,20 +82,26 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 </label>
 
                                 <label>
+                                <div>
+
                                     Building*
+                                </div>
                                     <ErrorMessage name="building" component="div" className="error" />
                                     <Field
                                         as="select"
                                         name="building"
                                         required
-                                        className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
+                                        className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#222831] mb-7 mr-5'
                                     >
+                                    <div>
+
                                         <option value="" disabled>Select your building</option>
                                         {buildingNames.map((buildingName, index) => (
                                             <option key={index} value={buildingName}>
                                                 {buildingName}
                                             </option>
                                         ))}
+                                    </div>
                                     </Field>
                                 </label>
 

@@ -70,7 +70,7 @@
     }
 
     #UserProfile select {
-        width: 180px;
+        width: 300px;
     }
 
     #guardProfile {
@@ -86,8 +86,20 @@
     #guardProfileForm select{
         width: 300px;
     }
+    .w-300 input{
+        width: 300px;
+    }
+    .w-300 input{
+        width: 300px;
+    }
+    .w-300 select{
+        width: 300px;
+    }
+    .w-300e{
+        width: 300px;
+    }
 }
 
 #UserProfile select {
-    background-color: #373A40;
+    background-color: #222831;
 }
