@@ -73,7 +73,7 @@ function UserProfile({ initialValues, onSubmit }) {
                                             <Field
                                                 as="select"
                                                 name="building"
-                                                required
+                                               
                                                 className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
                                             >
                                                 <option value="" disabled>Select your building</option>
