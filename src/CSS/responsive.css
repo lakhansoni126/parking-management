@@ -117,7 +117,7 @@
         width:  80vw !important;
     }
     .w-80vh div{
-        flex-direction: column;
+        /* flex-direction: column; */
     }
 }
 
