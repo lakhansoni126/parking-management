@@ -60,7 +60,7 @@ function GuardDashboard() {
   };
 
   return (
-    <section className="h-screen min-h-[600px] bg-[#222831]">
+    <section className=" min-h-[600px] bg-[#222831]">
       <div id="guardDeshboard" className="flex text-[#EEEEEE]">
         <div className="h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
           <div id="User-info" className="w-[20vw] flex flex-col">
@@ -102,7 +102,7 @@ function GuardDashboard() {
             </button>
           </div>
           <div className="flex justify-center">
-            <div className="ml-10 w-[50vw] mt-5">
+            <div className="w-80vh w-[50vw] mt-5">
               {loading && <div>Loading...</div>}
               {error && <div>Error: {error.message}</div>}
               {searchResult && typeof searchResult === 'object' && (

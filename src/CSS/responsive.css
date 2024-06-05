@@ -113,6 +113,9 @@
     #Complain input{
         width: 230px;
     }
+    .w-80vh{
+        width:  80vw !important;
+    }
 }
 
 #UserProfile select {
