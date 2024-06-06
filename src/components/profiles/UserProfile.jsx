@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { userValidationSchema } from './utils/ValidationSchemas'; // Adjust the path as necessary
+import { userValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
 
 function UserProfile({ initialValues, onSubmit }) {
     const [buildingNames, setBuildingNames] = useState([]);
+    const [officeNumbers, setOfficeNumbers] = useState([]);
 
     useEffect(() => {
         const db = getDatabase();
@@ -15,6 +16,13 @@ function UserProfile({ initialValues, onSubmit }) {
             const data = snapshot.val();
             const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
             setBuildingNames(buildingNamesList);
+        });
+
+        const officesRef = ref(db, 'office');
+        onValue(officesRef, (snapshot) => {
+            const data = snapshot.val();
+            const officeNumbersList = data ? Object.values(data).map(office => office.officeNumber) : [];
+            setOfficeNumbers(officeNumbersList);
         });
     }, []);
 
@@ -34,11 +42,10 @@ function UserProfile({ initialValues, onSubmit }) {
         >
             {({ setFieldValue }) => (
                 <Form>
-                    <section id='UserProfile' className=' min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
+                    <section id='UserProfile' className='min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
-                     
                             <div className='flex flex-col text-[#EEEEEE]'>
-                        <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>User Information</h2>
+                                <h2 className='text-[#EEEEEE] font-bold text-[20px] text-center mb-10'>User Information</h2>
                                 <label>
                                     Name*
                                     <div>
@@ -73,7 +80,6 @@ function UserProfile({ initialValues, onSubmit }) {
                                             <Field
                                                 as="select"
                                                 name="building"
-                                               
                                                 className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
                                             >
                                                 <option value="" disabled>Select your building</option>
@@ -91,11 +97,17 @@ function UserProfile({ initialValues, onSubmit }) {
                                     <ErrorMessage name="officeNum" component="div" className="error" />
                                     <div>
                                         <Field
+                                            as="select"
                                             name="officeNum"
-                                            type="text"
-                                            placeholder="Enter your office/flat number"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
-                                        />
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
+                                        >
+                                            <option value="" disabled>Select your office/flat</option>
+                                            {officeNumbers.map((officeNumber, index) => (
+                                                <option key={index} value={officeNumber}>
+                                                    {officeNumber}
+                                                </option>
+                                            ))}
+                                        </Field>
                                     </div>
                                 </label>
                                 <div>
@@ -143,7 +155,6 @@ function UserProfile({ initialValues, onSubmit }) {
 }
 
 UserProfile.propTypes = {
-    user: PropTypes.object.isRequired,
     initialValues: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
 };

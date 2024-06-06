@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import UserDashborad from "../UserDashborad";
-import GuardDashboard from "../GuardDeshboard";
-import BuildingDashboard from "../BuildingDashboard";
-import OfficeDashboard from "../OfficeDashboard";
+import UserDashborad from "../dashboards/UserDashborad";
+import GuardDashboard from "../dashboards/GuardDeshboard";
+import BuildingDashboard from "../dashboards/BuildingDashboard";
+import OfficeDashboard from "../dashboards/OfficeDashboard";
 
 const Dashboard = () => {
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { buildingValidationSchema } from './utils/ValidationSchemas'; // Adjust the path as necessary
+import { buildingValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
 
 function BuildingProfile({ initialValues, onSubmit }) {
     return (
@@ -15,7 +15,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
             {() => (
                 <Form>
                     <section className='w-300 min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
-                    <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Building Information</h2>
+                        <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Building Information</h2>
                         <div>
                             <div className='flex flex-col text-white'>
                                 <label>

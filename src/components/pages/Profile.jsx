@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ref, set } from 'firebase/database';
 import { db } from "../../firebase.js";
-import BuildingProfile from '../BuildingProfile';
-import UserProfile from '../UserProfile';
-import GuardProfile from '../GuardProfile';
+import BuildingProfile from '../profiles/BuildingProfile';
+import UserProfile from '../profiles/UserProfile';
+import GuardProfile from '../profiles/GuardProfile';
+import OfficeProfile from '../profiles/OfficeProfile.jsx';
 import ChooseRole from '../ChooseRole';
 import {
     userValidationSchema,
@@ -12,7 +13,6 @@ import {
     buildingValidationSchema,
     officeValidationSchema
 } from '../utils/ValidationSchemas';
-import OfficeProfile from '../OfficeProfile.jsx';
 
 function Profile() {
     const location = useLocation();

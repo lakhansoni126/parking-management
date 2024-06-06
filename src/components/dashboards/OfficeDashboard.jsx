@@ -6,10 +6,11 @@ const OfficeDashboard = () => {
     const [officeNumber, setOfficeNumber] = useState(null);
 
     useEffect(() => {
-        // Get the office number from local storage
-        const storedOfficeNumber = localStorage.getItem('officeNumber');
+        // Get the current logged-in user's data from localStorage
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
+        const storedOfficeNumber = loggedInUser?.officeNumber;
         setOfficeNumber(storedOfficeNumber);
-
+        console.log("om", storedOfficeNumber)
         // Fetch users from Firebase
         const db = getDatabase();
         const usersRef = ref(db, 'users');
@@ -17,12 +18,14 @@ const OfficeDashboard = () => {
             const data = snapshot.val();
             const usersList = data ? Object.values(data) : [];
             setUsers(usersList);
+            console.log(usersList)
+            console.log('data', data)
         });
     }, []);
 
     // Filter users based on the office number
     const filteredUsers = users.filter(user => user.officeNum === officeNumber);
-
+    console.log("yoyoyo", filteredUsers)
     return (
         <section className="bg-[#222831] flex flex-col justify-center items-center py-8">
             <div className="text-[#EEEEEE]">
@@ -40,12 +43,9 @@ const OfficeDashboard = () => {
                             </div>
                             <div className='h-[60px]'>
                                 <h2 className="">Contact Number :</h2>
-                                <h2 className="font-bold">{user.contactNumber}</h2>
+                                <h2 className="font-bold">{user.contactInfo}</h2>
                             </div>
-                            <div className='h-[60px]'>
-                                <h2 className="">Alternate Contact Number :</h2>
-                                <h2 className="font-bold">{user.altContactNumber}</h2>
-                            </div>
+
                             <div className='h-[60px]'>
                                 <h2 className="">Vehicle Number :</h2>
                                 <h2 className="font-bold">{user.vehicleNum}</h2>

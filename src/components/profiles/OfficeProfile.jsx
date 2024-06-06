@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { officeValidationSchema } from './utils/ValidationSchemas'; // Adjust the path as necessary
+import { officeValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
 
 const OfficeProfile = ({ initialValues, onSubmit }) => {
     const [buildingNames, setBuildingNames] = useState([]);
@@ -51,7 +51,7 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                     <div>
                                         <ErrorMessage name="officeNumber" component="div" className="error" />
                                         <Field
-                                            name="officeNumber"
+                                            name="officeNum"
                                             type="text"
                                             placeholder="Enter Office Number"
                                             className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
@@ -61,9 +61,9 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 <label>
                                     Contact Number*
                                     <div>
-                                        <ErrorMessage name="contactNumber" component="div" className="error" />
+                                        <ErrorMessage name="contactInfo" component="div" className="error" />
                                         <Field
-                                            name="contactNumber"
+                                            name="contactInfo"
                                             type="text"
                                             placeholder="Enter Contact Number"
                                             className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
@@ -73,9 +73,9 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 <label>
                                     Alternate Contact Number
                                     <div>
-                                        <ErrorMessage name="altContactNumber" component="div" className="error" />
+                                        <ErrorMessage name="altContactInfo" component="div" className="error" />
                                         <Field
-                                            name="altContactNumber"
+                                            name="altContactInfo"
                                             type="text"
                                             placeholder="Enter Alternate Contact Number"
                                             className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'

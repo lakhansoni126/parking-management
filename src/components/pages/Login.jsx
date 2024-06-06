@@ -26,14 +26,15 @@ const Login = () => {
                 return userSnapshot.exists() ? userSnapshot.val() : null;
             };
 
-            const [userInUsers, userInGuards, userInBuildings] =
+            const [userInUsers, userInGuards, userInBuildings, userInoffice] =
                 await Promise.all([
                     checkUserInCollection("users"),
                     checkUserInCollection("guards"),
                     checkUserInCollection("buildings"),
+                    checkUserInCollection("office"),
                 ]);
 
-            const existingUser = userInUsers || userInGuards || userInBuildings;
+            const existingUser = userInUsers || userInGuards || userInBuildings || userInoffice;
 
             if (existingUser) {
                 localStorage.setItem("user", JSON.stringify(existingUser));

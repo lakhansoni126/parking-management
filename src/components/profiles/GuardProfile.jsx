@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { guardValidationSchema } from './utils/ValidationSchemas';
+import { guardValidationSchema } from '../utils/ValidationSchemas';
 
 function GuardProfile({ initialValues, onSubmit }) {
     const [buildingNames, setBuildingNames] = useState([]);
@@ -38,9 +38,9 @@ function GuardProfile({ initialValues, onSubmit }) {
                     <section id='' className=' w-300 min-h-screen bg-[#222831] flex flex-col justify-center items-center'>
                         <div>
 
-                            <div id='guardProfileForm' className='flex flex-col  text-[#EEEEEE]'> 
-                            <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Guard Information</h2>
-                     
+                            <div id='guardProfileForm' className='flex flex-col  text-[#EEEEEE]'>
+                                <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Guard Information</h2>
+
                                 <label>
                                     Name*
                                     <ErrorMessage name="name" component="div" className="error" />
@@ -75,7 +75,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                             <Field
                                                 as="select"
                                                 name="building"
-                                                
+
                                                 className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-[#222831] mb-7 mr-5'
                                             >
                                                 <option value="" disabled>Select your building</option>
