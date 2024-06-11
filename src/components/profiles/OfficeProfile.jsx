@@ -49,7 +49,7 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 <label>
                                     Office Number*
                                     <div>
-                                        <ErrorMessage name="officeNumber" component="div" className="error" />
+                                        <ErrorMessage name="officeNum" component="div" className="error" />
                                         <Field
                                             name="officeNum"
                                             type="text"

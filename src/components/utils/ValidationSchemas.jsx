@@ -31,8 +31,8 @@ export const buildingValidationSchema = Yup.object({
 
 export const officeValidationSchema = Yup.object({
     officeName: Yup.string().required('Office name is required'),
-    officeNumber: Yup.string().required('Office number is required'),
-    contactNumber: Yup.string().required('Contact number is required'),
-    altContactNumber: Yup.string(),
+    officeNum: Yup.string().required('Office number is required'),
+    contactInfo: Yup.string().required('Contact number is required'),
+    altContactInfo: Yup.string(),
     building: Yup.string().required('Building is required'),
 });
