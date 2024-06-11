@@ -10,8 +10,8 @@ const Header = () => {
                 </div>
                 <div className="" >
                     <ul className="flex">
-                        <li><a className="px-7 cursor-pointer py-[23px] hover:text-[#EEEEEE]" > Home</a></li>
-                        <li><a className="px-7 cursor-pointer py-[23px] hover:text-[#EEEEEE] "> AboutUS</a></li>
+                        {/* <li><a className="px-7 cursor-pointer py-[23px] hover:text-[#EEEEEE]" > Home</a></li>
+                        <li><a className="px-7 cursor-pointer py-[23px] hover:text-[#EEEEEE] "> AboutUS</a></li> */}
                         <li><a onClick={logout} className="px-7 py-[10px] rounded-sm bg-[#FF5722] hover:bg-[#ff6a00] " href="/"> Logout</a></li>
                         <li></li>
                     </ul>

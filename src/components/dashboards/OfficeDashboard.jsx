@@ -27,12 +27,12 @@ const OfficeDashboard = () => {
     const filteredUsers = users.filter(user => user.officeNum === officeNumber);
     console.log("yoyoyo", filteredUsers)
     return (
-        <section className="bg-[#222831] flex flex-col justify-center items-center py-8">
+        <section className="bg-[#222831] h-screen flex flex-col justify-center items-center py-8">
             <div className="text-[#EEEEEE]">
                 <h1 className="text-4xl font-bold my-20 text-center">Office Dashboard</h1>
                 <div className="w-[90vw] flex-wrap flex items-center justify-center gap-10">
                     {filteredUsers.map((user, index) => (
-                        <div key={index} className="border-b h-[400px] bg-[#EEEEEE] p-5 rounded-sm w-96 text-[#222831] border-gray-700 hover:bg-gray-300 transition-colors">
+                        <div key={index} className="border-b h-[320px] bg-[#EEEEEE] p-5 rounded-sm w-96 text-[#222831] border-gray-700 hover:bg-gray-300 transition-colors">
                             <div className='h-[60px]'>
                                 <h2 className="">Name :</h2>
                                 <h2 className="font-bold">{user.name}</h2>
