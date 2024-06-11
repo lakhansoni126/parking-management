@@ -17,7 +17,6 @@ const PrivateRoute = ({ Component }) => {
         <>
             <Header />
             <Component />
-            <Footer />
         </>
     ) : (
         <Navigate to="/" />
