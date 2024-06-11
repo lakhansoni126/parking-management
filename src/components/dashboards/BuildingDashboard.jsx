@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, update } from 'firebase/database';
 
 function BuildingDashboard() {
     const [guards, setGuards] = useState([]);
@@ -13,6 +13,11 @@ function BuildingDashboard() {
             setGuards(guardsList);
         });
     }, []);
+    const toggleAuth = (guardId, currentAuth) => {
+        const db = getDatabase();
+        const guardRef = ref(db, `guards/${guardId}`);
+        update(guardRef, { auth: !currentAuth });
+    };
 
     return (
         <section className="  bg-[#222831] flex flex-col  justify-center items-center py-8">
@@ -98,6 +103,16 @@ function BuildingDashboard() {
                             <div className='h-[60px]'>
                                 <h2 className="">Employee ID :</h2>
                                 <h2 className="font-bold ">{guard.employeeId}</h2>
+                            </div>
+                            <div className="h-[60px]">
+                                <h2 className="">Auth Status :</h2>
+                                <h2 className="font-bold">{guard.auth ? 'True' : 'False'}</h2>
+                                <button
+                                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+                                    onClick={() => toggleAuth(guard.id, guard.auth)}
+                                >
+                                    Toggle Auth
+                                </button>
                             </div>
                         </div>
                     ))}
