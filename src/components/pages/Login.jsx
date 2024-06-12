@@ -52,8 +52,8 @@ const Login = () => {
 
     return (
         <>
-            <section id="login" className="bg-[#222831] h-screen flex flex-row-reverse gap-10 justify-around items-center">
-                <div id="loginPageDetail" className="text-[#EEEEEE] py-20">
+            <section id="login" className="bg-[#222831] h-screen min-h-[600px] flex flex-row-reverse gap-10 justify-around items-center">
+                <div id="loginPageDetail" className="bg-[#222831]  text-[#EEEEEE] py-20">
                     <h1 className="font-bold py-2 text-[24px]">
                         Parking Management
                     </h1>
