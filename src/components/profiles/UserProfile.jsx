@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Dropdown from 'react-dropdown-select';
 import { userValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
 
 function UserProfile({ initialValues, onSubmit }) {
     const [buildingNames, setBuildingNames] = useState([]);
-    const [officeNumbers, setOfficeNumbers] = useState([]);
+    const [allOffices, setAllOffices] = useState([]);
+    const [filteredOffices, setFilteredOffices] = useState([]);
+    const [selectedBuilding, setSelectedBuilding] = useState('');
 
     useEffect(() => {
         const db = getDatabase();
@@ -21,14 +24,25 @@ function UserProfile({ initialValues, onSubmit }) {
         const officesRef = ref(db, 'office');
         onValue(officesRef, (snapshot) => {
             const data = snapshot.val();
-            const officeNumbersList = data ? Object.values(data).map(office => office.officeNumber) : [];
-            setOfficeNumbers(officeNumbersList);
+            const officesList = data ? Object.values(data) : [];
+            setAllOffices(officesList);
         });
     }, []);
 
-    const handleVehicleNumChange = (event, setFieldValue) => {
-        const upperCaseValue = event.target.value.toUpperCase();
-        setFieldValue('vehicleNum', upperCaseValue);
+    useEffect(() => {
+        if (selectedBuilding) {
+            const officesInSelectedBuilding = allOffices.filter(office =>
+                office.building === selectedBuilding
+            );
+            setFilteredOffices(officesInSelectedBuilding);
+        } else {
+            setFilteredOffices([]);
+        }
+    }, [selectedBuilding, allOffices]);
+
+    const handleBuildingChange = (event) => {
+        const buildingName = event.target.value;
+        setSelectedBuilding(buildingName);
     };
 
     return (
@@ -77,10 +91,10 @@ function UserProfile({ initialValues, onSubmit }) {
                                         Building*
                                         <ErrorMessage name="building" component="div" className="error" />
                                         <div>
-                                            <Field
-                                                as="select"
+                                            <select
                                                 name="building"
                                                 className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
+                                                onChange={handleBuildingChange}
                                             >
                                                 <option value="" disabled>Select your building</option>
                                                 {buildingNames.map((buildingName, index) => (
@@ -88,7 +102,7 @@ function UserProfile({ initialValues, onSubmit }) {
                                                         {buildingName}
                                                     </option>
                                                 ))}
-                                            </Field>
+                                            </select>
                                         </div>
                                     </label>
                                 </div>
@@ -96,18 +110,11 @@ function UserProfile({ initialValues, onSubmit }) {
                                     Office/Flat*
                                     <ErrorMessage name="officeNum" component="div" className="error" />
                                     <div>
-                                        <Field
-                                            as="select"
-                                            name="officeNum"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
-                                        >
-                                            <option value="" disabled>Select your office/flat</option>
-                                            {officeNumbers.map((officeNumber, index) => (
-                                                <option key={index} value={officeNumber}>
-                                                    {officeNumber}
-                                                </option>
-                                            ))}
-                                        </Field>
+                                        <Dropdown
+                                            options={filteredOffices.map(office => ({ value: office.officeNum, label: office.officeNum }))}
+                                            placeholder="Select your office/flat"
+                                            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption[0].value)}
+                                        />
                                     </div>
                                 </label>
                                 <div>

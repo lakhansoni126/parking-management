@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ref, set } from 'firebase/database';
 import { db } from "../../firebase.js";
@@ -20,6 +20,12 @@ function Profile() {
     const user = location.state?.user;
     const uid = location.state?.uid;
 
+    useEffect(() => {
+        if (!user || !uid) {
+            alert('Login properly.');
+            navigate('/');
+        }
+    }, [user, uid, navigate]);
     const [role, setRole] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [formData, setFormData] = useState({
@@ -53,6 +59,8 @@ function Profile() {
     };
 
     const handleSubmit = async (values) => {
+
+
         try {
             const validFormData = Object.keys(values).reduce((acc, key) => {
                 const value = values[key];
