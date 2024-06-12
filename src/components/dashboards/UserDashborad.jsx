@@ -12,9 +12,9 @@ const UserDashboard = () => {
 
     return (
         <>
-            <section id='User' className="h-screen bg-[#222831]">
-                <div id='button' className="flex text-[#EEEEEE]">
-                    <div id="User-info" className="w-[100vw] flex flex-col items-center">
+            <section id='User' className="h-[calc(100vh-64px)] bg-[#222831]">
+                <div id='button' className="  flex text-[#EEEEEE]">
+                    <div id="User-info" className="w-[100vw] pb-[100px] h-max bg-[#222831] flex flex-col items-center">
                         <h1 className="font-bold text-[20px] mt-[120px]">User Information</h1>
                         {userData ? (
                             <>

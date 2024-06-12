@@ -27,7 +27,7 @@ const OfficeDashboard = () => {
     const filteredUsers = users.filter(user => user.officeNum === officeNumber);
     console.log("yoyoyo", filteredUsers)
     return (
-        <section className="bg-[#222831] h-screen flex flex-col justify-center items-center py-8">
+        <section className="bg-[#222831] h-[calc(100vh-64px)]  flex flex-col justify-center items-center py-8">
             <div className="text-[#EEEEEE]">
                 <h1 className="text-4xl font-bold my-20 text-center">Office Dashboard</h1>
                 <div className="w-[90vw] flex-wrap flex items-center justify-center gap-10">

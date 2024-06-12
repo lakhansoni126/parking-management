@@ -4,7 +4,7 @@ const Header = () => {
     }
     return (
         <>
-            <nav className="bg-[#393E46] h-16 px-10 text-[#EEEEEE] flex justify-between items-center">
+            <nav className="bg-[#393E46] h-[64px] px-10 text-[#EEEEEE] flex justify-between items-center">
                 <div>
                     <img className=" absolute top-0 left-0 w-[70px]" src="/images/favicon.png" alt="" />
                 </div>
