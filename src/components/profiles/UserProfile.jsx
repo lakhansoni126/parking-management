@@ -1,49 +1,42 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Dropdown from 'react-dropdown-select';
 import { userValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
 
-function UserProfile({ initialValues, onSubmit }) {
+const UserProfile = ({ initialValues, onSubmit }) => {
     const [buildingNames, setBuildingNames] = useState([]);
     const [allOffices, setAllOffices] = useState([]);
     const [filteredOffices, setFilteredOffices] = useState([]);
-    const [selectedBuilding, setSelectedBuilding] = useState('');
 
     useEffect(() => {
         const db = getDatabase();
-        const buildingsRef = ref(db, 'buildings');
+        const fetchBuildingNames = ref(db, 'buildings');
+        const fetchOffices = ref(db, 'office');
 
-        onValue(buildingsRef, (snapshot) => {
+        onValue(fetchBuildingNames, (snapshot) => {
             const data = snapshot.val();
-            const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
-            setBuildingNames(buildingNamesList);
+            setBuildingNames(data ? Object.values(data).map(building => building.buildingName) : []);
         });
 
-        const officesRef = ref(db, 'office');
-        onValue(officesRef, (snapshot) => {
+        onValue(fetchOffices, (snapshot) => {
             const data = snapshot.val();
-            const officesList = data ? Object.values(data) : [];
-            setAllOffices(officesList);
+            setAllOffices(data ? Object.values(data) : []);
         });
     }, []);
 
-    useEffect(() => {
-        if (selectedBuilding) {
-            const officesInSelectedBuilding = allOffices.filter(office =>
-                office.building === selectedBuilding
-            );
-            setFilteredOffices(officesInSelectedBuilding);
-        } else {
-            setFilteredOffices([]);
-        }
-    }, [selectedBuilding, allOffices]);
-
-    const handleBuildingChange = (event) => {
+    const handleBuildingChange = useCallback((event, setFieldValue) => {
         const buildingName = event.target.value;
-        setSelectedBuilding(buildingName);
-    };
+        setFieldValue('building', buildingName);
+        const officesInSelectedBuilding = allOffices.filter(office => office.building === buildingName);
+        setFilteredOffices(officesInSelectedBuilding);
+    }, [allOffices]);
+
+    const handleVehicleNumChange = useCallback((e, setFieldValue) => {
+        const uppercaseValue = e.target.value.toUpperCase();
+        setFieldValue('vehicleNum', uppercaseValue);
+    }, []);
 
     return (
         <Formik
@@ -94,7 +87,7 @@ function UserProfile({ initialValues, onSubmit }) {
                                             <select
                                                 name="building"
                                                 className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
-                                                onChange={handleBuildingChange}
+                                                onChange={(event) => handleBuildingChange(event, setFieldValue)}
                                             >
                                                 <option value="" disabled>Select your building</option>
                                                 {buildingNames.map((buildingName, index) => (
@@ -126,6 +119,7 @@ function UserProfile({ initialValues, onSubmit }) {
                                                 name="vehicleNum"
                                                 type="text"
                                                 placeholder="Enter vehicle number"
+                                                onChange={(e) => handleVehicleNumChange(e, setFieldValue)}
                                                 className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
                                             />
                                         </div>
@@ -158,7 +152,7 @@ function UserProfile({ initialValues, onSubmit }) {
             )}
         </Formik>
     );
-}
+};
 
 UserProfile.propTypes = {
     initialValues: PropTypes.object.isRequired,
