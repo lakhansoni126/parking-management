@@ -43,40 +43,39 @@ function GuardProfile({ initialValues, onSubmit }) {
 
                                 <label>
                                     Name*
-                                    <ErrorMessage name="name" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="name"
                                             type="text"
                                             placeholder="Enter Your Name"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="name" component="div" className="error" />
                                     </div>
                                 </label>
                                 <div>
                                     <label>
                                         Mobile number*
-                                        <ErrorMessage name="contactInfo" component="div" className="error" />
-                                        <div>
+                                        <div className='mb-7'>
                                             <Field
                                                 name="contactInfo"
                                                 type="text"
                                                 placeholder="Mobile number"
-                                                className='w-[400px] noscroll border-b-2 border-[#DC5F00] p-1 bg-transparent mb-7 mr-5'
+                                                className='w-[400px] noscroll border-b-2 border-[#DC5F00] p-1 bg-transparent  mr-5'
                                             />
+                                        <ErrorMessage name="contactInfo" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <div>
                                     <label>
                                         Building*
-                                        <ErrorMessage name="building" component="div" className="error" />
-                                        <div>
+                                        <div className='mb-7'>
                                             <Field
                                                 as="select"
                                                 name="building"
 
-                                                className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-[#222831] mb-7 mr-5'
+                                                className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-[#222831]  mr-5'
                                             >
                                                 <option value="" disabled>Select your building</option>
                                                 {buildingNames.map((buildingName, index) => (
@@ -85,23 +84,24 @@ function GuardProfile({ initialValues, onSubmit }) {
                                                     </option>
                                                 ))}
                                             </Field>
+                                        <ErrorMessage name="building" component="div" className="error" />
                                         </div>
                                     </label>
                                 </div>
                                 <label>
                                     Employee ID*
-                                    <ErrorMessage name="employeeId" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="employeeId"
                                             type="text"
                                             placeholder="Enter your employee ID"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="employeeId" component="div" className="error" />
                                     </div>
                                 </label>
 
-                                <button type="submit" className="bg-[#FF5722] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#393E46] mb-7">
+                                <button type="submit" className="bg-[#FF5722] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#393E46] ">
                                     Submit
                                 </button>
                             </div>

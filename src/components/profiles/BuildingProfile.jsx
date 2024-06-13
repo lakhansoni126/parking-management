@@ -20,74 +20,74 @@ function BuildingProfile({ initialValues, onSubmit }) {
                             <div className='flex flex-col text-white'>
                                 <label>
                                     Building Name*
-                                    <ErrorMessage name="buildingName" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="buildingName"
                                             type="text"
                                             placeholder="Building Name"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="buildingName" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
                                 <label>
                                     Mobile number*
-                                    <ErrorMessage name="contactInfo" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="contactInfo"
                                             type="number"
                                             placeholder="Mobile number"
-                                            className='w-[400px] noscroll border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] noscroll border-b-2 border-[#DC5F00] bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="contactInfo" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
                                 <label>
                                     Alternate number*
-                                    <ErrorMessage name="altContactInfo" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="altContactInfo"
                                             type="number"
                                             placeholder="Alternate number"
-                                            className='w-[400px] noscroll border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] noscroll border-b-2 border-[#DC5F00] bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="altContactInfo" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
                                 <label>
                                     Full Address*
-                                    <ErrorMessage name="address" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="address"
                                             type="text"
                                             placeholder="Enter your address"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="address" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
                                 <label>
                                     City*
-                                    <ErrorMessage name="city" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="city"
                                             type="text"
                                             placeholder="City"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="city" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
                                 <label>
                                     State*
-                                    <ErrorMessage name="state" component="div" className="error" />
-                                    <div>
+                                    <div className='mb-7'>
                                         <Field
                                             name="state"
                                             type="text"
                                             placeholder="State"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent  mr-5'
                                         />
+                                    <ErrorMessage name="state" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
                                 <button type="submit" className="bg-[#DC5F00] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#686D76] mb-7">
