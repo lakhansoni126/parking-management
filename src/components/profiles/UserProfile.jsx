@@ -37,7 +37,13 @@ const UserProfile = ({ initialValues, onSubmit }) => {
         const uppercaseValue = e.target.value.toUpperCase();
         setFieldValue('vehicleNum', uppercaseValue);
     }, []);
-
+const customStyles = {
+    control: (provided) => ({
+        ...provided,
+        backgroundColor: 'transparent',
+        border: '2px solid #3B82F6', // Tailwind's blue-500
+    }),
+};
     return (
         <Formik
             initialValues={initialValues}
@@ -61,7 +67,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                             name="name"
                                             type="text"
                                             placeholder="Enter Your Name"
-                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                            className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 '
                                         />
                                     </div>
                                 </label>
@@ -74,7 +80,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                                 name="contactInfo"
                                                 type="text"
                                                 placeholder="Mobile number"
-                                                className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                                className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 '
                                             />
                                         </div>
                                     </label>
@@ -86,7 +92,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                         <div>
                                             <select
                                                 name="building"
-                                                className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 mr-5'
+                                                className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#252437] mb-7 '
                                                 onChange={(event) => handleBuildingChange(event, setFieldValue)}
                                             >
                                                 <option value="" disabled>Select your building</option>
@@ -100,16 +106,18 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                     </label>
                                 </div>
                                 <label>
-                                    Office/Flat*
-                                    <ErrorMessage name="officeNum" component="div" className="error" />
-                                    <div>
-                                        <Dropdown
-                                            options={filteredOffices.map(office => ({ value: office.officeNum, label: office.officeNum }))}
-                                            placeholder="Select your office/flat"
-                                            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption?.[0]?.value || '')}
-                                        />
-                                    </div>
-                                </label>
+    Office/Flat* 
+    <ErrorMessage name="officeNum" component="div" className="error" />
+    <div className='mb-10' style={{ borderBottom: '2px solid #DC5F00' }}>
+        <Dropdown
+            options={filteredOffices.map(office => ({ value: office.officeNum, label: office.officeNum }))}
+            placeholder="Select your office/flat"
+            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption?.[0]?.value || '')}
+            style={{ border: 'none' }}
+        />
+    </div>
+</label>
+
                                 <div>
                                     <label>
                                         Vehicle number*
@@ -120,7 +128,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                                 type="text"
                                                 placeholder="Enter vehicle number"
                                                 onChange={(e) => handleVehicleNumChange(e, setFieldValue)}
-                                                className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
+                                                className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 '
                                             />
                                         </div>
                                     </label>

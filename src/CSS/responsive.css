@@ -121,4 +121,24 @@
 
 #UserProfile select {
     background-color: #222831;
+        color: #eee;
+}
+.react-dropdown-select-no-data{
+    background-color: #222831;
+    color: #eee;
+}
+.react-dropdown-select-no-data{
+   
+        color: #eee !important;
+    background-color: #222831;
+}
+.react-dropdown-select-item {
+    color: #eee;
+    background-color: #222831;
+}
+.react-dropdown-select-input{
+    width: 270px !important;
+}
+.react-dropdown-select{
+    box-shadow: none  !important;
 }
