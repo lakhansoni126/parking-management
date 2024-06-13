@@ -113,7 +113,7 @@ function UserProfile({ initialValues, onSubmit }) {
                                         <Dropdown
                                             options={filteredOffices.map(office => ({ value: office.officeNum, label: office.officeNum }))}
                                             placeholder="Select your office/flat"
-                                            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption[0].value)}
+                                            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption?.[0]?.value || '')}
                                         />
                                     </div>
                                 </label>
@@ -127,7 +127,6 @@ function UserProfile({ initialValues, onSubmit }) {
                                                 type="text"
                                                 placeholder="Enter vehicle number"
                                                 className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent mb-7 mr-5'
-                                                onChange={(e) => handleVehicleNumChange(e, setFieldValue)}
                                             />
                                         </div>
                                     </label>
