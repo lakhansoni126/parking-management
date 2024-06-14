@@ -58,11 +58,10 @@ const Login = () => {
                         Parking Management
                     </h1>
                     <h1 className="text-[18px]">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Vitae, laboriosam?
+                        Your one-stop solution for all your parking problems.
                     </h1>
                     <h1 className="text-[18px]">
-                        Lorem ipsum dolor sit amet consectetur adipisicing.
+                        Meet Guard Sahab
                     </h1>
                     {error && <p>Error: {error}</p>}
                     <button
