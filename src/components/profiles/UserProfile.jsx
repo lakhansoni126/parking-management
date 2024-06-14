@@ -3,47 +3,63 @@ import { useState, useEffect, useCallback } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Dropdown from 'react-dropdown-select';
-import { userValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
+import { userValidationSchema } from '../utils/ValidationSchemas';
 
 const UserProfile = ({ initialValues, onSubmit }) => {
     const [buildingNames, setBuildingNames] = useState([]);
     const [allOffices, setAllOffices] = useState([]);
     const [filteredOffices, setFilteredOffices] = useState([]);
+    const [selectedBuilding, setSelectedBuilding] = useState('');
 
     useEffect(() => {
         const db = getDatabase();
-        const fetchBuildingNames = ref(db, 'buildings');
-        const fetchOffices = ref(db, 'office');
+        const buildingsRef = ref(db, 'buildings');
 
-        onValue(fetchBuildingNames, (snapshot) => {
+        onValue(buildingsRef, (snapshot) => {
             const data = snapshot.val();
-            setBuildingNames(data ? Object.values(data).map(building => building.buildingName) : []);
+            console.log('Buildings data:', data); // Inspect buildings data
+            const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
+            setBuildingNames(buildingNamesList);
         });
 
-        onValue(fetchOffices, (snapshot) => {
+        const officesRef = ref(db, 'office');
+        onValue(officesRef, (snapshot) => {
             const data = snapshot.val();
-            setAllOffices(data ? Object.values(data) : []);
+            console.log('Offices data:', data); // Inspect offices data
+            const officesList = data ? Object.values(data) : [];
+            setAllOffices(officesList);
         });
     }, []);
 
-    const handleBuildingChange = useCallback((event, setFieldValue) => {
+    useEffect(() => {
+        if (selectedBuilding) {
+            const officesInSelectedBuilding = allOffices.filter(office =>
+                office.building === selectedBuilding
+            );
+            setFilteredOffices(officesInSelectedBuilding);
+        } else {
+            setFilteredOffices([]);
+        }
+    }, [selectedBuilding, allOffices]);
+
+    const handleBuildingChange = (event, setFieldValue) => {
         const buildingName = event.target.value;
+        setSelectedBuilding(buildingName);
         setFieldValue('building', buildingName);
-        const officesInSelectedBuilding = allOffices.filter(office => office.building === buildingName);
-        setFilteredOffices(officesInSelectedBuilding);
-    }, [allOffices]);
+    };
 
     const handleVehicleNumChange = useCallback((e, setFieldValue) => {
         const uppercaseValue = e.target.value.toUpperCase();
         setFieldValue('vehicleNum', uppercaseValue);
     }, []);
-const customStyles = {
-    control: (provided) => ({
-        ...provided,
-        backgroundColor: 'transparent',
-        border: '2px solid #3B82F6', // Tailwind's blue-500
-    }),
-};
+
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            backgroundColor: 'transparent',
+            border: '2px solid #3B82F6', // Tailwind's blue-500
+        }),
+    };
     return (
         <Formik
             initialValues={initialValues}
@@ -68,10 +84,10 @@ const customStyles = {
                                             placeholder="Enter Your Name"
                                             className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent '
                                         />
-                                   
 
-                                        <ErrorMessage  name="name" component="div" className="error text-red-500 text-bold" />
-                                       
+
+                                        <ErrorMessage name="name" component="div" className="error text-red-500 text-bold" />
+
                                     </div>
                                 </label>
                                 <div>
@@ -84,7 +100,7 @@ const customStyles = {
                                                 placeholder="Mobile number"
                                                 className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent  '
                                             />
-                                        <ErrorMessage name="contactInfo" component="div" className="error text-red-500 text-bold" />
+                                            <ErrorMessage name="contactInfo" component="div" className="error text-red-500 text-bold" />
                                         </div>
                                     </label>
                                 </div>
@@ -104,22 +120,22 @@ const customStyles = {
                                                     </option>
                                                 ))}
                                             </select>
-                                        <ErrorMessage name="building" component="div" className="error text-red-500 text-bold" />
+                                            <ErrorMessage name="building" component="div" className="error text-red-500 text-bold" />
                                         </div>
                                     </label>
                                 </div>
                                 <label>
-    Office/Flat* 
-    <div className='mb-7' style={{ borderBottom: '2px solid #DC5F00' }}>
-        <Dropdown
-            options={filteredOffices.map(office => ({ value: office.officeNum, label: office.officeNum }))}
-            placeholder="Select your office/flat"
-            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption?.[0]?.value || '')}
-            style={{ border: 'none' }}
-        />
-    <ErrorMessage name="officeNum" component="div" className="error text-red-500 text-bold" />
-    </div>
-</label>
+                                    Office/Flat*
+                                    <div className='mb-7' style={{ borderBottom: '2px solid #DC5F00' }}>
+                                        <Dropdown
+                                            options={filteredOffices.map(office => ({ value: office.officeNum, label: office.officeNum }))}
+                                            placeholder="Select your office/flat"
+                                            onChange={(selectedOption) => setFieldValue('officeNum', selectedOption?.[0]?.value || '')}
+                                            style={{ border: 'none' }}
+                                        />
+                                        <ErrorMessage name="officeNum" component="div" className="error text-red-500 text-bold" />
+                                    </div>
+                                </label>
 
                                 <div>
                                     <label>
@@ -132,7 +148,7 @@ const customStyles = {
                                                 onChange={(e) => handleVehicleNumChange(e, setFieldValue)}
                                                 className='w-[400px] border-b-2 border-[#DC5F00] bg-transparent  '
                                             />
-                                        <ErrorMessage name="vehicleNum" component="div" className="error text-red-500 text-bold" />
+                                            <ErrorMessage name="vehicleNum" component="div" className="error text-red-500 text-bold" />
                                         </div>
                                     </label>
                                 </div>
@@ -149,7 +165,7 @@ const customStyles = {
                                                 <option value="Car">Car</option>
                                                 <option value="Bike">Bike</option>
                                             </Field>
-                                        <ErrorMessage name="vehicleType" component="div" className="error text-red-500 text-bold" />
+                                            <ErrorMessage name="vehicleType" component="div" className="error text-red-500 text-bold" />
                                         </div>
                                     </label>
                                 </div>
