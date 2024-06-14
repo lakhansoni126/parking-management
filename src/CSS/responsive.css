@@ -116,7 +116,9 @@
     .w-80vh{
         width:  80vw !important;
     }
-  
+    .guardinfo{
+        width:fit-content !important;
+    }
 }
 
 #UserProfile select {
@@ -141,4 +143,7 @@
 }
 .react-dropdown-select{
     box-shadow: none  !important;
+}
+.guardinfo{
+    width: 270px;
 }

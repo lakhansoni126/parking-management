@@ -42,7 +42,7 @@ function BuildingDashboard() {
     if (loading) {
         return <div>
         <section className="bg-[#222831] text-[#EEEEEE] min-h-[calc(100vh-64px)] justify-center flex flex-col items-center py-8">
-        <h1 className="text-4xl font-bold my-20  text-center">Building Dashboard</h1>
+        <h1 className="text-4xl font-bold my-20 px-4 text-center">Building Dashboard</h1>
         <div className='h-[270px] text-xl '> Loading...</div>
         </section>
         </div>; // Optional: Show loading state while fetching data
@@ -51,8 +51,8 @@ function BuildingDashboard() {
     return (
         <section className="bg-[#222831] min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-8">
             <div className="text-[#EEEEEE]">
-                <h1 className="text-4xl font-bold my-20 text-center">Building Dashboard</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <h1 className="text-4xl font-bold my-20 px-4 text-center">Building Dashboard</h1>
+                <div className="flex flex-wrap justify-center gap-6">
                     {guards.map((guard) => (
                         <div key={guard.id} className="relative bg-gray-200 rounded-lg w-[300px] shadow-md p-6">
                             <h2 className="flex justify-between text-lg text-[#222831] font-semibold">
@@ -71,13 +71,15 @@ function BuildingDashboard() {
                                 </div>
                             </h2>
                             <p className="text-sm text-[#222831] mr-2 mb-5"><strong>Auth Status:</strong> {guard.auth ? 'True' : 'False'}</p>
-                            <p className="text-sm text-[#222831] mb-2"><strong>Email:</strong> <span>{guard.email}</span></p>
-                            <p className="text-sm text-[#222831] mb-2"><strong>Contact Info:</strong> <span>{guard.contactInfo}</span></p>
-                            <p className="text-sm text-[#222831] mb-2"><strong>Role:</strong> <span>{guard.role}</span></p>
-                            <p className="text-sm text-[#222831] mb-2"><strong>Building:</strong> <span>{guard.building}</span></p>
-                            <p className="text-sm text-[#222831] mb-2"><strong>Employee ID:</strong> <span>{guard.employeeId}</span></p>
+                            <p className="text-sm text-[#222831] mb-2"><strong>Email:</strong> <p className=' '>{guard.email}</p></p>
+                            <p className="text-sm text-[#222831] mb-2"><strong>Contact Info:</strong> <div>{guard.contactInfo}</div></p>
+                            <p className="text-sm text-[#222831] mb-2"><strong>Role:</strong> <div>{guard.role}</div></p>
+                            <p className="text-sm text-[#222831] mb-2"><strong>Building:</strong> <div>{guard.building}</div></p>
+                            <p className="text-sm text-[#222831] mb-2"><strong>Employee ID:</strong> <div>{guard.employeeId}</div></p>
                         </div>
                     ))}
+                    
+                    
                 </div>
             </div>
         </section>
