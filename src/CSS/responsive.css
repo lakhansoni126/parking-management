@@ -119,6 +119,7 @@
         width:  80vw !important;
     }
     .guardinfo{
+        height: 70vh;
         width:fit-content !important;
     }
 }
