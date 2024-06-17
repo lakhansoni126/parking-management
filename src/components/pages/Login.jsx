@@ -73,7 +73,7 @@ const Login = () => {
                 </div>
                 <div>
                     <img
-                        className="w-96 border-2 rounded-lg"
+                        className="w-96 h-96 border-2 rounded-lg"
                         src="../../../images/logo.png"
                         alt="Logo"
                     />
