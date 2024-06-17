@@ -17,12 +17,15 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
             setBuildingNames(buildingNamesList);
         });
     }, []);
-
+    const parseOfficeNumbers = (officeNum) => {
+        return officeNum.split(/\s*,\s*|\s+/).map(num => num.trim()).filter(num => num);
+    };
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={officeValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
+                values.officeNum = parseOfficeNumbers(values.officeNum);
                 onSubmit(values);
                 setSubmitting(false);
             }}
@@ -99,7 +102,7 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                                 </option>
                                             ))}
                                         </Field>
-                                    <ErrorMessage name="building" component="div" className="error text-red-500" />
+                                        <ErrorMessage name="building" component="div" className="error text-red-500" />
                                     </div>
                                 </label>
 

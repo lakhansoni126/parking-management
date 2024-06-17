@@ -64,7 +64,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                 setSubmitting(false);
             }}
         >
-            {({ setFieldValue }) => (
+            {({ setFieldValue, values }) => (
                 <Form>
                     <section
                         id="UserProfile"
@@ -84,7 +84,6 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                             placeholder="Enter Your Name"
                                             className="w-[400px] border-b-2 border-[#DC5F00] bg-transparent "
                                         />
-
                                         <ErrorMessage
                                             name="name"
                                             component="div"
@@ -155,11 +154,14 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                         }}
                                     >
                                         <Dropdown
-                                            options={filteredOffices.map(
-                                                (office) => ({
-                                                    value: office.officeNum,
-                                                    label: office.officeNum,
-                                                })
+                                            options={filteredOffices.flatMap(
+                                                (office) =>
+                                                    office.officeNum.map(
+                                                        (num) => ({
+                                                            value: num,
+                                                            label: num,
+                                                        })
+                                                    )
                                             )}
                                             placeholder="Select your office/flat"
                                             onChange={(selectedOption) =>
