@@ -11,7 +11,9 @@
         padding-left: 13px !important;
         padding-right: 13px !important;
     }
-
+    section{
+        height: fit-content;
+    }
     #login {
         padding-top: 10px;
         flex-direction: column-reverse;
@@ -40,7 +42,7 @@
     }
 
     #User {
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     #User-info h1 {
