@@ -53,13 +53,6 @@ const UserProfile = ({ initialValues, onSubmit }) => {
         setFieldValue('vehicleNum', uppercaseValue);
     }, []);
 
-    const customStyles = {
-        control: (provided) => ({
-            ...provided,
-            backgroundColor: 'transparent',
-            border: '2px solid #3B82F6', // Tailwind's blue-500
-        }),
-    };
     return (
         <Formik
             initialValues={initialValues}
