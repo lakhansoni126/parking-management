@@ -62,6 +62,8 @@ function GuardDashboard() {
       name: "Name",
       email: "Email",
       employeeId: "Employee ID",
+      vehicleNumber: "Vehicle Number",
+      vehicleType: "Vehicle Type",
       complaints: "Complaints",
       searchPlaceholder: "Search by vehicle number...",
       search: "Search",
@@ -77,7 +79,8 @@ function GuardDashboard() {
       name: "नाम",
       email: "ईमेल",
       employeeId: "कर्मचारी आयडी",
-   
+      vehicleNumber: "वाहन नंबर",
+      vehicleType: "वाहन प्रकार",
       complaints: "शिकायतें",
       searchPlaceholder: "वाहन संख्या द्वारा खोजें...",
       search: "खोज",
@@ -115,7 +118,7 @@ function GuardDashboard() {
         </ul>
       </div>
       <div id="guardDeshboard" className="flex text-[#EEEEEE]">
-        <div className="guardinfo w-[20vw] h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
+        <div className="guardinfo h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
           <div id="User-info" className="w-[20vw] flex flex-col">
             <h1 className="font-bold text-[20px] text-center">{t.guardInfo}</h1>
             <div className="p-4 text-[15px]">
