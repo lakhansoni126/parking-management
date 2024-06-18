@@ -61,9 +61,7 @@ function GuardDashboard() {
       guardInfo: "Guard Information",
       name: "Name",
       email: "Email",
-      officeNumber: "Office Number",
-      vehicleNumber: "Vehicle Number",
-      vehicleType: "Vehicle Type",
+      employeeId: "Employee ID",
       complaints: "Complaints",
       searchPlaceholder: "Search by vehicle number...",
       search: "Search",
@@ -78,9 +76,8 @@ function GuardDashboard() {
       guardInfo: "गार्ड जानकारी",
       name: "नाम",
       email: "ईमेल",
-      officeNumber: "ऑफिस नंबर",
-      vehicleNumber: "वाहन नंबर",
-      vehicleType: "वाहन प्रकार",
+      employeeId: "कर्मचारी आयडी",
+   
       complaints: "शिकायतें",
       searchPlaceholder: "वाहन संख्या द्वारा खोजें...",
       search: "खोज",
@@ -118,7 +115,7 @@ function GuardDashboard() {
         </ul>
       </div>
       <div id="guardDeshboard" className="flex text-[#EEEEEE]">
-        <div className="guardinfo h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
+        <div className="guardinfo w-[20vw] h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
           <div id="User-info" className="w-[20vw] flex flex-col">
             <h1 className="font-bold text-[20px] text-center">{t.guardInfo}</h1>
             <div className="p-4 text-[15px]">
@@ -130,17 +127,10 @@ function GuardDashboard() {
               <h4>{userData ? userData.email : "N/A"}</h4>
             </div>
             <div className="p-4 text-[15px]">
-              <h4 className="font-bold">{t.officeNumber}:</h4>
-              <h4>{userData ? userData.officeNum : "N/A"}</h4>
+              <h4 className="font-bold">{t.employeeId}:</h4>
+              <h4>{userData ? userData.employeeId: "N/A"}</h4>
             </div>
-            <div className="p-4 text-[15px]">
-              <h4 className="font-bold">{t.vehicleNumber}:</h4>
-              <h4>{userData ? userData.vehicleNum : "N/A"}</h4>
-            </div>
-            <div className="p-4 text-[15px]">
-              <h4 className="font-bold">{t.vehicleType}:</h4>
-              <h4>{userData ? userData.vehicleType : "N/A"}</h4>
-            </div>
+           
           </div>
         </div>
         <div id="Complain" className="w-[80vw]">
