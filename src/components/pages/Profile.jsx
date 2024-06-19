@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { ref, set } from 'firebase/database';
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ref, set } from "firebase/database";
 import { db } from "../../firebase.js";
-import BuildingProfile from '../profiles/BuildingProfile';
-import UserProfile from '../profiles/UserProfile';
-import GuardProfile from '../profiles/GuardProfile';
-import OfficeProfile from '../profiles/OfficeProfile.jsx';
-import ChooseRole from '../ChooseRole';
+import BuildingProfile from "../profiles/BuildingProfile";
+import UserProfile from "../profiles/UserProfile";
+import GuardProfile from "../profiles/GuardProfile";
+import OfficeProfile from "../profiles/OfficeProfile.jsx";
+import ChooseRole from "../ChooseRole";
 import {
     userValidationSchema,
     guardValidationSchema,
     buildingValidationSchema,
-    officeValidationSchema
-} from '../utils/ValidationSchemas';
+    officeValidationSchema,
+} from "../utils/ValidationSchemas";
 
 function Profile() {
     const location = useLocation();
@@ -22,30 +22,30 @@ function Profile() {
 
     useEffect(() => {
         if (!user || !uid) {
-            alert('Login properly.');
-            navigate('/');
+            alert("Login properly.");
+            navigate("/");
         }
     }, [user, uid, navigate]);
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [formData, setFormData] = useState({
-        buildingName: '',
-        contactInfo: '',
-        altContactInfo: '',
-        address: '',
-        city: '',
-        state: '',
+        buildingName: "",
+        contactInfo: "",
+        altContactInfo: "",
+        address: "",
+        city: "",
+        state: "",
         uid: uid,
         email: user?.email,
-        role: '',
-        name: '',
-        employeeId: '',
-        floor: '',
-        officeNum: '',
-        vehicleNum: '',
+        role: "",
+        name: "",
+        employeeId: "",
+        floor: "",
+        officeNum: "",
+        vehicleNum: "",
         vehicleType: "",
         building: "",
-        auth: ""
+        auth: "",
     });
 
     const handleSelectRole = (selectedRole) => {
@@ -53,27 +53,25 @@ function Profile() {
         setFormData((prevData) => ({
             ...prevData,
             role: selectedRole,
-            ...(selectedRole === 'guards' && { auth: false }) // Add auth field only for guards
+            ...(selectedRole === "guards" && { auth: false }), // Add auth field only for guards
         }));
         setIsModalOpen(false);
     };
 
     const handleSubmit = async (values) => {
-
-
         try {
             const validFormData = Object.keys(values).reduce((acc, key) => {
                 const value = values[key];
                 if (
                     value !== undefined &&
                     value !== null &&
-                    value !== '' &&
-                    !key.includes('.') &&
-                    !key.includes('#') &&
-                    !key.includes('$') &&
-                    !key.includes('/') &&
-                    !key.includes('[') &&
-                    !key.includes(']')
+                    value !== "" &&
+                    !key.includes(".") &&
+                    !key.includes("#") &&
+                    !key.includes("$") &&
+                    !key.includes("/") &&
+                    !key.includes("[") &&
+                    !key.includes("]")
                 ) {
                     acc[key] = value;
                 }
@@ -81,16 +79,19 @@ function Profile() {
             }, {});
 
             await set(ref(db, `${role}/` + uid), validFormData);
-            localStorage.setItem('user', JSON.stringify(validFormData));
-            navigate('/dashboard');
+            localStorage.setItem("user", JSON.stringify(validFormData));
+            navigate("/dashboard");
         } catch (error) {
-            console.error('Error saving data to Firebase Realtime Database', error);
+            console.error(
+                "Error saving data to Firebase Realtime Database",
+                error
+            );
         }
     };
 
     const renderForm = () => {
         switch (role) {
-            case 'users':
+            case "users":
                 return (
                     <UserProfile
                         validationSchema={userValidationSchema}
@@ -98,7 +99,7 @@ function Profile() {
                         onSubmit={handleSubmit}
                     />
                 );
-            case 'guards':
+            case "guards":
                 return (
                     <GuardProfile
                         validationSchema={guardValidationSchema}
@@ -106,7 +107,7 @@ function Profile() {
                         onSubmit={handleSubmit}
                     />
                 );
-            case 'buildings':
+            case "buildings":
                 return (
                     <BuildingProfile
                         validationSchema={buildingValidationSchema}
@@ -114,7 +115,7 @@ function Profile() {
                         onSubmit={handleSubmit}
                     />
                 );
-            case 'office':
+            case "office":
                 return (
                     <OfficeProfile
                         validationSchema={officeValidationSchema}
@@ -122,15 +123,13 @@ function Profile() {
                         onSubmit={handleSubmit}
                     />
                 );
-            default:
-                return <h1>yo</h1>;
         }
     };
 
     return (
         <div>
             <ChooseRole open={isModalOpen} onSelectRole={handleSelectRole} />
-            {renderForm()}
+            {role && renderForm()}
         </div>
     );
 }

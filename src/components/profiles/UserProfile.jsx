@@ -1,9 +1,14 @@
-import PropTypes from "prop-types";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import Dropdown from "react-dropdown-select";
+import { Formik, Form } from "formik";
 import { userValidationSchema } from "../utils/ValidationSchemas";
+import InputBox from "../TextField/InputBox";
+import SingleDropDown from "../DropDown/SingleDropDown";
+import SubmitButton from "../Button/SubmitButton";
+import { toast } from "react-toastify";
+import BottomDesign from "../Design/BottomDesign";
+import TopDesign from "../Design/TopDesign";
+import HeadingSection from "../Design/HeadingSection";
 
 const UserProfile = ({ initialValues, onSubmit }) => {
     const [buildingNames, setBuildingNames] = useState([]);
@@ -17,9 +22,13 @@ const UserProfile = ({ initialValues, onSubmit }) => {
 
         onValue(buildingsRef, (snapshot) => {
             const data = snapshot.val();
-            console.log("Buildings data:", data); // Inspect buildings data
             const buildingNamesList = data
-                ? Object.values(data).map((building) => building.buildingName)
+                ? Object.values(data).map((item) => {
+                      return {
+                          value: item.buildingName,
+                          label: item.buildingName,
+                      };
+                  })
                 : [];
             setBuildingNames(buildingNamesList);
         });
@@ -27,7 +36,6 @@ const UserProfile = ({ initialValues, onSubmit }) => {
         const officesRef = ref(db, "office");
         onValue(officesRef, (snapshot) => {
             const data = snapshot.val();
-            console.log("Offices data:", data); // Inspect offices data
             const officesList = data ? Object.values(data) : [];
             setAllOffices(officesList);
         });
@@ -44,23 +52,13 @@ const UserProfile = ({ initialValues, onSubmit }) => {
         }
     }, [selectedBuilding, allOffices]);
 
-    const handleBuildingChange = (event, setFieldValue) => {
-        const buildingName = event.target.value;
-        setSelectedBuilding(buildingName);
-        setFieldValue("building", buildingName);
-    };
-
-    const handleVehicleNumChange = useCallback((e, setFieldValue) => {
-        const uppercaseValue = e.target.value.toUpperCase();
-        setFieldValue("vehicleNum", uppercaseValue);
-    }, []);
-
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={userValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
                 onSubmit(values);
+                toast.success("User profile submitted.");
                 setSubmitting(false);
             }}
         >
@@ -68,186 +66,95 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                 <Form>
                     <section
                         id="UserProfile"
-                        className="min-h-screen bg-[#222831] text-[#EEEEEE] flex flex-col justify-center items-center"
+                        className="min-h-screen  text-black flex flex-col justify-center items-center"
                     >
-                        <div>
-                            <div className="flex flex-col text-[#EEEEEE]">
-                                <h2 className="text-[#EEEEEE] font-bold text-[20px] text-center mb-10">
-                                    User Information
-                                </h2>
-                                <label>
-                                    Name*
-                                    <div className="mb-7">
-                                        <Field
-                                            name="name"
-                                            type="text"
-                                            placeholder="Enter Your Name"
-                                            className="w-[400px] border-b-2 border-[#DC5F00] bg-transparent "
-                                        />
-                                        <ErrorMessage
-                                            name="name"
-                                            component="div"
-                                            className="error text-red-500 text-bold"
-                                        />
-                                    </div>
-                                </label>
-                                <div>
-                                    <label>
-                                        Mobile number (optional)
-                                        <div className="mb-7">
-                                            <Field
-                                                name="contactInfo"
-                                                type="text"
-                                                placeholder="Mobile number"
-                                                className="w-[400px] border-b-2 border-[#DC5F00] bg-transparent  "
-                                            />
-                                            <ErrorMessage
-                                                name="contactInfo"
-                                                component="div"
-                                                className="error text-red-500 text-bold"
-                                            />
-                                        </div>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label>
-                                        Building*
-                                        <div className="mb-7">
-                                            <select
-                                                name="building"
-                                                className="w-[400px] border-b-2 border-[#DC5F00]  p-2 bg-[#252437]  "
-                                                onChange={(event) =>
-                                                    handleBuildingChange(
-                                                        event,
-                                                        setFieldValue
-                                                    )
-                                                }
-                                            >
-                                                <option value="">
-                                                    Select your building
-                                                </option>
-                                                {buildingNames.map(
-                                                    (buildingName, index) => (
-                                                        <option
-                                                            key={index}
-                                                            value={buildingName}
-                                                        >
-                                                            {buildingName}
-                                                        </option>
-                                                    )
-                                                )}
-                                            </select>
-                                            <ErrorMessage
-                                                name="building"
-                                                component="div"
-                                                className="error text-red-500 text-bold"
-                                            />
-                                        </div>
-                                    </label>
-                                </div>
-                                <label>
-                                    Office/Flat*
-                                    <div
-                                        className="mb-7"
-                                        style={{
-                                            borderBottom: "2px solid #DC5F00",
-                                        }}
-                                    >
-                                        <Dropdown
-                                            options={filteredOffices.flatMap(
-                                                (office) =>
-                                                    office.officeNum.map(
-                                                        (num) => ({
-                                                            value: num,
-                                                            label: num,
-                                                        })
-                                                    )
-                                            )}
-                                            placeholder="Select your office/flat"
-                                            onChange={(selectedOption) =>
-                                                setFieldValue(
-                                                    "officeNum",
-                                                    selectedOption?.[0]
-                                                        ?.value || ""
-                                                )
-                                            }
-                                            style={{ border: "none" }}
-                                        />
-                                        <ErrorMessage
-                                            name="officeNum"
-                                            component="div"
-                                            className="error text-red-500 text-bold"
-                                        />
-                                    </div>
-                                </label>
+                        <TopDesign />
+                        <div className="flex flex-col text-black">
+                            <HeadingSection title="User Information" />
 
-                                <div>
-                                    <label>
-                                        Vehicle number*
-                                        <div className="mb-7">
-                                            <Field
-                                                name="vehicleNum"
-                                                type="text"
-                                                placeholder="Enter vehicle number"
-                                                onChange={(e) =>
-                                                    handleVehicleNumChange(
-                                                        e,
-                                                        setFieldValue
-                                                    )
-                                                }
-                                                className="w-[400px] border-b-2 border-[#DC5F00] bg-transparent  "
-                                            />
-                                            <ErrorMessage
-                                                name="vehicleNum"
-                                                component="div"
-                                                className="error text-red-500 text-bold"
-                                            />
-                                        </div>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label>
-                                        Vehicle*
-                                        <div className="mb-7">
-                                            <Field
-                                                as="select"
-                                                name="vehicleType"
-                                                className="border-[#DC5F00] w-[400px] border-b-[2px] p-1 "
-                                            >
-                                                <option value="" disabled>
-                                                    Select your vehicle
-                                                </option>
-                                                <option value="Car">Car</option>
-                                                <option value="Bike">
-                                                    Bike
-                                                </option>
-                                            </Field>
-                                            <ErrorMessage
-                                                name="vehicleType"
-                                                component="div"
-                                                className="error text-red-500 text-bold"
-                                            />
-                                        </div>
-                                    </label>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="bg-[#DC5F00] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#686D76] "
-                                >
-                                    Submit
-                                </button>
-                            </div>
+                            <InputBox
+                                name="name"
+                                label="Name"
+                                placeholder="Enter Your Name"
+                                type="text"
+                            />
+                            <InputBox
+                                name="contactInfo"
+                                label="Mobile number (optional)"
+                                placeholder="Mobile number"
+                                type="text"
+                            />
+                            <InputBox
+                                name="vehicleNum"
+                                label="Vehicle number*"
+                                placeholder="Enter vehicle number"
+                                type="text"
+                            />
+
+                            <SingleDropDown
+                                name="building"
+                                label="Building*"
+                                placeholder="Select your building"
+                                options={buildingNames}
+                                onChange={(event) => {
+                                    setSelectedBuilding(
+                                        event?.[0]?.value || ""
+                                    );
+                                    setFieldValue(
+                                        "building",
+                                        event?.[0]?.value || ""
+                                    );
+                                }}
+                            />
+
+                            <SingleDropDown
+                                name="officeNum"
+                                label="Office/Flat*"
+                                placeholder="Select your office/flat"
+                                options={filteredOffices.flatMap((office) =>
+                                    office.officeNum.map((num) => ({
+                                        value: num,
+                                        label: num,
+                                    }))
+                                )}
+                                onChange={(event) => {
+                                    setFieldValue(
+                                        "officeNum",
+                                        event?.[0]?.value || ""
+                                    );
+                                }}
+                            />
+
+                            <SingleDropDown
+                                name="vehicleType"
+                                label="Vehicle*"
+                                placeholder="Select your vehicle"
+                                options={[
+                                    {
+                                        value: "Bike",
+                                        label: "Bike",
+                                    },
+                                    {
+                                        value: "Car",
+                                        label: "Car",
+                                    },
+                                ]}
+                                onChange={(event) => {
+                                    setFieldValue(
+                                        "vehicleType",
+                                        event?.[0]?.value || ""
+                                    );
+                                }}
+                            />
+
+                            <SubmitButton />
                         </div>
+                        <BottomDesign />
                     </section>
                 </Form>
             )}
         </Formik>
     );
-};
-
-UserProfile.propTypes = {
-    initialValues: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func.isRequired,
 };
 
 export default UserProfile;
