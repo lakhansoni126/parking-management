@@ -4,26 +4,43 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { officeValidationSchema } from '../utils/ValidationSchemas'; // Adjust the path as necessary
 
+const parseOfficeNumbers = (officeNum) => {
+    if (typeof officeNum === 'string') {
+        return officeNum.split(/\s*,\s*|\s+/).map(num => num.trim()).filter(num => num);
+    } else if (Array.isArray(officeNum)) {
+        return officeNum.map(num => num.toString().trim()).filter(num => num);
+    } else {
+        console.error('officeNum is neither a string nor an array:', officeNum);
+        return [];
+    }
+};
 const OfficeProfile = ({ initialValues, onSubmit }) => {
     const [buildingNames, setBuildingNames] = useState([]);
+    const [offices, setOffices] = useState([]);
 
     useEffect(() => {
         const db = getDatabase();
         const buildingsRef = ref(db, 'buildings');
+        const officesRef = ref(db, 'office');
 
         onValue(buildingsRef, (snapshot) => {
             const data = snapshot.val();
             const buildingNamesList = data ? Object.values(data).map(building => building.buildingName) : [];
             setBuildingNames(buildingNamesList);
         });
+
+        onValue(officesRef, (snapshot) => {
+            const data = snapshot.val();
+
+            setOffices(data || {});
+        });
     }, []);
-    const parseOfficeNumbers = (officeNum) => {
-        return officeNum.split(/\s*,\s*|\s+/).map(num => num.trim()).filter(num => num);
-    };
+
+
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={officeValidationSchema}
+            validationSchema={officeValidationSchema(buildingNames, offices, parseOfficeNumbers)}
             onSubmit={(values, { setSubmitting }) => {
                 values.officeNum = parseOfficeNumbers(values.officeNum);
                 onSubmit(values);
@@ -37,6 +54,25 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                             <div className='w-300e w-300 flex flex-col text-[#EEEEEE]'>
                                 <h2 className='text-[#EEEEEE] font-bold  text-[20px] text-center mb-10'>Office Information</h2>
 
+                                <label>
+                                    Building*
+                                    <div className='mb-7'>
+                                        <Field
+                                            as="select"
+                                            name="building"
+
+                                            className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#222831]  mr-5'
+                                        >
+                                            <option value="" disabled>Select your building</option>
+                                            {buildingNames.map((buildingName, index) => (
+                                                <option key={index} value={buildingName}>
+                                                    {buildingName}
+                                                </option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="building" component="div" className="error text-red-500" />
+                                    </div>
+                                </label>
                                 <label>
                                     Office Name*
                                     <div className='mb-7'>
@@ -86,25 +122,6 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                     </div>
                                 </label>
 
-                                <label>
-                                    Building*
-                                    <div className='mb-7'>
-                                        <Field
-                                            as="select"
-                                            name="building"
-
-                                            className='w-[400px] border-b-2 border-[#DC5F00] p-2 bg-[#222831]  mr-5'
-                                        >
-                                            <option value="" disabled>Select your building</option>
-                                            {buildingNames.map((buildingName, index) => (
-                                                <option key={index} value={buildingName}>
-                                                    {buildingName}
-                                                </option>
-                                            ))}
-                                        </Field>
-                                        <ErrorMessage name="building" component="div" className="error text-red-500" />
-                                    </div>
-                                </label>
 
                                 <button type="submit" className="bg-[#DC5F00] font-bold text-[17px] px-4 p-1 rounded-[20px] hover:bg-[#686D76] ">
                                     Submit

@@ -29,10 +29,56 @@ export const buildingValidationSchema = Yup.object({
     state: Yup.string().required('State is required'),
 });
 
-export const officeValidationSchema = Yup.object({
-    officeName: Yup.string().required('Office name is required'),
-    officeNum: Yup.string().required('Office number is required'),
-    contactInfo: Yup.string().required('Contact number is required'),
-    altContactInfo: Yup.string(),
-    building: Yup.string().required('Building is required'),
-});
+
+export const officeValidationSchema = (buildingNames, offices, parseOfficeNumbers) => {
+    return Yup.object().shape({
+        officeName: Yup.string()
+            .required('Office Name is required'),
+        officeNum: Yup.string()
+            .required('Office Number is required')
+            .test('uniqueOfficeNum', function (value) {
+                const { building } = this.parent;
+                if (!value) {
+                    return false;
+                }
+                const officeNumbers = parseOfficeNumbers(value);
+
+                const conflictingOfficeNumber = Object.values(offices).find((office) => {
+                    const officeNumsInBuilding = parseOfficeNumbers(office.officeNum);
+                    return office.building === building && officeNumsInBuilding.some(num => officeNumbers.includes(num));
+                });
+
+                if (conflictingOfficeNumber) {
+                    return this.createError({ message: `Office number ${conflictingOfficeNumber.officeNum} already exists in the selected building.` });
+                }
+
+                return true;
+            }),
+        contactInfo: Yup.string()
+            .required('Contact Number is required'),
+        altContactInfo: Yup.string(),
+        building: Yup.string()
+            .required('Building is required'),
+    });
+};
+
+// export const officeValidationSchema = Yup.object({
+//     officeName: Yup.string().required('Office name is required'),
+//     officeNum: Yup.string()
+//         .required('Office Number is required')
+//         .test('uniqueOfficeNum', 'This office number is already used in the selected building.', function (value) {
+//             const { building } = this.parent;
+//             const officeNumbers = parseOfficeNumbers(value);
+
+//             const officeExists = buildingNames.some((buildingName) => {
+//                 // Implement your logic to check if office number exists in the building
+//                 // You might need to fetch and compare with database values or stored state
+//                 // For demonstration, I'll use a simple array check
+//                 return building === buildingName && officeNumbers.some(num => buildingNames.includes(num));
+//             });
+
+//             return !officeExists;
+//         }), contactInfo: Yup.string().required('Contact number is required'),
+//     altContactInfo: Yup.string(),
+//     building: Yup.string().required('Building is required'),
+// });
