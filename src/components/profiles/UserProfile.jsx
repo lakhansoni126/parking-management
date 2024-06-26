@@ -24,11 +24,11 @@ const UserProfile = ({ initialValues, onSubmit }) => {
             const data = snapshot.val();
             const buildingNamesList = data
                 ? Object.values(data).map((item) => {
-                      return {
-                          value: item.buildingName,
-                          label: item.buildingName,
-                      };
-                  })
+                    return {
+                        value: item.buildingName,
+                        label: item.buildingName,
+                    };
+                })
                 : [];
             setBuildingNames(buildingNamesList);
         });
@@ -69,7 +69,9 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                         className="min-h-screen  text-black flex flex-col justify-center items-center"
                     >
                         <TopDesign />
-                        <div className="flex flex-col text-black">
+                        <div
+                            id="guardProfileForm"
+                            className="flex flex-col text-black">
                             <HeadingSection title="User Information" />
 
                             <InputBox
@@ -82,7 +84,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                                 name="contactInfo"
                                 label="Mobile number (optional)"
                                 placeholder="Mobile number"
-                                type="text"
+                                type="number"
                             />
                             <InputBox
                                 name="vehicleNum"

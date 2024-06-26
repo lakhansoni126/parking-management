@@ -7,6 +7,8 @@ import TopDesign from "../Design/TopDesign";
 import BottomDesign from "../Design/BottomDesign";
 import SubmitButton from "../Button/SubmitButton";
 import HeadingSection from "../Design/HeadingSection";
+import InputBox from "../TextField/InputBox";
+import SingleDropDown from "../DropDown/SingleDropDown";
 
 function GuardProfile({ initialValues, onSubmit }) {
     const [buildingNames, setBuildingNames] = useState([]);
@@ -20,8 +22,8 @@ function GuardProfile({ initialValues, onSubmit }) {
                 const data = snapshot.val();
                 const buildingNamesList = data
                     ? Object.values(data).map(
-                          (building) => building.buildingName
-                      )
+                        (building) => building.buildingName
+                    )
                     : [];
                 setBuildingNames(buildingNamesList);
             });
@@ -38,107 +40,69 @@ function GuardProfile({ initialValues, onSubmit }) {
             validationSchema={guardValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
                 onSubmit(values);
+                toast.success("Guard profile submitted.")
                 setSubmitting(false);
             }}
         >
-            {() => (
+            {({ setFieldValue, values }) => (
                 <Form>
                     <section
-                        id=""
-                        className=" w-300 min-h-screen flex flex-col justify-center items-center"
+                        id="guardProfile"
+                        className="  min-h-screen flex flex-col justify-center items-center"
                     >
                         <TopDesign />
-                        <div>
-                            <div
-                                id="guardProfileForm"
-                                className="flex flex-col  text-[#EEEEEE]"
-                            >
-                                <HeadingSection title="Guard Information" />
 
-                                <label>
-                                    Name*
-                                    <div className="mb-7">
-                                        <Field
-                                            name="name"
-                                            type="text"
-                                            placeholder="Enter Your Name"
-                                            className="w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent  mr-5"
-                                        />
-                                        <ErrorMessage
-                                            name="name"
-                                            component="div"
-                                            className="error"
-                                        />
-                                    </div>
-                                </label>
-                                <div>
-                                    <label>
-                                        Mobile number*
-                                        <div className="mb-7">
-                                            <Field
-                                                name="contactInfo"
-                                                type="text"
-                                                placeholder="Mobile number"
-                                                className="w-[400px] noscroll border-b-2 border-[#DC5F00] p-1 bg-transparent  mr-5"
-                                            />
-                                            <ErrorMessage
-                                                name="contactInfo"
-                                                component="div"
-                                                className="error"
-                                            />
-                                        </div>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label>
-                                        Building*
-                                        <div className="mb-7">
-                                            <Field
-                                                as="select"
-                                                name="building"
-                                                className="w-[400px] border-b-2 border-[#DC5F00] p-1 bg-[#222831]  mr-5"
-                                            >
-                                                <option value="" disabled>
-                                                    Select your building
-                                                </option>
-                                                {buildingNames.map(
-                                                    (buildingName, index) => (
-                                                        <option
-                                                            key={index}
-                                                            value={buildingName}
-                                                        >
-                                                            {buildingName}
-                                                        </option>
-                                                    )
-                                                )}
-                                            </Field>
-                                            <ErrorMessage
-                                                name="building"
-                                                component="div"
-                                                className="error"
-                                            />
-                                        </div>
-                                    </label>
-                                </div>
-                                <label>
-                                    Employee ID*
-                                    <div className="mb-7">
-                                        <Field
-                                            name="employeeId"
-                                            type="text"
-                                            placeholder="Enter your employee ID"
-                                            className="w-[400px] border-b-2 border-[#DC5F00] p-1 bg-transparent  mr-5"
-                                        />
-                                        <ErrorMessage
-                                            name="employeeId"
-                                            component="div"
-                                            className="error"
-                                        />
-                                    </div>
-                                </label>
+                        <div
+                            id="guardProfileForm"
+                            className="flex flex-col text-black "
+                        >
+                            <HeadingSection title="Guard Information" />
 
-                                <SubmitButton />
-                            </div>
+                            <InputBox
+                                name="name"
+                                label="Name"
+                                placeholder="Enter Your Name"
+                                type="text"
+                            />
+
+                            <InputBox
+                                name="mobile"
+                                label="Mobile"
+                                placeholder="Mobile number"
+                                type="text"
+                            />
+
+
+                            <SingleDropDown
+                                name="building"
+                                label="Building"
+                                placeholder="Select your building"
+                                options={[
+                                    {
+                                        value: "Dwaraka Office",
+                                        label: "Dwaraka Office",
+                                    },
+                                    {
+                                        value: "Manglam",
+                                        label: "Manglam",
+                                    },
+                                ]}
+                                onChange={(event) => {
+                                    setFieldValue(
+                                        "building",
+                                        event?.[0]?.value || ""
+                                    );
+                                }}
+
+                            />
+                            <InputBox
+                                name="employeeId"
+                                label="EmployeeID"
+                                placeholder="Enter your employee ID"
+                                type="text"
+
+                            />
+                            <SubmitButton />
                         </div>
                         <BottomDesign />
                     </section>
