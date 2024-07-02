@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
+import BottomDesign from '../Design/BottomDesign';
+import TopDesign from "../Design/TopDesign"
 
 const OfficeDashboard = () => {
     const [users, setUsers] = useState([]);
@@ -18,7 +20,7 @@ const OfficeDashboard = () => {
             setBuildingName(storedBuildingName);
         }
 
-    }, []);
+    }, [] );
 
 
     useEffect(() => {
@@ -41,13 +43,14 @@ const OfficeDashboard = () => {
     }, [officeNumber, buildingName]);
 
     return (
-        <section className="bg-[#222831] h-[calc(100vh-64px)] flex flex-col justify-center items-center py-8">
-            <div className="text-[#EEEEEE]">
-                <h1 className="text-4xl font-bold my-20 text-center">Office Dashboard</h1>
+        <section className=" h-[calc(100vh-64px)] flex flex-col justify-center items-center pt-8 ">
+        <TopDesign/>
+            <div className="text-black">
+                <h1 className="text-4xl font-bold mt-20 mb-10 text-center">Office Dashboard</h1>
                 <div className="w-[90vw] flex-wrap flex items-center justify-center gap-10">
                     {users.map((user, index) => (
-                        <div key={index} className="border-b h-[320px] bg-[#EEEEEE] p-5 rounded-sm w-96 text-[#222831] border-gray-700 hover:bg-gray-300 transition-colors">
-                            <div className='h-[60px]'>
+                        <div key={index} style={{boxShadow: " 0px 0px 10px rgb(230 153 255 / 74%)"}} className="border-b h-[320px] bg-[#e9d8ff63] p-5 rounded-lg w-64  text-[#222831]">
+                            <div className=' h-[60px]'>
                                 <h2 className="">Name :</h2>
                                 <h2 className="font-bold">{user.name}</h2>
                             </div>
@@ -71,6 +74,7 @@ const OfficeDashboard = () => {
                     ))}
                 </div>
             </div>
+            <BottomDesign/>
         </section>
     );
 };

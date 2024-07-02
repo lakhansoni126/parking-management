@@ -1,9 +1,4 @@
-const navigation = [
-    { name: "Product", href: "#" },
-    { name: "Features", href: "#" },
-    { name: "Marketplace", href: "#" },
-    { name: "Company", href: "#" },
-];
+
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +7,6 @@ import { ref, get } from "firebase/database";
 import { auth, googleProvider, db } from "../../firebase";
 
 const Login = () => {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
     try {
@@ -61,7 +55,7 @@ const Login = () => {
 
     return (
         <>
-            <div className="bg-white">
+            <div className="bg-white max-h-screen ">
                 <header className="absolute inset-x-0 top-0 z-50">
                     <nav
                         className="flex items-center justify-between p-6 lg:px-8"
@@ -71,28 +65,19 @@ const Login = () => {
                             <a href="#" className="-m-1.5 p-1.5">
                                 <span className="sr-only">Your Company</span>
                                 <img
-                                    className="h-8 w-auto"
+                                    className="h-[64px] absolute top-0 w-auto"
                                     src="../../../images/logo.png"
                                     alt="logo"
                                 />
                             </a>
                         </div>
 
-                        <div className="hidden lg:flex lg:gap-x-12">
-                            {navigation.map((item) => (
-                                <a
-                                    key={item.name}
-                                    href={item.href}
-                                    className="text-sm font-semibold leading-6 text-gray-900"
-                                >
-                                    {item.name}
-                                </a>
-                            ))}
-                        </div>
+
                         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                             <a
-                                href="#"
-                                className="text-sm font-semibold leading-6 text-gray-900"
+                                onClick={handleGoogleSignIn}
+
+                                className=" cursor-pointer text-sm font-semibold leading-6 text-gray-900"
                             >
                                 Log in <span aria-hidden="true">&rarr;</span>
                             </a>
@@ -113,14 +98,14 @@ const Login = () => {
                             }}
                         />
                     </div>
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                        <div className="text-center">
+                    <div className="mx-auto max-w-2xl sm:pt-24 ">
+                        <div className="text-center relative z-50">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                                 Parking Management
                             </h1>
                             <div className="flex items-center justify-center gap-x-6">
                                 <img
-                                    className="w-96 h-96 "
+                                    className=" w-72 h-72 "
                                     src="../../../images/logo.png"
                                     alt="Logo"
                                 />
@@ -141,18 +126,14 @@ const Login = () => {
                                     Login
                                 </button>
 
-                                <a
-                                    href="#"
-                                    className="text-sm font-semibold leading-6 text-gray-900"
-                                >
-                                    Learn more <span aria-hidden="true">→</span>
-                                </a>
+                               
                             </div>
                         </div>
                     </div>
                     <div
-                        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                        className="absolute inset-x-0 top-[calc(100%-13rem)]-z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
                         aria-hidden="true"
+                        style={{ height: "-webkit-fill-available" }}
                     >
                         <div
                             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"

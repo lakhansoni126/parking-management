@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { ref, get } from "firebase/database";
 import { db } from '../../firebase';
+import BottomDesign from '../Design/BottomDesign';
+import TopDesign from "../Design/TopDesign"
+
 
 function GuardDashboard() {
   const [userData, setUserData] = useState(null);
@@ -96,12 +99,13 @@ function GuardDashboard() {
   const t = texts[language];
 
   return (
-    <section className="h-full bg-[#222831]">
-      <div className="border-b-2 border-[#393E46]">
-        <ul className="flex p-2 gap-2">
+    <section className="h-full">
+    <TopDesign/>
+      <div className="border-b-2 border-[#49108B]">
+        <ul className=" absolute top-[4px] right-28 flex p-2 text-white gap-2">
           <li>
             <button
-              className="p-2 w-[90px] rounded-md hover:bg-[#393E51] text-[#EEEEEE] bg-[#393E46]"
+              className="p-2 w-[90px] rounded-md hover:bg-[#7E30E1]  bg-[#49108B]"
               onClick={() => setLanguage('English')}
             >
               English
@@ -109,7 +113,7 @@ function GuardDashboard() {
           </li>
           <li>
             <button
-              className="p-2 w-[90px] rounded-md hover:bg-[#393E51] text-[#EEEEEE] bg-[#393E46]"
+              className="p-2 w-[90px] rounded-md hover:bg-[#7E30E1]  bg-[#49108B]"
               onClick={() => setLanguage('Hindi')}
             >
               हिन्दी
@@ -117,8 +121,8 @@ function GuardDashboard() {
           </li>
         </ul>
       </div>
-      <div id="guardDeshboard" className="flex text-[#EEEEEE]">
-        <div className="guardinfo h-screen min-h-[600px] pt-10 border-r-2 border-r-[#393E46] text-[18px] font-bold">
+      <div id="guardDeshboard" className="flex text-black">
+        <div className="guardinfo h-screen min-h-[600px] w-20vw pt-10 border-r-2 border-r-[#49108B] text-[18px] font-bold">
           <div id="User-info" className="w-[20vw] flex flex-col">
             <h1 className="font-bold text-[20px] text-center">{t.guardInfo}</h1>
             <div className="p-4 text-[15px]">
@@ -140,21 +144,21 @@ function GuardDashboard() {
           <h1 className="font-bold text-[15px] pl-10 mt-[40px]">{t.complaints}</h1>
           <div className="flex flex-row gap-2 justify-center">
             <input
-              className="bg-[#393E46] p-2 w-[40vw] rounded-sm"
+              className="bg-[#F3F8FF] border-b-2 border-[#49108B] focus-visible:outline-none p-2 w-[40vw] rounded-sm"
               placeholder={t.searchPlaceholder}
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
             <button
-              className="bg-[#FF5722] hover:bg-[#393E46] px-7 rounded-sm py-2"
+              className="bg-[#49108B] transition-colors text-white hover:bg-[#7E30E1] px-7 rounded-sm py-2"
               onClick={handleSearch}
             >
               {t.search}
             </button>
           </div>
           <div className="flex justify-center">
-            <div className="w-80vh w-[50vw] mt-5">
+            <div className="w-80vh  w-[50vw] mt-5">
               {loading && <div>{t.loading}</div>}
               {error && <div>Error: {error.message}</div>}
               {searchResult && typeof searchResult === 'object' && (
@@ -188,6 +192,7 @@ function GuardDashboard() {
           </div>
         </div>
       </div>
+      <BottomDesign/>
     </section>
   );
 }

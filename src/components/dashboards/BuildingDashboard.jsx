@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
+import BottomDesign from '../Design/BottomDesign';
+import TopDesign from "../Design/TopDesign"
 
 const db = getDatabase();
 const guardsRef = ref(db, 'guards');
@@ -41,20 +43,21 @@ function BuildingDashboard() {
 
     if (loading) {
         return <div>
-        <section className="bg-[#222831] text-[#EEEEEE] min-h-[calc(100vh-64px)] justify-center flex flex-col items-center py-8">
-        <h1 className="text-4xl font-bold my-20 px-4 text-center">Building Dashboard</h1>
+        <section className="bg-[white]  min-h-[calc(100vh-64px)] justify-center flex flex-col items-center py-8">
+        <h1 className="  text-5xl font-bold mb-28 px-4 text-center">Building Dashboard</h1>
         <div className='h-[270px] text-xl '> Loading...</div>
         </section>
         </div>; // Optional: Show loading state while fetching data
     }
 
     return (
-        <section className="bg-[#222831] min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-8">
-            <div className="text-[#EEEEEE]">
-                <h1 className="text-4xl font-bold my-20 px-4 text-center">Building Dashboard</h1>
+        <section className=" min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-8">
+      <TopDesign/>
+                  <div className="text-[black]">
+                <h1 className="text-5xl font-bold mb-20 px-4 text-center">Building Dashboard</h1>
                 <div className="flex flex-wrap justify-center gap-6">
                     {guards.map((guard) => (
-                        <div key={guard.id} className="relative bg-gray-200 rounded-lg w-[300px] shadow-md p-6">
+                        <div key={guard.id} style={    {boxShadow: " 0px 0px 10px rgb(230 153 255 / 74%)"}} className="relative z-50 bg-[#e9d8ff63] rounded-lg w-[300px] shadow-md p-6">
                             <h2 className="flex justify-between text-lg text-[#222831] font-semibold">
                                 {guard.name}
                                 <div className="top-2 right-2">
@@ -81,6 +84,7 @@ function BuildingDashboard() {
                     
                     
                 </div>
+                <BottomDesign/>
             </div>
         </section>
     );

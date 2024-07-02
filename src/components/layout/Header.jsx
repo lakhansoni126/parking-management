@@ -1,19 +1,19 @@
 const Header = () => {
-    const logout = () => {
+    const logout = (event) => {
+        event.preventDefault();
         localStorage.removeItem("user");
+        window.location.href = "/";
     }
+
     return (
         <>
-            <nav className="bg-[#393E46] h-[64px] px-10 text-[#EEEEEE] flex justify-between items-center">
+            <nav className=" h-[64px] px-10 text-[#EEEEEE] flex justify-between items-center">
                 <div>
-                    <img className=" absolute top-0 left-0 w-[70px]" src="/images/favicon.png" alt="" />
+                    <img className="absolute top-0 left-0 w-[70px]" src="images/logo.png" alt="logo" />
                 </div>
-                <div className="" >
+                <div>
                     <ul className="flex">
-                        {/* <li><a className="px-7 cursor-pointer py-[23px] hover:text-[#EEEEEE]" > Home</a></li>
-                        <li><a className="px-7 cursor-pointer py-[23px] hover:text-[#EEEEEE] "> AboutUS</a></li> */}
-                        <li><a onClick={logout} className="px-7 py-[10px] rounded-sm bg-[#FF5722] hover:bg-[#ff6a00] " href="/"> Logout</a></li>
-                        <li></li>
+                        <li><a onClick={logout} className="cursor-pointer text-sm font-semibold leading-6 text-gray-900"> Log out <span aria-hidden="true">&rarr;</span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -21,4 +21,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-
+import BottomDesign from '../Design/BottomDesign';
+import TopDesign from "../Design/TopDesign"
 const UserDashboard = () => {
     const [userData, setUserData] = useState(null);
 
@@ -12,10 +13,11 @@ const UserDashboard = () => {
 
     return (
         <>
-            <section id='User' className="h-[calc(100vh-64px)] bg-[#222831]">
-                <div id='button' className="  flex text-[#EEEEEE]">
-                    <div id="User-info" className="w-[100vw] pb-[100px] h-max bg-[#222831] flex flex-col items-center">
-                        <h1 className="font-bold text-[20px] mt-[120px]">User Information</h1>
+        <TopDesign/>
+            <section id='User' className="h-[calc(100vh-64px)] ">
+                <div id='button' className="  flex justify-center text-[#black]">
+                    <div id="User-info" style={{boxShadow: " 0px 0px 10px rgb(230 153 255 / 74%)"}} className=" w-[550px] mt-[50px]    border-2 rounded-lg  pb-[50px] flex flex-col items-center">
+                        <h1 className="font-bold text-[20px] mt-[50px] ">User Information</h1>
                         {userData ? (
                             <>
                                 <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
@@ -40,11 +42,12 @@ const UserDashboard = () => {
                                 </div>
                             </>
                         ) : (
-                            <p className="mt-10 text-[20px]">Loading user data...</p>
+                            <p className="mt-10  text-[20px]">Loading user data...</p>
                         )}
                     </div>
                 </div>
             </section>
+            <BottomDesign/>
         </>
     );
 }

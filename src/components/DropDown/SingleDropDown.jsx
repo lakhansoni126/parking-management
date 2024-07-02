@@ -5,13 +5,15 @@ export default function SingleDropDown(props) {
     return (
         <div
             className="mb-2"
-            style={{
-                borderBottom: "2px solid #DC5F00",
-            }}
+            
         >
             {" "}
             <label>{props?.label}</label>
-            <div className="mb-2 mt-2">
+            <div className="mb-2 mt-2" 
+            style={{
+                borderBottom: "2px solid #7E30E1",
+            }}
+            >
                 <Dropdown
                     style={{ border: "none" }}
                     onChange={(option) => {
@@ -20,14 +22,14 @@ export default function SingleDropDown(props) {
                     options={props?.options || []}
                     placeholder={props?.placeholder}
                     // color="#77c0ff"
-                    className="w-[400px] border-b-2 border-[#DC5F00]  p-2"
+                    className="w-[400px] border-b-2 border-[#7E30E1]  p-2"
                 />
+            </div>
                 <ErrorMessage
                     name={props?.name}
                     component="div"
                     className="error text-red-500 text-bold"
                 />
-            </div>
         </div>
     );
 }
