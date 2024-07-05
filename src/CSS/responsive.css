@@ -11,9 +11,11 @@
         padding-left: 13px !important;
         padding-right: 13px !important;
     }
-    section{
+
+    section {
         height: fit-content I !important;
     }
+
     #login {
         padding-top: 10px;
         flex-direction: column-reverse;
@@ -82,71 +84,81 @@
     #guardProfileForm {
         width: 300px;
     }
-    #guardProfileForm input{
+
+    #guardProfileForm input {
         width: 300px;
     }
-    #guardProfileForm select{
+
+    #guardProfileForm select {
         width: 300px;
     }
-    .w-300 input{
+
+    .w-300 input {
         width: 300px;
     }
-    .w-300 input{
+
+    .w-300 input {
         width: 300px;
     }
-    .w-300 select{
+
+    .w-300 select {
         width: 300px;
     }
-    .w-300e{
+
+    .w-300e {
         width: 300px;
     }
-    #guardDeshboard{
+
+    #guardDeshboard {
         flex-direction: column-reverse;
     }
-    #Complain{
+
+    #Complain {
         width: 100%;
     }
-    #Complain h1{
-        text-align: center ;
+
+    #Complain h1 {
+        text-align: center;
         margin-bottom: 10px;
         padding: 0;
         font-size: 20px;
     }
-    #Complain input{
+
+    #Complain input {
         width: 210px;
     }
-    .w-80vh{
-        width:  80vw !important;
+
+    .w-80vh {
+        width: 80vw !important;
     }
-    .guardinfo{
+
+    .guardinfo {
         height: 70vh;
-        width:fit-content !important;
+        width: fit-content !important;
     }
 }
 
 #UserProfile select {
     background-color: #222831;
-        color: #eee;
-}
-.react-dropdown-select-no-data{
-    background-color: #222831;
     color: #eee;
 }
-.react-dropdown-select-no-data{
-   
-        color: #eee !important;
-    background-color: #222831;
+
+.react-dropdown-select-no-data {
+
+    color: #000000 !important;
+    /* background-color: #222831; */
+    font-size: 15px;
 }
-.react-dropdown-select-item {
-    color: #eee;
-    background-color: #222831;
+.react-dropdown-select {
+    box-shadow: none !important;
 }
-.react-dropdown-select-input{
-    width: 270px !important;
-}
-.react-dropdown-select{
-    box-shadow: none  !important;
-}
-.guardinfo{
+
+.guardinfo {
     width: 270px;
+}
+.react-dropdown-select-dropdown {
+    border: 1px solid gray;
+    border-radius: 6px !important;
+    font-size: 13px;
+    font-weight: 400;
 }
