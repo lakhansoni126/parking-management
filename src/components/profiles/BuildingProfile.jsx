@@ -17,7 +17,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                 setSubmitting(false);
             }}
         >
-            {() => (
+            {({ setFieldValue, values }) => (
                 <Form>
                     <section className="w-300 min-h-screen flex flex-col justify-center items-center">
                         <TopDesign />
@@ -47,8 +47,8 @@ function BuildingProfile({ initialValues, onSubmit }) {
                             />
 
                             <InputBox
-                                name="addres"
-                                label="Full Addres"
+                                name="address"
+                                label="Full address"
                                 placeholder="Enter your address"
                                 type="text"
                             />
@@ -66,7 +66,7 @@ function BuildingProfile({ initialValues, onSubmit }) {
                                 type="text"
                             />
 
-                            <SubmitButton />
+                            <SubmitButton   />
                         </div>
 
                         <BottomDesign />
