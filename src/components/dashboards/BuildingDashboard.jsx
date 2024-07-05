@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import BottomDesign from '../Design/BottomDesign';
-import TopDesign from "../Design/TopDesign"
+import TopDesign from "../Design/TopDesign";
 
 const db = getDatabase();
 const guardsRef = ref(db, 'guards');
@@ -11,53 +11,75 @@ function BuildingDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        console.log("Fetching data from Firebase...");
         const unsubscribe = onValue(guardsRef, (snapshot) => {
             const data = snapshot.val();
+            console.log("Data fetched:", data);
             const guardsList = data ? Object.entries(data).map(([id, guard]) => ({ id, ...guard })) : [];
             setGuards(guardsList);
             setLoading(false);
+            console.log("Guards list set:", guardsList);
         }, {
             onlyOnce: true // Optional: only fetch data once
         });
 
-        return () => unsubscribe();
+        return () => {
+            console.log("Cleaning up Firebase listener...");
+            unsubscribe();
+        };
     }, []);
-    const toggleAuth = useCallback((guardId, currentAuth) => {
-    const guardRef = ref(db, `guards/${guardId}`);
-    update(guardRef, { auth: !currentAuth })
-        .then(() => {
-            // Update local state after successful database update
-            const updatedGuards = guards.map(guard => {
-                if (guard.id === guardId) {
-                    return { ...guard, auth: !currentAuth };
-                }
-                return guard;
-            });
-            setGuards(updatedGuards);
-        })
-        .catch(error => {
-            console.error('Error toggling auth:', error);
-        });
-}, [guards]);
 
+    const toggleAuth = useCallback((guardId, currentAuth) => {
+        console.log(`Toggling auth for guard ID: ${guardId}, current auth status: ${currentAuth}`);
+        const guardRef = ref(db, `guards/${guardId}`);
+        update(guardRef, { auth: !currentAuth })
+            .then(() => {
+                console.log(`Auth status successfully toggled for guard ID: ${guardId}`);
+                // Update local state after successful database update
+                const updatedGuards = guards.map(guard => {
+                    if (guard.id === guardId) {
+                        return { ...guard, auth: !currentAuth };
+                    }
+                    return guard;
+                });
+                setGuards(updatedGuards);
+                console.log("Updated guards list:", updatedGuards);
+            })
+            .catch(error => {
+                console.error('Error toggling auth:', error);
+            });
+    }, [guards]);
+
+    // Get buildingName from local storage
+    const user = JSON.parse(localStorage.getItem('user'));
+    const buildingName = user ? user.buildingName : '';
+    console.log("User data from local storage:", user);
+    console.log("Building name from local storage:", buildingName);
+
+    // Filter guards based on buildingName
+    const filteredGuards = guards.filter(guard => guard.building === buildingName);
+    console.log("Filtered guards list:", filteredGuards);
 
     if (loading) {
-        return <div>
-        <section className="bg-[white]  min-h-[calc(100vh-64px)] justify-center flex flex-col items-center py-8">
-        <h1 className="  text-5xl font-bold mb-28 px-4 text-center">Building Dashboard</h1>
-        <div className='h-[270px] text-xl '> Loading...</div>
-        </section>
-        </div>; // Optional: Show loading state while fetching data
+        console.log("Loading state: displaying loading message.");
+        return (
+            <div>
+                <section className="bg-[white] min-h-[calc(100vh-64px)] justify-center flex flex-col items-center py-8">
+                    <h1 className="text-5xl font-bold mb-28 px-4 text-center">Building Dashboard</h1>
+                    <div className='h-[270px] text-xl'>Loading...</div>
+                </section>
+            </div>
+        );
     }
 
     return (
-        <section className=" min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-8">
-      <TopDesign/>
-                  <div className="text-[black]">
+        <section className="min-h-[calc(100vh-64px)] flex flex-col justify-center items-center py-8">
+            <TopDesign />
+            <div className="text-[black]">
                 <h1 className="text-5xl font-bold mb-20 px-4 text-center">Building Dashboard</h1>
                 <div className="flex flex-wrap justify-center gap-6">
-                    {guards.map((guard) => (
-                        <div key={guard.id} style={    {boxShadow: " 0px 0px 10px rgb(230 153 255 / 74%)"}} className="relative z-50 bg-[#e9d8ff63] rounded-lg w-[300px] shadow-md p-6">
+                    {filteredGuards.map((guard) => (
+                        <div key={guard.id} style={{ boxShadow: "0px 0px 10px rgb(230 153 255 / 74%)" }} className="relative z-50 bg-[#e9d8ff63] rounded-lg w-[300px] shadow-md p-6">
                             <h2 className="flex justify-between text-lg text-[#222831] font-semibold">
                                 {guard.name}
                                 <div className="top-2 right-2">
@@ -81,10 +103,8 @@ function BuildingDashboard() {
                             <p className="text-sm text-[#222831] mb-2"><strong>Employee ID:</strong> <div>{guard.employeeId}</div></p>
                         </div>
                     ))}
-                    
-                    
                 </div>
-                <BottomDesign/>
+                <BottomDesign />
             </div>
         </section>
     );
