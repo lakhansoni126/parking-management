@@ -21,9 +21,12 @@ function GuardProfile({ initialValues, onSubmit }) {
             const buildings = onValue(buildingsRef, (snapshot) => {
                 const data = snapshot.val();
                 const buildingNamesList = data
-                    ? Object.values(data).map(
-                        (building) => building.buildingName
-                    )
+                    ? Object.values(data).map((item) => {
+                        return {
+                            value: item.buildingName,
+                            label: item.buildingName,
+                        };
+                    })
                     : [];
                 setBuildingNames(buildingNamesList);
             });
@@ -77,16 +80,7 @@ function GuardProfile({ initialValues, onSubmit }) {
                                 name="building"
                                 label="Building"
                                 placeholder="Select your building"
-                                options={[
-                                    {
-                                        value: "Dwaraka Office",
-                                        label: "Dwaraka Office",
-                                    },
-                                    {
-                                        value: "Manglam",
-                                        label: "Manglam",
-                                    },
-                                ]}
+                                options={buildingNames}
                                 onChange={(event) => {
                                     setFieldValue(
                                         "building",

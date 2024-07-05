@@ -37,9 +37,15 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
         onValue(buildingsRef, (snapshot) => {
             const data = snapshot.val();
             const buildingNamesList = data
-                ? Object.values(data).map((building) => building.buildingName)
+                ? Object.values(data).map((item) => {
+                    return {
+                        value: item.buildingName,
+                        label: item.buildingName,
+                    };
+                })
                 : [];
             setBuildingNames(buildingNamesList);
+            console.log(buildingNames);
         });
 
         onValue(officesRef, (snapshot) => {
@@ -71,9 +77,9 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                     >
                         <TopDesign />
 
-                        <div 
-                        id="guardProfileForm"
-                        className=" flex flex-col text-black"
+                        <div
+                            id="guardProfileForm"
+                            className=" flex flex-col text-black"
                         >
                             <HeadingSection title="Office Information" />
 
@@ -82,17 +88,9 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                                 name="building"
                                 label="Building"
                                 placeholder="Select your building"
-                                options={[
-                                    {
-                                        value: "Dwaraka Office",
-                                        label: "Dwaraka Office",
-                                    },
-                                    {
-                                        value: "Manglam",
-                                        label: "Manglam",
-                                    },
-                                ]}
+                                options={buildingNames}
                                 onChange={(event) => {
+
                                     setFieldValue(
                                         "building",
                                         event?.[0]?.value || ""

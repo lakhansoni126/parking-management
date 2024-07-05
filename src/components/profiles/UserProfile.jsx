@@ -31,6 +31,7 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                 })
                 : [];
             setBuildingNames(buildingNamesList);
+            console.log(buildingNames);
         });
 
         const officesRef = ref(db, "office");
