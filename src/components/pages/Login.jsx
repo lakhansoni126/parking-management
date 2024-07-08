@@ -141,7 +141,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <Boost handleGoogleSignIn={handleGoogleSignIn} />
+            <Boost />
             <Footer />
         </>
     );

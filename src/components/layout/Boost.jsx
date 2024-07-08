@@ -1,4 +1,4 @@
-export default function Boost(props) {
+export default function Boost() {
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
@@ -35,7 +35,6 @@ export default function Boost(props) {
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                             <a
-                                onClick={() => props?.handleGoogleSignIn()}
                                 href="#"
                                 className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                             >
@@ -52,9 +51,9 @@ export default function Boost(props) {
                     <div className="relative mt-16 h-80 lg:mt-8">
                         <img
                             alt="App screenshot"
-                            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-                            width={1824}
-                            height={1080}
+                            src="./images/dashboard.PNG"
+                            width={300}
+                            height={1000}
                             className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
                         />
                     </div>

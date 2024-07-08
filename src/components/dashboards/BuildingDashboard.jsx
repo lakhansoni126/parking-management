@@ -43,11 +43,9 @@ function BuildingDashboard() {
 
     const toggleAuth = useCallback(
         (guardId, currentAuth) => {
-           
             const guardRef = ref(db, `guards/${guardId}`);
             update(guardRef, { auth: !currentAuth })
                 .then(() => {
-                    
                     // Update local state after successful database update
                     const updatedGuards = guards.map((guard) => {
                         if (guard.id === guardId) {
@@ -91,7 +89,7 @@ function BuildingDashboard() {
             <Dashboard>
                 <div className="text-[black]">
                     <h1 className="text-5xl font-bold mb-20 px-4 text-center">
-                        Building Dashboard
+                        {filteredGuards?.[0]?.building}
                     </h1>
                     <div className="flex flex-wrap justify-center gap-6">
                         {filteredGuards.map((guard) => (
