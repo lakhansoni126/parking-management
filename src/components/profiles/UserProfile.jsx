@@ -24,11 +24,11 @@ const UserProfile = ({ initialValues, onSubmit }) => {
             const data = snapshot.val();
             const buildingNamesList = data
                 ? Object.values(data).map((item) => {
-                    return {
-                        value: item.buildingName,
-                        label: item.buildingName,
-                    };
-                })
+                      return {
+                          value: item.buildingName,
+                          label: item.buildingName,
+                      };
+                  })
                 : [];
             setBuildingNames(buildingNamesList);
             console.log(buildingNames);
@@ -72,7 +72,8 @@ const UserProfile = ({ initialValues, onSubmit }) => {
                         <TopDesign />
                         <div
                             id="guardProfileForm"
-                            className="flex flex-col text-black">
+                            className="flex flex-col text-black"
+                        >
                             <HeadingSection title="User Information" />
 
                             <InputBox

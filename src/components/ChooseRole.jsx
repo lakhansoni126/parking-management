@@ -23,7 +23,10 @@ const ChooseRole = ({ open, onSelectRole }) => {
                     >
                         &#8203;
                     </span>
-                    <div style={    {boxShadow: " 0px 0px 38px #cc99ff"}} className=" bg-[#e9d8ff63]  inline-block align-bottom opacity-90 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden bg-transparent  shadow-indigo-500/50 transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                    <div
+                        style={{ boxShadow: " 0px 0px 38px #cc99ff" }}
+                        className=" bg-[#e9d8ff63]  inline-block align-bottom opacity-90 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden bg-transparent  shadow-indigo-500/50 transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+                    >
                         <div>
                             <h2 className="text-lg text-center font-bold mb-4">
                                 Select Your Role
@@ -60,8 +63,8 @@ const ChooseRole = ({ open, onSelectRole }) => {
         </>
     );
 };
-ChooseRole.propTypes = {
-    open: PropTypes.object.isRequired,
-    onSelectRole: PropTypes.func.isRequired,
-};
+// ChooseRole.propTypes = {
+//     open: PropTypes.object.isRequired,
+//     onSelectRole: PropTypes.func.isRequired,
+// };
 export default ChooseRole;
