@@ -1,10 +1,10 @@
-
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { ref, get } from "firebase/database";
 import { auth, googleProvider, db } from "../../firebase";
+import Footer from "../layout/Footer";
+import Boost from "../layout/Boost";
 
 const Login = () => {
     const [error, setError] = useState("");
@@ -72,11 +72,9 @@ const Login = () => {
                             </a>
                         </div>
 
-
                         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                             <a
                                 onClick={handleGoogleSignIn}
-
                                 className=" cursor-pointer text-sm font-semibold leading-6 text-gray-900"
                             >
                                 Log in <span aria-hidden="true">&rarr;</span>
@@ -125,8 +123,6 @@ const Login = () => {
                                 >
                                     Login
                                 </button>
-
-                               
                             </div>
                         </div>
                     </div>
@@ -145,6 +141,8 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Boost handleGoogleSignIn={handleGoogleSignIn} />
+            <Footer />
         </>
     );
 };

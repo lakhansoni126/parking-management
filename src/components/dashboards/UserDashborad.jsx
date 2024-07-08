@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import BottomDesign from '../Design/BottomDesign';
-import TopDesign from "../Design/TopDesign"
+import { useEffect, useState } from "react";
+import Dashboard from "../DashboardCustom/Dashboard";
+
 const UserDashboard = () => {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
+        const storedUser = localStorage.getItem("user");
         if (storedUser) {
             setUserData(JSON.parse(storedUser));
         }
@@ -13,43 +13,64 @@ const UserDashboard = () => {
 
     return (
         <>
-        <TopDesign/>
-            <section id='User' className="h-[calc(100vh-64px)] ">
-                <div id='button' className="  flex justify-center text-[#black]">
-                    <div id="User-info" style={{boxShadow: " 0px 0px 10px rgb(230 153 255 / 74%)"}} className=" w-[550px] mt-[50px]    border-2 rounded-lg  pb-[50px] flex flex-col items-center">
-                        <h1 className="font-bold text-[20px] mt-[50px] ">User Information</h1>
-                        {userData ? (
-                            <>
-                                <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
-                                    <h2 className="font-bold">Name :</h2>
-                                    <h4>{userData.name || 'N/A'}</h4>
-                                </div>
-                                <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
-                                    <h4 className="font-bold">Email :</h4>
-                                    <h4>{userData.email || 'N/A'}</h4>
-                                </div>
-                                <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
-                                    <h4 className="font-bold">Office Number :</h4>
-                                    <h4>{userData.officeNum || 'N/A'}</h4>
-                                </div>
-                                <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
-                                    <h4 className="font-bold">Vehicle Number :</h4>
-                                    <h4>{userData.vehicleNum || 'N/A'}</h4>
-                                </div>
-                                <div className="flex gap-4 justify-between w-[440px] text-[20px] mt-10">
-                                    <h4 className="font-bold">Vehicle Type :</h4>
-                                    <h4>{userData.vehicleType || 'N/A'}</h4>
-                                </div>
-                            </>
-                        ) : (
-                            <p className="mt-10  text-[20px]">Loading user data...</p>
-                        )}
+            <Dashboard>
+                <div>
+                    <div className="px-4 sm:px-0">
+                        <h3 className="text-base font-semibold leading-7 text-gray-900">
+                            User Information
+                        </h3>
+                        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+                            Personal details and application.
+                        </p>
+                    </div>
+                    <div className="mt-6 border-t border-gray-100">
+                        <dl className="divide-y divide-gray-100">
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-900">
+                                    Name
+                                </dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    {userData?.name || "N/A"}
+                                </dd>
+                            </div>
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-900">
+                                    Email address
+                                </dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    {userData?.email || "N/A"}
+                                </dd>
+                            </div>
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-900">
+                                    Office Number
+                                </dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    {userData?.officeNum || "N/A"}
+                                </dd>
+                            </div>
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-900">
+                                    Vehicle Number
+                                </dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    {userData?.vehicleNum || "N/A"}
+                                </dd>
+                            </div>
+                            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-900">
+                                    Vehicle Type
+                                </dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                    {userData?.vehicleType || "N/A"}
+                                </dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
-            </section>
-            <BottomDesign/>
+            </Dashboard>
         </>
     );
-}
+};
 
 export default UserDashboard;

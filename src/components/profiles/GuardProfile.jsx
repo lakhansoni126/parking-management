@@ -22,11 +22,11 @@ function GuardProfile({ initialValues, onSubmit }) {
                 const data = snapshot.val();
                 const buildingNamesList = data
                     ? Object.values(data).map((item) => {
-                        return {
-                            value: item.buildingName,
-                            label: item.buildingName,
-                        };
-                    })
+                          return {
+                              value: item.buildingName,
+                              label: item.buildingName,
+                          };
+                      })
                     : [];
                 setBuildingNames(buildingNamesList);
             });
@@ -43,7 +43,7 @@ function GuardProfile({ initialValues, onSubmit }) {
             validationSchema={guardValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
                 onSubmit(values);
-                toast.success("Guard profile submitted.")
+                toast.success("Guard profile submitted.");
                 setSubmitting(false);
             }}
         >
@@ -75,7 +75,6 @@ function GuardProfile({ initialValues, onSubmit }) {
                                 type="text"
                             />
 
-
                             <SingleDropDown
                                 name="building"
                                 label="Building"
@@ -87,14 +86,12 @@ function GuardProfile({ initialValues, onSubmit }) {
                                         event?.[0]?.value || ""
                                     );
                                 }}
-
                             />
                             <InputBox
                                 name="employeeId"
                                 label="EmployeeID"
                                 placeholder="Enter your employee ID"
                                 type="text"
-
                             />
                             <SubmitButton />
                         </div>

@@ -6,7 +6,7 @@ const PrivateRoute = ({ Component }) => {
 
     return isAuth ? (
         <>
-            <Header />
+            {/* <Header /> */}
             <Component />
         </>
     ) : (

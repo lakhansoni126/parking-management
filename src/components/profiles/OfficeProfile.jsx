@@ -45,7 +45,6 @@ const OfficeProfile = ({ initialValues, onSubmit }) => {
                 })
                 : [];
             setBuildingNames(buildingNamesList);
-            console.log(buildingNames);
         });
 
         onValue(officesRef, (snapshot) => {

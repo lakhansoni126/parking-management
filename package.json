@@ -11,6 +11,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@headlessui/react": "^2.1.2",
+        "@heroicons/react": "^2.1.4",
         "@reduxjs/toolkit": "^2.2.5",
         "boxicons": "^2.1.4",
         "dotenv": "^16.4.5",
