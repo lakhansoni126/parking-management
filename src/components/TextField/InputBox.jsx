@@ -11,7 +11,7 @@ export default function InputBox(props) {
                         name={props?.name}
                         type={props?.type}
                         placeholder={props?.placeholder}
-                        className="w-[400px] border-b-2 border-[#7E30E1] bg-transparent placeholder-text-black"
+                        className="w-[400px] border-b-2 px-[3px] py-[4px] border-[#7E30E1] bg-transparent placeholder-text-black"
                     />
                     <ErrorMessage
                         name={props?.name}

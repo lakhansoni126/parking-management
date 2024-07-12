@@ -1,4 +1,6 @@
 import * as Yup from "yup";
+import { getDatabase, ref, get } from 'firebase/database';
+
 
 export const userValidationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
@@ -23,20 +25,40 @@ export const guardValidationSchema = Yup.object({
         .length(10, "Contact info must be exactly 10 digits")
         .nullable(),
 });
+const checkUniqueBuildingName = async (value, originalValue) => {
+    const db = getDatabase();
+    const buildingsRef = ref(db, 'buildings');
+    const snapshot = await get(buildingsRef);
+    const buildings = snapshot.val();
+  
+    if (buildings) {
+      const buildingNames = Object.values(buildings).map(building => building.buildingName.toLowerCase());
+      if (buildingNames.includes(value.toLowerCase()) && value.toLowerCase() !== originalValue.toLowerCase()) {
+        throw new Yup.ValidationError('Building name must be unique', value, 'buildingName');
+      }
+    }
+  
+    return true;
+  };
 //buildingName, contactInfo, altContactInfo, address, city, state
-export const buildingValidationSchema = Yup.object({
-    buildingName: Yup.string().required("Building name is required"),
+export const buildingValidationSchema = Yup.object().shape({
+    buildingName: Yup.string()
+      .required("Building name is required")
+      .test('unique-building-name', 'Building name must be unique', function (value) {
+        const { originalValue } = this;
+        return checkUniqueBuildingName(value, originalValue);
+      }),
     contactInfo: Yup.string()
-        .matches(/^\d+$/, "Contact info must be a number")
-        .length(10, "Contact info must be exactly 10 digits")
-        .required("Contact info is required"),
+      .matches(/^\d+$/, "Contact info must be a number")
+      .length(10, "Contact info must be exactly 10 digits")
+      .required("Contact info is required"),
     altContactInfo: Yup.string()
-        .matches(/^\d+$/, "Alternate contact info must be a number")
-        .nullable(),
+      .matches(/^\d+$/, "Alternate contact info must be a number")
+      .nullable(),
     address: Yup.string().required("Address is required"),
     city: Yup.string().required("City is required"),
     state: Yup.string().required("State is required"),
-});
+  });
 
 export const officeValidationSchema = (
     buildingNames,
