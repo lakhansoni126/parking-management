@@ -91,6 +91,9 @@ function BuildingDashboard() {
                     <h1 className="text-5xl font-bold mb-20 px-4 text-center">
                         {filteredGuards?.[0]?.building}
                     </h1>
+                    <h2 className="text-3xl font-bold mb-10 px-4 text-center">
+                        List of Guard
+                    </h2>
                     <div className="flex flex-wrap justify-center gap-6">
                         {filteredGuards.map((guard) => (
                             <div
