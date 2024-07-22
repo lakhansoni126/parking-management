@@ -192,14 +192,26 @@ export default function Dashboard({ children }) {
                             </div>
                             <div className="mt-3 space-y-1 px-2">
                                 {userNavigation.map((item) => (
-                                    <DisclosureButton
+                                    // <DisclosureButton
+                                    //     key={item.name}
+                                    //     as="a"
+                                    //     href={item.href}
+                                    //     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                                    // >
+                                    <button
+                                        onClick={() => {
+                                            if (item?.name == "Logout") {
+                                                console.log("LOGOUT");
+                                                localStorage.removeItem("user");
+                                                window.location.href = "/";
+                                            }
+                                        }}
                                         key={item.name}
-                                        as="a"
-                                        href={item.href}
                                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                     >
                                         {item.name}
-                                    </DisclosureButton>
+                                    </button>
+                                    // </DisclosureButton>
                                 ))}
                             </div>
                         </div>
