@@ -146,7 +146,7 @@ function GuardDashboard() {
                 </div>
             </div>
             <div className="border-b-2 border-[#49108B]">
-                <ul className=" absolute top-[4px] right-28 flex p-2 text-white gap-2">
+                <ul className=" absolute w-screen top-[4px] justify-center flex p-2 text-white gap-2">
                     <li>
                         <button
                             className="p-2 w-[90px] rounded-md hover:bg-[#7E30E1]  bg-[#49108B]"
